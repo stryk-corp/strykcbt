@@ -1,0 +1,1434 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the full meaning of OOP?",
+      "options": [
+        "Object-Oriented Programming",
+        "Object-Option Programming",
+        "Oriented-Object Programming",
+        "Objective-Oriented Programming"
+      ],
+      "answer": "Object-Oriented Programming"
+    },
+    {
+      "id": 2,
+      "question": "Which programming approach gives computational capabilities to objects?",
+      "options": [
+        "Procedural Programming",
+        "Object-Oriented Programming",
+        "Functional Programming",
+        "Logical Programming"
+      ],
+      "answer": "Object-Oriented Programming"
+    },
+    {
+      "id": 3,
+      "question": "What does a class represent in Java?",
+      "options": [
+        "A complete program",
+        "A template or blueprint for objects",
+        "A data type",
+        "A method container"
+      ],
+      "answer": "A template or blueprint for objects"
+    },
+    {
+      "id": 4,
+      "question": "What is an object in OOP?",
+      "options": [
+        "A class definition",
+        "An instance of a class",
+        "A programming language",
+        "A data structure"
+      ],
+      "answer": "An instance of a class"
+    },
+    {
+      "id": 5,
+      "question": "Which two major components make up a class?",
+      "options": [
+        "Data (variables) and code (methods)",
+        "Functions and procedures",
+        "Objects and classes",
+        "Inheritance and polymorphism"
+      ],
+      "answer": "Data (variables) and code (methods)"
+    },
+    {
+      "id": 6,
+      "question": "What does an attribute represent in an object?",
+      "options": [
+        "The behavior of the object",
+        "The state or properties of the object",
+        "The methods of the object",
+        "The class of the object"
+      ],
+      "answer": "The state or properties of the object"
+    },
+    {
+      "id": 7,
+      "question": "What does a method represent in an object?",
+      "options": [
+        "The state of the object",
+        "The behavior or action of the object",
+        "The properties of the object",
+        "The class definition"
+      ],
+      "answer": "The behavior or action of the object"
+    },
+    {
+      "id": 8,
+      "question": "In which year was Simula 67 developed?",
+      "options": [
+        "Early 1960s",
+        "Late 1970s",
+        "Early 1980s",
+        "Late 1990s"
+      ],
+      "answer": "Early 1960s"
+    },
+    {
+      "id": 9,
+      "question": "Which language is considered the first pure OOP language?",
+      "options": [
+        "C++",
+        "Java",
+        "Smalltalk",
+        "Simula"
+      ],
+      "answer": "Smalltalk"
+    },
+    {
+      "id": 10,
+      "question": "Who developed C++?",
+      "options": [
+        "James Gosling",
+        "Bjarne Stroustrup",
+        "Dennis Ritchie",
+        "Guido van Rossum"
+      ],
+      "answer": "Bjarne Stroustrup"
+    },
+    {
+      "id": 11,
+      "question": "What is the parent of Java?",
+      "options": [
+        "C",
+        "C++",
+        "Python",
+        "Smalltalk"
+      ],
+      "answer": "C++"
+    },
+    {
+      "id": 12,
+      "question": "Which keyword is used to define a class in Java?",
+      "options": [
+        "class",
+        "new",
+        "object",
+        "type"
+      ],
+      "answer": "class"
+    },
+    {
+      "id": 13,
+      "question": "What is encapsulation?",
+      "options": [
+        "The process of hiding implementation details",
+        "The bundling of data and methods within an object",
+        "The ability to inherit from multiple classes",
+        "The creation of multiple methods with the same name"
+      ],
+      "answer": "The bundling of data and methods within an object"
+    },
+    {
+      "id": 14,
+      "question": "How does encapsulation improve modularity?",
+      "options": [
+        "By making objects self-contained",
+        "By allowing multiple inheritance",
+        "By reducing code size",
+        "By improving performance"
+      ],
+      "answer": "By making objects self-contained"
+    },
+    {
+      "id": 15,
+      "question": "What is code reusability?",
+      "options": [
+        "Writing code from scratch for every program",
+        "Using existing code in new programs without rewriting",
+        "Deleting old code to make space for new code",
+        "Combining multiple programs into one"
+      ],
+      "answer": "Using existing code in new programs without rewriting"
+    },
+    {
+      "id": 16,
+      "question": "Which OOP concept enables code reuse?",
+      "options": [
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Inheritance"
+    },
+    {
+      "id": 17,
+      "question": "What is inheritance?",
+      "options": [
+        "Hiding implementation details",
+        "Acquiring properties from a parent class",
+        "Creating multiple methods with the same name",
+        "Bundling data and methods together"
+      ],
+      "answer": "Acquiring properties from a parent class"
+    },
+    {
+      "id": 18,
+      "question": "What is polymorphism?",
+      "options": [
+        "One interface, many methods",
+        "Many interfaces, one method",
+        "One class, one method",
+        "Many classes, many methods"
+      ],
+      "answer": "One interface, many methods"
+    },
+    {
+      "id": 19,
+      "question": "What is the function of constructors in Java?",
+      "options": [
+        "To destroy objects",
+        "To initialize objects",
+        "To inherit properties",
+        "To override methods"
+      ],
+      "answer": "To initialize objects"
+    },
+    {
+      "id": 20,
+      "question": "What distinguishes a method from a constructor?",
+      "options": [
+        "A method has a return type; constructor does not",
+        "A constructor has a return type; method does not",
+        "Methods can't be called directly",
+        "Constructors can't have parameters"
+      ],
+      "answer": "A method has a return type; constructor does not"
+    },
+    {
+      "id": 21,
+      "question": "What is abstraction?",
+      "options": [
+        "Showing all implementation details",
+        "Hiding internal details and showing essential features",
+        "Combining multiple classes into one",
+        "Making all methods public"
+      ],
+      "answer": "Hiding internal details and showing essential features"
+    },
+    {
+      "id": 22,
+      "question": "What keyword is used to create an object in Java?",
+      "options": [
+        "class",
+        "new",
+        "object",
+        "create"
+      ],
+      "answer": "new"
+    },
+    {
+      "id": 23,
+      "question": "What is the result of executing 'Triangle t = new Triangle();'?",
+      "options": [
+        "A class is defined",
+        "An object of class Triangle is created",
+        "A method is called",
+        "An interface is implemented"
+      ],
+      "answer": "An object of class Triangle is created"
+    },
+    {
+      "id": 24,
+      "question": "What is method overloading?",
+      "options": [
+        "Same method name, different parameter list",
+        "Same method name, same parameter list",
+        "Different method name, same parameter list",
+        "Different method name, different parameter list"
+      ],
+      "answer": "Same method name, different parameter list"
+    },
+    {
+      "id": 25,
+      "question": "What is method overriding?",
+      "options": [
+        "Subclass method replaces superclass method",
+        "Superclass method replaces subclass method",
+        "Creating multiple methods with different names",
+        "Hiding methods from subclasses"
+      ],
+      "answer": "Subclass method replaces superclass method"
+    },
+    {
+      "id": 26,
+      "question": "How do anonymous classes differ from regular classes?",
+      "options": [
+        "They have names and are declared separately",
+        "They lack names and are declared inside methods",
+        "They can't implement interfaces",
+        "They can't extend other classes"
+      ],
+      "answer": "They lack names and are declared inside methods"
+    },
+    {
+      "id": 27,
+      "question": "Which keyword is used for inheritance in Java?",
+      "options": [
+        "inherits",
+        "extends",
+        "implements",
+        "super"
+      ],
+      "answer": "extends"
+    },
+    {
+      "id": 28,
+      "question": "Can Java support multiple inheritance?",
+      "options": [
+        "Yes",
+        "No",
+        "Only in interfaces",
+        "Only in abstract classes"
+      ],
+      "answer": "No"
+    },
+    {
+      "id": 29,
+      "question": "What is used to simulate multiple inheritance in Java?",
+      "options": [
+        "Abstract classes",
+        "Interface",
+        "Final classes",
+        "Static methods"
+      ],
+      "answer": "Interface"
+    },
+    {
+      "id": 30,
+      "question": "What is the purpose of the 'super' keyword?",
+      "options": [
+        "To reference the superclass constructor or method",
+        "To create a new object",
+        "To define a subclass",
+        "To implement an interface"
+      ],
+      "answer": "To reference the superclass constructor or method"
+    },
+    {
+      "id": 31,
+      "question": "What is an inner class?",
+      "options": [
+        "A class defined inside another class",
+        "A class that inherits from another class",
+        "A class that implements an interface",
+        "A class with only static methods"
+      ],
+      "answer": "A class defined inside another class"
+    },
+    {
+      "id": 32,
+      "question": "What are static nested classes?",
+      "options": [
+        "Inner classes tied to an instance of the outer class",
+        "Inner classes not tied to an instance of the outer class",
+        "Classes that can't be instantiated",
+        "Classes with only private methods"
+      ],
+      "answer": "Inner classes not tied to an instance of the outer class"
+    },
+    {
+      "id": 33,
+      "question": "What is the default access level of a class?",
+      "options": [
+        "Public",
+        "Private",
+        "Protected",
+        "Package-private (no modifier)"
+      ],
+      "answer": "Package-private (no modifier)"
+    },
+    {
+      "id": 34,
+      "question": "What is the return type of a method that doesn't return data?",
+      "options": [
+        "void",
+        "null",
+        "int",
+        "Object"
+      ],
+      "answer": "void"
+    },
+    {
+      "id": 35,
+      "question": "What is a parameter list in a method?",
+      "options": [
+        "List of return types",
+        "List of input types and names used in a method",
+        "List of method names",
+        "List of class names"
+      ],
+      "answer": "List of input types and names used in a method"
+    },
+    {
+      "id": 36,
+      "question": "What is the output of a method with 'System.out.println(\"drawing triangle \")'?",
+      "options": [
+        "drawing",
+        "triangle",
+        "drawing triangle",
+        "No output"
+      ],
+      "answer": "drawing triangle"
+    },
+    {
+      "id": 37,
+      "question": "What is the name of the main method in Java?",
+      "options": [
+        "public static void main()",
+        "public static void main(String[] args)",
+        "public void main(String[] args)",
+        "static void main(String[] args)"
+      ],
+      "answer": "public static void main(String[] args)"
+    },
+    {
+      "id": 38,
+      "question": "What happens if a class has no 'main()' method?",
+      "options": [
+        "It cannot be executed directly",
+        "It can still be executed",
+        "It becomes an interface",
+        "It automatically inherits from Object"
+      ],
+      "answer": "It cannot be executed directly"
+    },
+    {
+      "id": 39,
+      "question": "What is a nested if statement?",
+      "options": [
+        "An 'if' or 'if-else' inside another 'if' or 'if-else'",
+        "An 'if' statement with multiple conditions",
+        "An 'if' statement inside a loop",
+        "An 'if' statement that calls itself"
+      ],
+      "answer": "An 'if' or 'if-else' inside another 'if' or 'if-else'"
+    },
+    {
+      "id": 40,
+      "question": "What is the switch statement used for?",
+      "options": [
+        "Single conditional check",
+        "Multiple conditional checks based on a variable's value",
+        "Looping through arrays",
+        "Defining methods"
+      ],
+      "answer": "Multiple conditional checks based on a variable's value"
+    },
+    {
+      "id": 41,
+      "question": "What data types are valid in a switch expression?",
+      "options": [
+        "char, byte, short, int",
+        "float, double",
+        "boolean",
+        "All data types"
+      ],
+      "answer": "char, byte, short, int"
+    },
+    {
+      "id": 42,
+      "question": "What is the difference between 'while' and 'do-while' loops?",
+      "options": [
+        "'do-while' runs at least once, 'while' may not",
+        "'while' runs at least once, 'do-while' may not",
+        "There is no difference",
+        "'do-while' is faster than 'while'"
+      ],
+      "answer": "'do-while' runs at least once, 'while' may not"
+    },
+    {
+      "id": 43,
+      "question": "Which loop guarantees at least one execution?",
+      "options": [
+        "for",
+        "while",
+        "do-while",
+        "foreach"
+      ],
+      "answer": "do-while"
+    },
+    {
+      "id": 44,
+      "question": "What is the control variable in a 'for' loop?",
+      "options": [
+        "The variable used to control iteration",
+        "The variable that stores the result",
+        "The variable that counts total iterations",
+        "The variable that breaks the loop"
+      ],
+      "answer": "The variable used to control iteration"
+    },
+    {
+      "id": 45,
+      "question": "What happens when a 'break' statement is encountered in a switch block?",
+      "options": [
+        "Exits the switch block",
+        "Continues to the next case",
+        "Restarts the switch block",
+        "Throws an exception"
+      ],
+      "answer": "Exits the switch block"
+    },
+    {
+      "id": 46,
+      "question": "Which OOP principle uses one interface, many implementations?",
+      "options": [
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Abstraction"
+      ],
+      "answer": "Polymorphism"
+    },
+    {
+      "id": 47,
+      "question": "Which access modifier is the most restrictive?",
+      "options": [
+        "public",
+        "protected",
+        "private",
+        "package-private"
+      ],
+      "answer": "private"
+    },
+    {
+      "id": 48,
+      "question": "How many methods should an anonymous class typically have?",
+      "options": [
+        "One or two",
+        "Five to ten",
+        "As many as needed",
+        "None"
+      ],
+      "answer": "One or two"
+    },
+    {
+      "id": 49,
+      "question": "Which constructor is called if no constructor is defined?",
+      "options": [
+        "Parameterized constructor",
+        "Default constructor",
+        "Copy constructor",
+        "No constructor is called"
+      ],
+      "answer": "Default constructor"
+    },
+    {
+      "id": 50,
+      "question": "What is the term for passing one object's reference to another?",
+      "options": [
+        "Object reference assignment",
+        "Object cloning",
+        "Object destruction",
+        "Object inheritance"
+      ],
+      "answer": "Object reference assignment"
+    },
+    {
+      "id": 51,
+      "question": "What is the syntax of a method declaration?",
+      "options": [
+        "modifier returnType methodName(parameters)",
+        "methodName modifier returnType(parameters)",
+        "returnType methodName modifier(parameters)",
+        "parameters methodName returnType modifier"
+      ],
+      "answer": "modifier returnType methodName(parameters)"
+    },
+    {
+      "id": 52,
+      "question": "What is the keyword for declaring a method public?",
+      "options": [
+        "public",
+        "private",
+        "protected",
+        "package"
+      ],
+      "answer": "public"
+    },
+    {
+      "id": 53,
+      "question": "What are instance variables?",
+      "options": [
+        "Variables defined inside methods",
+        "Variables defined inside a class but outside methods",
+        "Variables defined in interfaces",
+        "Variables defined in abstract classes"
+      ],
+      "answer": "Variables defined inside a class but outside methods"
+    },
+    {
+      "id": 54,
+      "question": "What happens if 'myTriangle.findArea();' is called?",
+      "options": [
+        "It creates a new triangle",
+        "It returns the area of the triangle",
+        "It deletes the triangle",
+        "It changes the triangle's dimensions"
+      ],
+      "answer": "It returns the area of the triangle"
+    },
+    {
+      "id": 55,
+      "question": "What are Java library classes?",
+      "options": [
+        "User-defined classes",
+        "Predefined classes in Java SDK",
+        "Classes from third-party libraries",
+        "Classes that can't be instantiated"
+      ],
+      "answer": "Predefined classes in Java SDK"
+    },
+    {
+      "id": 56,
+      "question": "What is the purpose of import statements?",
+      "options": [
+        "To export classes",
+        "To use predefined Java classes",
+        "To create new packages",
+        "To hide implementation details"
+      ],
+      "answer": "To use predefined Java classes"
+    },
+    {
+      "id": 57,
+      "question": "What is a base class?",
+      "options": [
+        "A subclass that inherits from another class",
+        "A superclass from which subclasses inherit",
+        "A class that can't be extended",
+        "A class with only static methods"
+      ],
+      "answer": "A superclass from which subclasses inherit"
+    },
+    {
+      "id": 58,
+      "question": "What is a subclass?",
+      "options": [
+        "A class that inherits from a superclass",
+        "A class that can't be extended",
+        "A class with only private methods",
+        "A class that implements multiple interfaces"
+      ],
+      "answer": "A class that inherits from a superclass"
+    },
+    {
+      "id": 59,
+      "question": "What does the 'extends' keyword do?",
+      "options": [
+        "Implements an interface",
+        "Establishes inheritance",
+        "Creates a new object",
+        "Defines a static method"
+      ],
+      "answer": "Establishes inheritance"
+    },
+    {
+      "id": 60,
+      "question": "What is the impact of assigning 't = myTriangle'?",
+      "options": [
+        "Both reference the same object",
+        "A new object is created",
+        "The original object is deleted",
+        "An error occurs"
+      ],
+      "answer": "Both reference the same object"
+    },
+    {
+      "id": 61,
+      "question": "What is the difference between procedural and object-oriented programming?",
+      "options": [
+        "Procedural is object-based; OOP is step-by-step",
+        "Procedural is step-by-step; OOP is object-based",
+        "There is no difference",
+        "Procedural uses classes; OOP uses functions"
+      ],
+      "answer": "Procedural is step-by-step; OOP is object-based"
+    },
+    {
+      "id": 62,
+      "question": "What access level allows use across all packages?",
+      "options": [
+        "private",
+        "protected",
+        "public",
+        "package-private"
+      ],
+      "answer": "public"
+    },
+    {
+      "id": 63,
+      "question": "How does abstraction differ from encapsulation?",
+      "options": [
+        "Abstraction hides implementation; encapsulation hides data",
+        "Encapsulation hides implementation; abstraction hides data",
+        "There is no difference",
+        "Abstraction is about inheritance; encapsulation is about polymorphism"
+      ],
+      "answer": "Abstraction hides implementation; encapsulation hides data"
+    },
+    {
+      "id": 64,
+      "question": "What is the output of the draw() method in class Triangle?",
+      "options": [
+        "drawing",
+        "triangle",
+        "drawing triangle",
+        "No output"
+      ],
+      "answer": "drawing triangle"
+    },
+    {
+      "id": 65,
+      "question": "Which loop type checks the condition after execution?",
+      "options": [
+        "for",
+        "while",
+        "do-while",
+        "foreach"
+      ],
+      "answer": "do-while"
+    },
+    {
+      "id": 66,
+      "question": "What is the function of 'return' in a method?",
+      "options": [
+        "Returns a value to the calling method",
+        "Exits the program",
+        "Continues to the next iteration",
+        "Breaks out of a loop"
+      ],
+      "answer": "Returns a value to the calling method"
+    },
+    {
+      "id": 67,
+      "question": "What is the function of the main method in Java?",
+      "options": [
+        "It is the program's entry point",
+        "It is used to create objects",
+        "It is used to inherit classes",
+        "It is used to implement interfaces"
+      ],
+      "answer": "It is the program's entry point"
+    },
+    {
+      "id": 68,
+      "question": "What must be true for a while loop to continue?",
+      "options": [
+        "The condition must evaluate to true",
+        "The condition must evaluate to false",
+        "The loop variable must be zero",
+        "The loop must have run at least once"
+      ],
+      "answer": "The condition must evaluate to true"
+    },
+    {
+      "id": 69,
+      "question": "What is the syntax for an 'if' statement?",
+      "options": [
+        "if (condition) { statements; }",
+        "if { statements; } (condition)",
+        "(condition) if { statements; }",
+        "{ statements; } if (condition)"
+      ],
+      "answer": "if (condition) { statements; }"
+    },
+    {
+      "id": 70,
+      "question": "What makes OOP more secure than procedural programming?",
+      "options": [
+        "Data hiding via encapsulation",
+        "Use of global variables",
+        "Lack of methods",
+        "Direct access to all data"
+      ],
+      "answer": "Data hiding via encapsulation"
+    },
+    {
+      "id": 71,
+      "question": "Which of the following is NOT an OOP concept?",
+      "options": [
+        "Inheritance",
+        "Polymorphism",
+        "Encapsulation",
+        "Iteration"
+      ],
+      "answer": "Iteration"
+    },
+    {
+      "id": 72,
+      "question": "What is a constructor's return type?",
+      "options": [
+        "void",
+        "The class type",
+        "No return type",
+        "int"
+      ],
+      "answer": "No return type"
+    },
+    {
+      "id": 73,
+      "question": "Which keyword is used to prevent a class from being inherited?",
+      "options": [
+        "final",
+        "static",
+        "private",
+        "abstract"
+      ],
+      "answer": "final"
+    },
+    {
+      "id": 74,
+      "question": "What is the purpose of the 'this' keyword?",
+      "options": [
+        "To refer to the current object",
+        "To create a new object",
+        "To refer to the superclass",
+        "To implement an interface"
+      ],
+      "answer": "To refer to the current object"
+    },
+    {
+      "id": 75,
+      "question": "Which of these is a marker interface in Java?",
+      "options": [
+        "Runnable",
+        "Serializable",
+        "Comparable",
+        "ActionListener"
+      ],
+      "answer": "Serializable"
+    },
+    {
+      "id": 76,
+      "question": "What is the default value of a boolean variable in Java?",
+      "options": [
+        "true",
+        "false",
+        "null",
+        "0"
+      ],
+      "answer": "false"
+    },
+    {
+      "id": 77,
+      "question": "Which of these is NOT a primitive data type in Java?",
+      "options": [
+        "int",
+        "float",
+        "String",
+        "boolean"
+      ],
+      "answer": "String"
+    },
+    {
+      "id": 78,
+      "question": "What is the size of a 'char' in Java?",
+      "options": [
+        "8 bits",
+        "16 bits",
+        "32 bits",
+        "64 bits"
+      ],
+      "answer": "16 bits"
+    },
+    {
+      "id": 79,
+      "question": "Which collection class allows duplicate elements?",
+      "options": [
+        "Set",
+        "List",
+        "Map",
+        "Queue"
+      ],
+      "answer": "List"
+    },
+    {
+      "id": 80,
+      "question": "What is the root class of all Java classes?",
+      "options": [
+        "Object",
+        "Class",
+        "Main",
+        "Root"
+      ],
+      "answer": "Object"
+    },
+    {
+      "id": 81,
+      "question": "Which keyword is used to handle exceptions?",
+      "options": [
+        "try",
+        "catch",
+        "finally",
+        "All of the above"
+      ],
+      "answer": "All of the above"
+    },
+    {
+      "id": 82,
+      "question": "What is method signature in Java?",
+      "options": [
+        "Method name and return type",
+        "Method name and parameter list",
+        "Method name, return type and parameter list",
+        "Method name, return type, parameter list and access modifier"
+      ],
+      "answer": "Method name and parameter list"
+    },
+    {
+      "id": 83,
+      "question": "Which of these is NOT a valid Java identifier?",
+      "options": [
+        "_variable",
+        "$variable",
+        "2variable",
+        "variable2"
+      ],
+      "answer": "2variable"
+    },
+    {
+      "id": 84,
+      "question": "What is autoboxing in Java?",
+      "options": [
+        "Automatic conversion of primitive types to wrapper objects",
+        "Automatic conversion of wrapper objects to primitive types",
+        "Creating boxes in UI",
+        "A type of exception handling"
+      ],
+      "answer": "Automatic conversion of primitive types to wrapper objects"
+    },
+    {
+      "id": 85,
+      "question": "Which of these is NOT a valid Java comment?",
+      "options": [
+        "// Single line comment",
+        "/* Multi-line comment */",
+        "/** Documentation comment */",
+        "<!-- HTML comment -->"
+      ],
+      "answer": "<!-- HTML comment -->"
+    },
+    {
+      "id": 86,
+      "question": "What is the purpose of the 'final' keyword for a variable?",
+      "options": [
+        "To make it constant",
+        "To make it public",
+        "To make it static",
+        "To make it private"
+      ],
+      "answer": "To make it constant"
+    },
+    {
+      "id": 87,
+      "question": "Which package is automatically imported in Java?",
+      "options": [
+        "java.util",
+        "java.lang",
+        "java.io",
+        "java.awt"
+      ],
+      "answer": "java.lang"
+    },
+    {
+      "id": 88,
+      "question": "What is the default value of an object reference?",
+      "options": [
+        "null",
+        "0",
+        "false",
+        "undefined"
+      ],
+      "answer": "null"
+    },
+    {
+      "id": 89,
+      "question": "Which of these is a valid method declaration?",
+      "options": [
+        "public void method()",
+        "void public method()",
+        "method() public void",
+        "public method() void"
+      ],
+      "answer": "public void method()"
+    },
+    {
+      "id": 90,
+      "question": "What is a package in Java?",
+      "options": [
+        "A collection of classes and interfaces",
+        "A single class",
+        "A method",
+        "A variable"
+      ],
+      "answer": "A collection of classes and interfaces"
+    },
+    {
+      "id": 91,
+      "question": "Which of these is NOT a valid Java data type?",
+      "options": [
+        "int",
+        "float",
+        "double",
+        "real"
+      ],
+      "answer": "real"
+    },
+    {
+      "id": 92,
+      "question": "What is the purpose of the 'instanceof' operator?",
+      "options": [
+        "To check if an object is an instance of a class",
+        "To create a new instance",
+        "To compare two instances",
+        "To destroy an instance"
+      ],
+      "answer": "To check if an object is an instance of a class"
+    },
+    {
+      "id": 93,
+      "question": "Which of these is NOT a valid loop in Java?",
+      "options": [
+        "for",
+        "while",
+        "do-while",
+        "repeat-until"
+      ],
+      "answer": "repeat-until"
+    },
+    {
+      "id": 94,
+      "question": "What is the purpose of the 'continue' statement?",
+      "options": [
+        "To skip the current iteration",
+        "To exit the loop",
+        "To exit the program",
+        "To restart the loop"
+      ],
+      "answer": "To skip the current iteration"
+    },
+    {
+      "id": 95,
+      "question": "Which of these is NOT a valid access modifier in Java?",
+      "options": [
+        "public",
+        "private",
+        "protected",
+        "internal"
+      ],
+      "answer": "internal"
+    },
+    {
+      "id": 96,
+      "question": "What is the purpose of the 'static' keyword?",
+      "options": [
+        "To make a member belong to the class rather than instances",
+        "To make a member constant",
+        "To prevent inheritance",
+        "To make a member private"
+      ],
+      "answer": "To make a member belong to the class rather than instances"
+    },
+    {
+      "id": 97,
+      "question": "Which of these is NOT a valid Java operator?",
+      "options": [
+        "+",
+        "-",
+        "*",
+        "×"
+      ],
+      "answer": "×"
+    },
+    {
+      "id": 98,
+      "question": "What is the purpose of the 'default' case in a switch statement?",
+      "options": [
+        "To handle all cases not explicitly handled",
+        "To make the switch statement required",
+        "To exit the switch statement",
+        "To continue to the next case"
+      ],
+      "answer": "To handle all cases not explicitly handled"
+    },
+    {
+      "id": 99,
+      "question": "Which of these is NOT a valid Java array declaration?",
+      "options": [
+        "int[] arr;",
+        "int arr[];",
+        "[]int arr;",
+        "int arr = new int[5];"
+      ],
+      "answer": "[]int arr;"
+    },
+    {
+      "id": 100,
+      "question": "What is the purpose of the 'transient' keyword?",
+      "options": [
+        "To indicate a variable should not be serialized",
+        "To make a variable temporary",
+        "To make a variable public",
+        "To make a variable constant"
+      ],
+      "answer": "To indicate a variable should not be serialized"
+    },
+    {
+      "id": 101,
+      "question": "What is the purpose of the 'volatile' keyword?",
+      "options": [
+        "To indicate a variable may change asynchronously",
+        "To make a variable loud",
+        "To make a variable public",
+        "To make a variable constant"
+      ],
+      "answer": "To indicate a variable may change asynchronously"
+    },
+    {
+      "id": 102,
+      "question": "Which of these is NOT a valid Java variable name?",
+      "options": [
+        "myVariable",
+        "_myVariable",
+        "$myVariable",
+        "my-Variable"
+      ],
+      "answer": "my-Variable"
+    },
+    {
+      "id": 103,
+      "question": "What is the purpose of the 'strictfp' keyword?",
+      "options": [
+        "To ensure consistent floating-point calculations",
+        "To make a method strict",
+        "To prevent method overriding",
+        "To make a class final"
+      ],
+      "answer": "To ensure consistent floating-point calculations"
+    },
+    {
+      "id": 104,
+      "question": "Which of these is NOT a valid Java literal?",
+      "options": [
+        "123",
+        "12.3",
+        "'123'",
+        "true"
+      ],
+      "answer": "'123'"
+    },
+    {
+      "id": 105,
+      "question": "What is the purpose of the 'assert' keyword?",
+      "options": [
+        "To test assumptions in the code",
+        "To create assertions",
+        "To make a statement required",
+        "To compare two values"
+      ],
+      "answer": "To test assumptions in the code"
+    },
+    {
+      "id": 106,
+      "question": "Which of these is NOT a valid Java keyword?",
+      "options": [
+        "goto",
+        "const",
+        "native",
+        "All are valid but reserved"
+      ],
+      "answer": "All are valid but reserved"
+    },
+    {
+      "id": 107,
+      "question": "What is the purpose of the 'synchronized' keyword?",
+      "options": [
+        "To control access to a shared resource",
+        "To make methods run faster",
+        "To make variables constant",
+        "To prevent inheritance"
+      ],
+      "answer": "To control access to a shared resource"
+    },
+    {
+      "id": 108,
+      "question": "Which of these is NOT a valid Java wrapper class?",
+      "options": [
+        "Integer",
+        "Float",
+        "String",
+        "Boolean"
+      ],
+      "answer": "String"
+    },
+    {
+      "id": 109,
+      "question": "What is the purpose of the 'enum' keyword?",
+      "options": [
+        "To define a set of named constants",
+        "To enumerate through a collection",
+        "To create a new type of exception",
+        "To define an interface"
+      ],
+      "answer": "To define a set of named constants"
+    },
+    {
+      "id": 110,
+      "question": "Which of these is NOT a valid Java interface?",
+      "options": [
+        "Runnable",
+        "Serializable",
+        "Cloneable",
+        "Instantiable"
+      ],
+      "answer": "Instantiable"
+    },
+    {
+      "id": 111,
+      "question": "What is the purpose of the 'native' keyword?",
+      "options": [
+        "To indicate a method is implemented in native code",
+        "To make a method natural",
+        "To create a new object",
+        "To define a primitive type"
+      ],
+      "answer": "To indicate a method is implemented in native code"
+    },
+    {
+      "id": 112,
+      "question": "Which of these is NOT a valid Java exception?",
+      "options": [
+        "NullPointerException",
+        "ArrayIndexOutOfBoundsException",
+        "FileNotFoundException",
+        "ZeroDivisionException"
+      ],
+      "answer": "ZeroDivisionException"
+    },
+    {
+      "id": 113,
+      "question": "What is the purpose of the 'finally' block?",
+      "options": [
+        "To execute code regardless of exceptions",
+        "To handle exceptions",
+        "To create final variables",
+        "To prevent method overriding"
+      ],
+      "answer": "To execute code regardless of exceptions"
+    },
+    {
+      "id": 114,
+      "question": "Which of these is NOT a valid Java collection interface?",
+      "options": [
+        "List",
+        "Set",
+        "Map",
+        "Array"
+      ],
+      "answer": "Array"
+    },
+    {
+      "id": 115,
+      "question": "What is the purpose of the 'Comparator' interface?",
+      "options": [
+        "To compare two objects",
+        "To compare primitive types",
+        "To create comparable objects",
+        "To sort arrays"
+      ],
+      "answer": "To compare two objects"
+    },
+    {
+      "id": 116,
+      "question": "Which of these is NOT a valid Java stream class?",
+      "options": [
+        "InputStream",
+        "OutputStream",
+        "FileStream",
+        "BufferedStream"
+      ],
+      "answer": "FileStream"
+    },
+    {
+      "id": 117,
+      "question": "What is the purpose of the 'Thread' class?",
+      "options": [
+        "To create and control threads",
+        "To create strings",
+        "To handle exceptions",
+        "To compare objects"
+      ],
+      "answer": "To create and control threads"
+    },
+    {
+      "id": 118,
+      "question": "Which of these is NOT a valid Java annotation?",
+      "options": [
+        "@Override",
+        "@Deprecated",
+        "@SuppressWarnings",
+        "@Final"
+      ],
+      "answer": "@Final"
+    },
+    {
+      "id": 119,
+      "question": "What is the purpose of the 'StringBuilder' class?",
+      "options": [
+        "To create mutable strings",
+        "To create immutable strings",
+        "To build string arrays",
+        "To compare strings"
+      ],
+      "answer": "To create mutable strings"
+    },
+    {
+      "id": 120,
+      "question": "Which of these is NOT a valid Java access level for a class member?",
+      "options": [
+        "public",
+        "private",
+        "protected",
+        "local"
+      ],
+      "answer": "local"
+    },
+    {
+      "id": 121,
+      "question": "What is the purpose of the 'Math' class?",
+      "options": [
+        "To perform mathematical operations",
+        "To create mathematical objects",
+        "To solve equations",
+        "To draw graphs"
+      ],
+      "answer": "To perform mathematical operations"
+    },
+    {
+      "id": 122,
+      "question": "Which of these is NOT a valid Java date/time class?",
+      "options": [
+        "Date",
+        "Calendar",
+        "Time",
+        "LocalDate"
+      ],
+      "answer": "Time"
+    },
+    {
+      "id": 123,
+      "question": "What is the purpose of the 'Random' class?",
+      "options": [
+        "To generate random numbers",
+        "To sort collections randomly",
+        "To shuffle arrays",
+        "To create random objects"
+      ],
+      "answer": "To generate random numbers"
+    },
+    {
+      "id": 124,
+      "question": "Which of these is NOT a valid Java I/O class?",
+      "options": [
+        "File",
+        "FileReader",
+        "FileWriter",
+        "FileParser"
+      ],
+      "answer": "FileParser"
+    },
+    {
+      "id": 125,
+      "question": "What is the purpose of the 'System' class?",
+      "options": [
+        "To provide system-related operations",
+        "To create system objects",
+        "To manage threads",
+        "To handle exceptions"
+      ],
+      "answer": "To provide system-related operations"
+    },
+    {
+      "id": 126,
+      "question": "Which of these is NOT a valid Java networking class?",
+      "options": [
+        "Socket",
+        "ServerSocket",
+        "URL",
+        "WebSocket"
+      ],
+      "answer": "WebSocket"
+    },
+    {
+      "id": 127,
+      "question": "What is the purpose of the 'Class' class?",
+      "options": [
+        "To represent classes and interfaces at runtime",
+        "To define new classes",
+        "To create class objects",
+        "To inherit from other classes"
+      ],
+      "answer": "To represent classes and interfaces at runtime"
+    },
+    {
+      "id": 128,
+      "question": "Which of these is NOT a valid Java reflection class?",
+      "options": [
+        "Method",
+        "Field",
+        "Constructor",
+        "Instance"
+      ],
+      "answer": "Instance"
+    },
+    {
+      "id": 129,
+      "question": "What is the purpose of the 'Pattern' class?",
+      "options": [
+        "To work with regular expressions",
+        "To create design patterns",
+        "To define class patterns",
+        "To implement interfaces"
+      ],
+      "answer": "To work with regular expressions"
+    },
+    {
+      "id": 130,
+      "question": "Which of these is NOT a valid Java utility class?",
+      "options": [
+        "Arrays",
+        "Collections",
+        "Objects",
+        "Utilities"
+      ],
+      "answer": "Utilities"
+    }
+  ]
+}
