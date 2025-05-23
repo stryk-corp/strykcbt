@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Concepts CBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --footer-color: #34495e;
+            --bg-color: #e5ddd5;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --card-bg: #1e1e1e;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --footer-color: #0d0d0d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e7195b6b733d9110b408f075d.png');
+        }
+
+        [data-theme="dark"] body {
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-dark_04ccac6ecd6921a5bb6b6f7c6c7d7a6e.png');
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 15px 0 0;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .user-info i {
+            font-size: 1.4rem;
+        }
+
+        .header-timer {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .header-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+        }
+
+        .header-progress .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Book Cover Styling */
+        .book-cover {
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 5px 15px 15px 5px;
+            box-shadow: 0 20px 40px var(--shadow-color),
+                        0 0 0 10px var(--card-bg),
+                        0 0 0 12px #ddd,
+                        0 0 30px rgba(0, 0, 0, 0.1) inset;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s ease;
+            cursor: pointer;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 30px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotateY(45deg);
+            transform-origin: left;
+            filter: blur(5px);
+        }
+
+        .book-cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-cover p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .book-cover .btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-cover .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Book Open Animation */
+        .book-open {
+            animation: bookOpen 1.5s ease forwards;
+        }
+
+        @keyframes bookOpen {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.7; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 0; display: none; }
+        }
+
+        /* Quiz Book Styling */
+        .quiz-book {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px var(--shadow-color),
+                        0 0 0 1px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            position: relative;
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+            overflow: hidden;
+            margin: 0 auto;
+            min-height: 500px;
+        }
+
+        .quiz-book.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page {
+            padding: 30px;
+            position: relative;
+            min-height: 500px;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+        }
+
+        .page.flipping {
+            animation: pageFlip 1.2s ease forwards;
+        }
+
+        @keyframes pageFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.5; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 1; }
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            background-color: var(--footer-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #25D366;
+            transform: translateY(-2px);
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Quiz Components */
+        .timer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .question-number {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 18px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 60px;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .option.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-color: var(--danger-color);
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            height: 22px;
+            width: 22px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+
+        .option.selected .checkmark {
+            border-color: var(--secondary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .option.selected .checkmark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .submit-btn {
+            background-color: var(--success-color);
+        }
+
+        /* Results Container */
+        .result-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            padding: 40px;
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+            margin: 0 auto;
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .score::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .summary {
+            margin-top: 40px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .summary-item {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover {
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transform: translateY(-2px);
+        }
+
+        .summary-item.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        .summary-item.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .user-answer {
+            color: var(--danger-color);
+            font-weight: 500;
+        }
+
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+
+        /* Timer Settings Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-cover, .quiz-book {
+                width: 95%;
+                height: auto;
+                min-height: 400px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.8rem;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .option {
+                padding: 15px 15px 15px 50px;
+            }
+
+            .checkmark {
+                left: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .book-cover, .quiz-book {
+                width: 100%;
+                padding: 20px;
+                min-height: 350px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.5rem;
+            }
+
+            .book-cover p {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .header-timer {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Basic OOP Mastery</h1>
+                    <p>Computer Based Testing System</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="header-timer" id="headerTimer">
+                    <i class="fas fa-clock"></i>
+                    <span>30:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-progress">
+            <div class="progress-bar" id="headerProgress"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="bookCover">
+            <h1>Basic Object-Oriented Programming Concept
+</h1>
+            <p>Computer Based Test</p>
+            <p>Test your knowledge of OOP concepts with this interactive assessment</p>
+            <button class="btn" id="startBtn">Start Assessment</button>
+        </div>
+        
+        <!-- Quiz Book -->
+        <div class="quiz-book" id="quizBook">
+            <div class="page" id="questionPage">
+                <div class="timer-container">
+                    <div class="question-number" id="questionNumber">Question 1 of 70</div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="question-container" id="questionContainer">
+                    <div class="question" id="question"></div>
+                    <div class="options" id="options"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn" id="nextBtn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn submit-btn" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Test
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="result-container" id="resultContainer">
+            <h2>Assessment Complete</h2>
+            <div class="score" id="score">0/70</div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn" id="restartBtn">
+                <i class="fas fa-redo"></i> Take Test Again
+            </button>
+            
+            <div class="summary" id="summary"></div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">Dr. Stryk's CBT</div>
+            <div class="footer-contact">
+                <a href="https://wa.me/2348075884197" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +234 807 588 4197
+                </a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 Computer Based Testing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Timer Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Timer Settings</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="timeLimit">Set Time Limit (minutes)</label>
+                <input type="number" id="timeLimit" class="form-control" min="1" max="120" value="30">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded JSON data
+        const questionsData = {
+  "questions": [
+    {
+      "id": 1,
+      "question": "Explain the fundamental differences between procedural programming and object-oriented programming, highlighting how OOP addresses the limitations of procedural programming.",
+      "options": [
+        "Procedural programming focuses on functions; OOP focuses on objects that combine data and behavior.",
+        "Procedural programming uses classes; OOP uses standalone functions.",
+        "Procedural programming is faster; OOP is slower but more modular.",
+        "There are no significant differences between the two paradigms."
+      ],
+      "answer": "Procedural programming focuses on functions; OOP focuses on objects that combine data and behavior."
+    },
+    {
+      "id": 2,
+      "question": "Discuss the significance of Simula 67 and Smalltalk in the evolution of object-oriented programming. How did they influence modern languages like Java?",
+      "options": [
+        "Simula 67 introduced classes; Smalltalk refined pure OOP concepts, influencing Java's design.",
+        "Simula 67 was the first functional language; Smalltalk introduced procedural programming.",
+        "Both languages were procedural and had no impact on Java.",
+        "Smalltalk introduced encapsulation; Simula 67 introduced polymorphism."
+      ],
+      "answer": "Simula 67 introduced classes; Smalltalk refined pure OOP concepts, influencing Java's design."
+    },
+    {
+      "id": 3,
+      "question": "Analyze the relationship between a class and an object in Java. Provide an example to illustrate how a class serves as a blueprint for objects.",
+      "options": [
+        "A class is a template; an object is an instance of that class (e.g., 'Triangle' class and 'myTriangle' object).",
+        "A class is an object; an object is a subclass.",
+        "A class and an object are interchangeable terms.",
+        "A class is a method; an object is a variable."
+      ],
+      "answer": "A class is a template; an object is an instance of that class (e.g., 'Triangle' class and 'myTriangle' object)."
+    },
+    {
+      "id": 4,
+      "question": "Evaluate the advantages of encapsulation in OOP. How does it enhance security and modularity in large-scale software development?",
+      "options": [
+        "Encapsulation hides implementation details, reducing complexity and preventing unauthorized access.",
+        "Encapsulation allows multiple inheritance, improving code reuse.",
+        "Encapsulation makes all data public for easier access.",
+        "Encapsulation is only useful for small programs."
+      ],
+      "answer": "Encapsulation hides implementation details, reducing complexity and preventing unauthorized access."
+    },
+    {
+      "id": 5,
+      "question": "Compare and contrast method overloading and method overriding in Java. Provide code examples to demonstrate each concept.",
+      "options": [
+        "Overloading: same method name, different parameters; Overriding: subclass redefines a superclass method.",
+        "Overloading: subclass redefines a superclass method; Overriding: same method name, different parameters.",
+        "Both terms refer to the same concept.",
+        "Overloading is about constructors; Overriding is about destructors."
+      ],
+      "answer": "Overloading: same method name, different parameters; Overriding: subclass redefines a superclass method."
+    },
+    {
+      "id": 6,
+      "question": "Critically assess the role of constructors in Java. Why can't constructors have a return type, and how do they differ from regular methods?",
+      "options": [
+        "Constructors initialize objects and implicitly return the object itself; methods have explicit return types.",
+        "Constructors are methods with a void return type.",
+        "Constructors can have any return type.",
+        "Constructors are used to destroy objects."
+      ],
+      "answer": "Constructors initialize objects and implicitly return the object itself; methods have explicit return types."
+    },
+    {
+      "id": 7,
+      "question": "Explain the concept of polymorphism in OOP. How does it enable flexibility in programming, and what are its limitations in Java?",
+      "options": [
+        "Polymorphism allows one interface for multiple implementations; Java lacks multiple inheritance.",
+        "Polymorphism restricts methods to a single implementation.",
+        "Polymorphism is only applicable to primitive data types.",
+        "Java supports unlimited polymorphism without constraints."
+      ],
+      "answer": "Polymorphism allows one interface for multiple implementations; Java lacks multiple inheritance."
+    },
+    {
+      "id": 8,
+      "question": "Describe the process of object creation in Java. What happens in memory when 'Triangle myTriangle = new Triangle();' is executed?",
+      "options": [
+        "Memory is allocated for the object, and the constructor initializes its state.",
+        "The class is deleted from memory.",
+        "Only the object reference is created without memory allocation.",
+        "The object is stored in a static memory pool."
+      ],
+      "answer": "Memory is allocated for the object, and the constructor initializes its state."
+    },
+    {
+      "id": 9,
+      "question": "Discuss the importance of the 'main' method in Java. Why is it required for program execution, and what happens if it is absent?",
+      "options": [
+        "The 'main' method is the entry point; without it, the program cannot be executed directly.",
+        "The 'main' method is optional; any method can serve as the entry point.",
+        "The 'main' method is only needed for graphical applications.",
+        "The 'main' method is replaced by constructors in modern Java."
+      ],
+      "answer": "The 'main' method is the entry point; without it, the program cannot be executed directly."
+    },
+    {
+      "id": 10,
+      "question": "Analyze the impact of inheritance on code reusability and maintenance. What are the trade-offs of deep inheritance hierarchies?",
+      "options": [
+        "Inheritance promotes reuse but can lead to fragile code if hierarchies are too deep.",
+        "Inheritance has no impact on code maintenance.",
+        "Deep hierarchies always improve performance.",
+        "Inheritance is discouraged in OOP."
+      ],
+      "answer": "Inheritance promotes reuse but can lead to fragile code if hierarchies are too deep."
+    },
+    {
+      "id": 11,
+      "question": "Explain the difference between 'while' and 'do-while' loops in Java. When would you prefer one over the other?",
+      "options": [
+        "'do-while' guarantees at least one execution; 'while' may not execute if the condition is false initially.",
+        "'while' always executes at least once; 'do-while' may not.",
+        "Both loops are identical in functionality.",
+        "'do-while' is deprecated in modern Java."
+      ],
+      "answer": "'do-while' guarantees at least one execution; 'while' may not execute if the condition is false initially."
+    },
+    {
+      "id": 12,
+      "question": "Evaluate the use of the 'switch' statement for multi-way branching in Java. What are its limitations compared to 'if-else' chains?",
+      "options": [
+        "'switch' is cleaner for fixed values but cannot handle ranges or complex conditions like 'if-else'.",
+        "'switch' can replace all 'if-else' scenarios without limitations.",
+        "'switch' is slower and less readable than 'if-else'.",
+        "'switch' is only used for exception handling."
+      ],
+      "answer": "'switch' is cleaner for fixed values but cannot handle ranges or complex conditions like 'if-else'."
+    },
+    {
+      "id": 13,
+      "question": "Describe the concept of inner classes in Java. What are the advantages of using static nested classes over non-static ones?",
+      "options": [
+        "Static nested classes do not require an instance of the outer class, reducing memory overhead.",
+        "Non-static nested classes are always more efficient.",
+        "Inner classes cannot access outer class members.",
+        "Static nested classes are deprecated."
+      ],
+      "answer": "Static nested classes do not require an instance of the outer class, reducing memory overhead."
+    },
+    {
+      "id": 14,
+      "question": "Critically examine the role of access modifiers in encapsulation. How do 'private', 'protected', and 'public' modifiers enforce data hiding?",
+      "options": [
+        "'private' restricts access to the class; 'protected' allows subclass access; 'public' allows global access.",
+        "'public' is the most restrictive; 'private' is the least.",
+        "Access modifiers are irrelevant to encapsulation.",
+        "'protected' allows access to any class in the program."
+      ],
+      "answer": "'private' restricts access to the class; 'protected' allows subclass access; 'public' allows global access."
+    },
+    {
+      "id": 15,
+      "question": "Explain the purpose of the 'final' keyword in Java. How does it differ when applied to variables, methods, and classes?",
+      "options": [
+        "'final' variables are constants; 'final' methods cannot be overridden; 'final' classes cannot be inherited.",
+        "'final' is used only for constructors.",
+        "'final' methods can be overridden in subclasses.",
+        "'final' classes allow multiple inheritance."
+      ],
+      "answer": "'final' variables are constants; 'final' methods cannot be overridden; 'final' classes cannot be inherited."
+    },
+    {
+      "id": 16,
+      "question": "Discuss the challenges of multiple inheritance and how Java addresses them using interfaces. Provide an example.",
+      "options": [
+        "Java avoids multiple inheritance ambiguity by using interfaces (e.g., 'class Bird implements Flyable, Singable').",
+        "Java supports multiple inheritance directly without interfaces.",
+        "Interfaces cannot replace multiple inheritance.",
+        "Multiple inheritance is fully supported in Java through classes."
+      ],
+      "answer": "Java avoids multiple inheritance ambiguity by using interfaces (e.g., 'class Bird implements Flyable, Singable')."
+    },
+    {
+      "id": 17,
+      "question": "Analyze the use of the 'super' keyword in Java. How does it facilitate constructor chaining and method overriding?",
+      "options": [
+        "'super' calls the superclass constructor or method, enabling reuse and polymorphism.",
+        "'super' is used to create new objects.",
+        "'super' prevents method overriding.",
+        "'super' is only applicable to static methods."
+      ],
+      "answer": "'super' calls the superclass constructor or method, enabling reuse and polymorphism."
+    },
+    {
+      "id": 18,
+      "question": "Evaluate the trade-offs between using anonymous classes and regular nested classes in Java. When would you prefer one over the other?",
+      "options": [
+        "Anonymous classes are concise for one-time use but less readable for complex logic.",
+        "Anonymous classes are always better for large-scale projects.",
+        "Regular nested classes cannot access outer class members.",
+        "Anonymous classes support multiple inheritance."
+      ],
+      "answer": "Anonymous classes are concise for one-time use but less readable for complex logic."
+    },
+    {
+      "id": 19,
+      "question": "Explain the concept of abstraction in OOP. How does it simplify complex systems, and what mechanisms does Java provide to achieve it?",
+      "options": [
+        "Abstraction hides complexity using abstract classes and interfaces.",
+        "Abstraction exposes all implementation details.",
+        "Java does not support abstraction.",
+        "Abstraction is achieved only through constructors."
+      ],
+      "answer": "Abstraction hides complexity using abstract classes and interfaces."
+    },
+    {
+      "id": 20,
+      "question": "Describe the memory management implications of object reference assignment in Java. What happens when 'Triangle t = myTriangle;' is executed?",
+      "options": [
+        "Both references point to the same object; no new memory is allocated.",
+        "A new object is created in memory.",
+        "The original object is garbage-collected.",
+        "References cannot be assigned in Java."
+      ],
+      "answer": "Both references point to the same object; no new memory is allocated."
+    },
+    {
+      "id": 21,
+      "question": "What is the primary purpose of garbage collection in Java, and how does it relate to object lifecycle management?",
+      "options": [
+        "Automatically reclaims memory from unreachable objects, preventing memory leaks.",
+        "Manually deletes objects when they are no longer needed.",
+        "Only works with primitive data types, not objects.",
+        "Requires explicit programmer intervention to function."
+      ],
+      "answer": "Automatically reclaims memory from unreachable objects, preventing memory leaks."
+    },
+    {
+      "id": 22,
+      "question": "Explain the difference between stack and heap memory in Java. Where are objects typically stored, and why?",
+      "options": [
+        "Stack stores method calls/primitives; heap stores objects due to their dynamic size/lifetime.",
+        "Stack stores objects; heap stores primitives.",
+        "Both stack and heap can store objects interchangeably.",
+        "Java doesn't use stack memory at all."
+      ],
+      "answer": "Stack stores method calls/primitives; heap stores objects due to their dynamic size/lifetime."
+    },
+    {
+      "id": 23,
+      "question": "What is the significance of the 'Object' class in Java's inheritance hierarchy?",
+      "options": [
+        "It's the root superclass for all Java classes, providing common methods like toString().",
+        "It's a special class only used for garbage collection.",
+        "It's an optional class that some classes may choose to extend.",
+        "It's primarily used for primitive type wrappers."
+      ],
+      "answer": "It's the root superclass for all Java classes, providing common methods like toString()."
+    },
+    {
+      "id": 24,
+      "question": "Describe the difference between checked and unchecked exceptions in Java. When would you use each type?",
+      "options": [
+        "Checked exceptions must be declared/handled (for recoverable errors); unchecked extend RuntimeException (for programming errors).",
+        "Checked exceptions are for runtime errors; unchecked are for compile-time errors.",
+        "There is no practical difference between them.",
+        "Unchecked exceptions must be declared in method signatures."
+      ],
+      "answer": "Checked exceptions must be declared/handled (for recoverable errors); unchecked extend RuntimeException (for programming errors)."
+    },
+    {
+      "id": 25,
+      "question": "What is the purpose of the 'static' keyword in Java, and how does it affect class members?",
+      "options": [
+        "Makes members class-level rather than instance-level, shared across all instances.",
+        "Makes variables constant and unchangeable.",
+        "Forces inheritance of the member to subclasses.",
+        "Prevents the member from being accessed by any other class."
+      ],
+      "answer": "Makes members class-level rather than instance-level, shared across all instances."
+    },
+    {
+      "id": 26,
+      "question": "Explain the concept of method signature in Java. What components constitute a method's signature?",
+      "options": [
+        "Method name and parameter list (type, order, number), excluding return type and exceptions.",
+        "Method name, return type, and access modifier only.",
+        "The entire method declaration including body.",
+        "Just the method name, regardless of parameters."
+      ],
+      "answer": "Method name and parameter list (type, order, number), excluding return type and exceptions."
+    },
+    {
+      "id": 27,
+      "question": "What is the difference between '==' and '.equals()' in Java? When should each be used?",
+      "options": [
+        "'==' compares references; '.equals()' compares object content (when properly overridden).",
+        "'==' compares values; '.equals()' compares memory addresses.",
+        "They are completely interchangeable.",
+        "'==' is for primitives only; '.equals()' is for objects only."
+      ],
+      "answer": "'==' compares references; '.equals()' compares object content (when properly overridden)."
+    },
+    {
+      "id": 28,
+      "question": "Describe the purpose and typical usage of the 'this' keyword in Java.",
+      "options": [
+        "Refers to current object instance, used to avoid name conflicts and for constructor chaining.",
+        "Refers to the superclass of the current object.",
+        "Creates a new instance of the current class.",
+        "Is used only in static methods to refer to class variables."
+      ],
+      "answer": "Refers to current object instance, used to avoid name conflicts and for constructor chaining."
+    },
+    {
+      "id": 29,
+      "question": "What are Java annotations, and how do they differ from traditional comments? Provide examples of built-in annotations.",
+      "options": [
+        "Metadata that provides information about the program (e.g., @Override) processed at compile/run time.",
+        "Just another name for Java comments like // or /* */.",
+        "Special types of Java classes used for documentation.",
+        "Deprecated feature replaced by XML configuration."
+      ],
+      "answer": "Metadata that provides information about the program (e.g., @Override) processed at compile/run time."
+    },
+    {
+      "id": 30,
+      "question": "Explain the concept of generics in Java. What problems do they solve, and how do they improve type safety?",
+      "options": [
+        "Enable types/classes as parameters, catching type mismatches at compile time (e.g., ArrayList<String>).",
+        "Allow variables to change types dynamically at runtime.",
+        "Are just syntactic sugar with no real benefit.",
+        "Only work with primitive data types, not objects."
+      ],
+      "answer": "Enable types/classes as parameters, catching type mismatches at compile time (e.g., ArrayList<String>)."
+    },
+    {
+      "id": 31,
+      "question": "What is autoboxing and unboxing in Java? When do these conversions occur automatically?",
+      "options": [
+        "Automatic conversion between primitives and their wrapper classes (e.g., int ↔ Integer).",
+        "Automatic conversion between different primitive types (e.g., int to double).",
+        "The process of creating boxes in GUI applications.",
+        "A deprecated feature from early Java versions."
+      ],
+      "answer": "Automatic conversion between primitives and their wrapper classes (e.g., int ↔ Integer)."
+    },
+    {
+      "id": 32,
+      "question": "Describe the Java Collections Framework hierarchy. What are the main interfaces and their purposes?",
+      "options": [
+        "Collection (root), List (ordered), Set (unique), Map (key-value) - provide common data structures.",
+        "Just ArrayList and HashMap with no hierarchy.",
+        "All collections implement the same interface with different names.",
+        "A flat structure where all collection types are unrelated."
+      ],
+      "answer": "Collection (root), List (ordered), Set (unique), Map (key-value) - provide common data structures."
+    },
+    {
+      "id": 33,
+      "question": "What is the difference between an ArrayList and a LinkedList in Java? When would you choose one over the other?",
+      "options": [
+        "ArrayList has fast random access; LinkedList has fast inserts/deletes in middle.",
+        "LinkedList is always faster in all operations.",
+        "ArrayList can only store primitives; LinkedList stores objects.",
+        "They are completely interchangeable with no performance differences."
+      ],
+      "answer": "ArrayList has fast random access; LinkedList has fast inserts/deletes in middle."
+    },
+    {
+      "id": 34,
+      "question": "Explain the concept of thread synchronization in Java. What problems does it address, and what mechanisms are available?",
+      "options": [
+        "Prevents race conditions using synchronized blocks/methods, locks, and atomic variables.",
+        "Makes all programs run single-threaded for safety.",
+        "Automatically parallelizes all Java code.",
+        "Is only needed for GUI applications, not server-side code."
+      ],
+      "answer": "Prevents race conditions using synchronized blocks/methods, locks, and atomic variables."
+    },
+    {
+      "id": 35,
+      "question": "What are Java streams (java.util.stream), and how do they differ from traditional collections?",
+      "options": [
+        "Functional-style operations on data sources enabling parallel processing without storage.",
+        "Just another name for Java collections like ArrayList.",
+        "Input/output channels for file operations only.",
+        "Deprecated feature replaced by the Collections API."
+      ],
+      "answer": "Functional-style operations on data sources enabling parallel processing without storage."
+    },
+    {
+      "id": 36,
+      "question": "Describe the purpose of the 'transient' keyword in Java. In what scenarios would you use it?",
+      "options": [
+        "Marks fields not to be serialized, typically for sensitive or derived data.",
+        "Makes variables change frequently during program execution.",
+        "Forces immediate garbage collection of the field.",
+        "Is required for all instance variables in serializable classes."
+      ],
+      "answer": "Marks fields not to be serialized, typically for sensitive or derived data."
+    },
+    {
+      "id": 37,
+      "question": "What is reflection in Java, and what are its advantages and potential drawbacks?",
+      "options": [
+        "Runtime inspection/modification of classes/methods; powerful but breaks encapsulation and has performance costs.",
+        "A mirroring technique for creating exact copies of objects.",
+        "Automatic optimization of Java bytecode during execution.",
+        "A deprecated feature replaced by annotations."
+      ],
+      "answer": "Runtime inspection/modification of classes/methods; powerful but breaks encapsulation and has performance costs."
+    },
+    {
+      "id": 38,
+      "question": "Explain the concept of design patterns in Java. Provide examples of commonly used patterns and their purposes.",
+      "options": [
+        "Reusable solutions to common problems (e.g., Singleton for single instance, Observer for event handling).",
+        "Graphical patterns for UI design only.",
+        "Low-level bytecode optimization techniques.",
+        "Syntax rules for writing Java code."
+      ],
+      "answer": "Reusable solutions to common problems (e.g., Singleton for single instance, Observer for event handling)."
+    },
+    {
+      "id": 39,
+      "question": "What is dependency injection, and how does it relate to loose coupling in Java applications?",
+      "options": [
+        "Providing dependencies from outside (rather than creating internally) to reduce coupling and ease testing.",
+        "A memory management technique for garbage collection.",
+        "Injecting bytecode into running Java applications.",
+        "A deprecated language feature replaced by inheritance."
+      ],
+      "answer": "Providing dependencies from outside (rather than creating internally) to reduce coupling and ease testing."
+    },
+    {
+      "id": 40,
+      "question": "Describe the Java module system (introduced in Java 9). What problems does it solve?",
+      "options": [
+        "Provides better encapsulation and dependency management through module-info.java.",
+        "Is just another name for Java packages.",
+        "A system for modular hardware components.",
+        "Only used for graphical user interface components."
+      ],
+      "answer": "Provides better encapsulation and dependency management through module-info.java."
+    },
+    {
+      "id": 41,
+      "question": "What are lambda expressions in Java? How do they enable functional programming features?",
+      "options": [
+        "Anonymous functions implementing functional interfaces, enabling concise behavior parameterization.",
+        "Special types of Java classes for mathematical operations.",
+        "A deprecated syntax for method declarations.",
+        "Only usable in Java's math library."
+      ],
+      "answer": "Anonymous functions implementing functional interfaces, enabling concise behavior parameterization."
+    },
+    {
+      "id": 42,
+      "question": "Explain the concept of immutability in Java. How do you create immutable objects, and what are their advantages?",
+      "options": [
+        "Objects whose state cannot change after creation (final class, private final fields, no setters) - thread-safe and simple.",
+        "Objects that can change but only through reflection.",
+        "A special type of Java annotation.",
+        "Objects that automatically clone themselves when modified."
+      ],
+      "answer": "Objects whose state cannot change after creation (final class, private final fields, no setters) - thread-safe and simple."
+    },
+    {
+      "id": 43,
+      "question": "What is the Java Memory Model, and how does it define the interaction between threads and memory?",
+      "options": [
+        "Specifies how threads interact through memory, ensuring visibility of changes via happens-before relationships.",
+        "A model for garbage collection algorithms only.",
+        "The physical memory layout of the JVM heap.",
+        "A deprecated memory management approach."
+      ],
+      "answer": "Specifies how threads interact through memory, ensuring visibility of changes via happens-before relationships."
+    },
+    {
+      "id": 44,
+      "question": "Describe the purpose of the 'volatile' keyword in Java. When would you use it?",
+      "options": [
+        "Ensures variable reads/writes go directly to main memory, not thread cache - for visibility across threads.",
+        "Makes variables change frequently during program execution.",
+        "Is a stronger form of 'final' for constants.",
+        "Is required for all variables accessed by multiple threads."
+      ],
+      "answer": "Ensures variable reads/writes go directly to main memory, not thread cache - for visibility across threads."
+    },
+    {
+      "id": 45,
+      "question": "What are Java records (introduced in Java 14), and how do they simplify code?",
+      "options": [
+        "Transparent carriers for immutable data - auto-generate constructors, accessors, equals(), etc.",
+        "A new way to record audio in Java applications.",
+        "Special types of collection classes.",
+        "A deprecated feature replaced by POJOs."
+      ],
+      "answer": "Transparent carriers for immutable data - auto-generate constructors, accessors, equals(), etc."
+    },
+    {
+      "id": 46,
+      "question": "Explain the concept of sealed classes in Java (introduced in Java 15). What problems do they solve?",
+      "options": [
+        "Restrict which classes can extend them, providing more controlled inheritance hierarchies.",
+        "Classes that cannot be instantiated at all.",
+        "Classes that automatically encrypt their data.",
+        "A replacement for Java packages."
+      ],
+      "answer": "Restrict which classes can extend them, providing more controlled inheritance hierarchies."
+    },
+    {
+      "id": 47,
+      "question": "What is the Java Native Interface (JNI), and when would you use it?",
+      "options": [
+        "Framework for interfacing with native code (C/C++) when Java isn't sufficient.",
+        "A networking protocol for Java applications.",
+        "The interface between different Java versions.",
+        "A deprecated feature replaced by Java modules."
+      ],
+      "answer": "Framework for interfacing with native code (C/C++) when Java isn't sufficient."
+    },
+    {
+      "id": 48,
+      "question": "Describe the Java classloader hierarchy. How does it affect class loading and visibility?",
+      "options": [
+        "Bootstrap → Extension → System loaders - delegates loading with parent-first approach, affecting class resolution.",
+        "All classloaders are equal with no hierarchy.",
+        "A deprecated system replaced by Java modules.",
+        "Only relevant for applets in web browsers."
+      ],
+      "answer": "Bootstrap → Extension → System loaders - delegates loading with parent-first approach, affecting class resolution."
+    },
+    {
+      "id": 49,
+      "question": "What are Java's primitive data types, and how do they differ from their wrapper classes?",
+      "options": [
+        "byte, short, int, long, float, double, char, boolean - wrappers add methods/functionality and allow null.",
+        "All Java types are objects with no primitives.",
+        "Primitives are slower than wrapper classes.",
+        "Wrapper classes cannot be used in collections."
+      ],
+      "answer": "byte, short, int, long, float, double, char, boolean - wrappers add methods/functionality and allow null."
+    },
+    {
+      "id": 50,
+      "question": "Explain the concept of method references in Java. How do they relate to lambda expressions?",
+      "options": [
+        "Shorthand syntax for lambdas that call existing methods (e.g., System.out::println).",
+        "References to memory addresses of methods.",
+        "A deprecated feature replaced by reflection.",
+        "Only usable with static methods."
+      ],
+      "answer": "Shorthand syntax for lambdas that call existing methods (e.g., System.out::println)."
+    },
+    {
+      "id": 51,
+      "question": "What is the purpose of the 'try-with-resources' statement in Java? How does it improve resource management?",
+      "options": [
+        "Automatically closes AutoCloseable resources, reducing boilerplate and preventing leaks.",
+        "Is just syntactic sugar with no real benefit.",
+        "Only works with file resources, not others.",
+        "A deprecated feature replaced by finalizers."
+      ],
+      "answer": "Automatically closes AutoCloseable resources, reducing boilerplate and preventing leaks."
+    },
+    {
+      "id": 52,
+      "question": "Describe Java's string pooling mechanism. How does it affect memory usage and string comparisons?",
+      "options": [
+        "Reuses immutable String literals to save memory; == may work for literals but not for constructed Strings.",
+        "Creates a new String object for every literal.",
+        "Is only applicable to StringBuffer objects.",
+        "A deprecated optimization removed in recent Java versions."
+      ],
+      "answer": "Reuses immutable String literals to save memory; == may work for literals but not for constructed Strings."
+    },
+    {
+      "id": 53,
+      "question": "What are Java's four main access modifiers, and what scope does each provide?",
+      "options": [
+        "public (anywhere), protected (package + subclasses), default/package-private (package), private (class only).",
+        "All modifiers provide the same access level.",
+        "There are only two modifiers: public and private.",
+        "Access modifiers are determined at runtime, not compile time."
+      ],
+      "answer": "public (anywhere), protected (package + subclasses), default/package-private (package), private (class only)."
+    },
+    {
+      "id": 54,
+      "question": "Explain the concept of varargs in Java. How are they implemented, and when would you use them?",
+      "options": [
+        "Variable-length arguments (e.g., String...), implemented as arrays - for methods needing flexible parameters.",
+        "A special type of variable that can hold any value.",
+        "Variables that automatically adjust their types.",
+        "A deprecated feature replaced by generics."
+      ],
+      "answer": "Variable-length arguments (e.g., String...), implemented as arrays - for methods needing flexible parameters."
+    },
+    {
+      "id": 55,
+      "question": "What is the purpose of the 'assert' keyword in Java? In what scenarios would you use it?",
+      "options": [
+        "For internal consistency checks during development (disabled by default at runtime).",
+        "For validating user input in production code.",
+        "As a replacement for all exception handling.",
+        "A deprecated feature removed in Java 8."
+      ],
+      "answer": "For internal consistency checks during development (disabled by default at runtime)."
+    },
+    {
+      "id": 56,
+      "question": "Describe the difference between shallow copy and deep copy in Java. How would you implement each?",
+      "options": [
+        "Shallow copies share references; deep copies duplicate all referenced objects - implement via clone() or copy constructors.",
+        "Shallow copies are always sufficient; deep copies are never needed.",
+        "Java automatically performs deep copies for all objects.",
+        "The terms are interchangeable in Java."
+      ],
+      "answer": "Shallow copies share references; deep copies duplicate all referenced objects - implement via clone() or copy constructors."
+    },
+    {
+      "id": 57,
+      "question": "What is the Java servlet API, and how does it relate to web application development?",
+      "options": [
+        "Server-side component API for handling HTTP requests/responses - foundation for many Java web frameworks.",
+        "A deprecated API replaced by JavaFX.",
+        "An API for desktop application development.",
+        "Only used for client-side JavaScript integration."
+      ],
+      "answer": "Server-side component API for handling HTTP requests/responses - foundation for many Java web frameworks."
+    },
+    {
+      "id": 58,
+      "question": "Explain the concept of inversion of control (IoC) in Java frameworks. How is it typically implemented?",
+      "options": [
+        "Framework manages object lifecycle/dependencies (e.g., Spring IOC container) rather than application code.",
+        "A low-level memory management technique.",
+        "A way to invert the flow of a program's execution.",
+        "A deprecated pattern replaced by dependency injection."
+      ],
+      "answer": "Framework manages object lifecycle/dependencies (e.g., Spring IOC container) rather than application code."
+    },
+    {
+      "id": 59,
+      "question": "What are Java's atomic classes (java.util.concurrent.atomic)? When would you use them?",
+      "options": [
+        "Thread-safe classes for atomic operations without synchronization (e.g., AtomicInteger for counters).",
+        "Classes that cannot be instantiated.",
+        "Classes for physics simulations only.",
+        "A deprecated concurrency approach replaced by synchronized blocks."
+      ],
+      "answer": "Thread-safe classes for atomic operations without synchronization (e.g., AtomicInteger for counters)."
+    },
+    {
+      "id": 60,
+      "question": "Describe the purpose of Java's Executor framework. How does it simplify concurrent programming?",
+      "options": [
+        "Higher-level abstraction over threads (thread pools, task scheduling) managing thread lifecycle.",
+        "A framework for executing native code.",
+        "Only used for executing SQL statements.",
+        "A deprecated feature replaced by Java streams."
+      ],
+      "answer": "Higher-level abstraction over threads (thread pools, task scheduling) managing thread lifecycle."
+    },
+    {
+      "id": 61,
+      "question": "What is the Java Persistence API (JPA), and how does it relate to database operations?",
+      "options": [
+        "ORM specification for mapping objects to relational databases (e.g., Hibernate implements JPA).",
+        "A low-level JDBC replacement.",
+        "An API for NoSQL databases only.",
+        "A deprecated API replaced by Java modules."
+      ],
+      "answer": "ORM specification for mapping objects to relational databases (e.g., Hibernate implements JPA)."
+    },
+    {
+      "id": 62,
+      "question": "Explain the concept of aspect-oriented programming (AOP) in Java. What problems does it solve?",
+      "options": [
+        "Modularizes cross-cutting concerns (logging, security) via aspects, separate from main business logic.",
+        "A deprecated programming style replaced by OOP.",
+        "A technique for optimizing Java bytecode.",
+        "Only applicable to graphical user interfaces."
+      ],
+      "answer": "Modularizes cross-cutting concerns (logging, security) via aspects, separate from main business logic."
+    },
+    {
+      "id": 63,
+      "question": "What is the Java Debug Wire Protocol (JDWP), and how is it used?",
+      "options": [
+        "Protocol for communication between debugger and JVM, enabling remote debugging.",
+        "A networking protocol for distributed Java applications.",
+        "A deprecated debugging approach replaced by JMX.",
+        "Only used for debugging applets."
+      ],
+      "answer": "Protocol for communication between debugger and JVM, enabling remote debugging."
+    },
+    {
+      "id": 64,
+      "question": "Describe the role of the 'strictfp' keyword in Java. When would you use it?",
+      "options": [
+        "Ensures consistent floating-point calculations across platforms by restricting precision.",
+        "Makes floating-point operations faster by using maximum precision.",
+        "Is required for all floating-point calculations in Java.",
+        "A deprecated feature removed in recent Java versions."
+      ],
+      "answer": "Ensures consistent floating-point calculations across platforms by restricting precision."
+    },
+    {
+      "id": 65,
+      "question": "What are Java's CompletableFuture and Future interfaces? How do they support asynchronous programming?",
+      "options": [
+        "Represent asynchronous computations - Future is basic, CompletableFuture allows chaining/composing async operations.",
+        "Are just different names for the same interface.",
+        "Only used for GUI event handling.",
+        "Deprecated interfaces replaced by Java streams."
+      ],
+      "answer": "Represent asynchronous computations - Future is basic, CompletableFuture allows chaining/composing async operations."
+    },
+    {
+      "id": 66,
+      "question": "Explain the concept of reactive programming in Java. What libraries/frameworks support it?",
+      "options": [
+        "Asynchronous, non-blocking, event-driven programming (e.g., Reactor, RxJava) - handles streams of data.",
+        "A deprecated programming style replaced by imperative programming.",
+        "Only applicable to JavaFX GUI programming.",
+        "A low-level threading approach."
+      ],
+      "answer": "Asynchronous, non-blocking, event-driven programming (e.g., Reactor, RxJava) - handles streams of data."
+    },
+    {
+      "id": 67,
+      "question": "What is the Java Management Extensions (JMX) API used for?",
+      "options": [
+        "Monitoring and managing JVM/application resources (e.g., MBeans expose management interfaces).",
+        "Managing database connections only.",
+        "A deprecated API replaced by Java modules.",
+        "Only used for mobile application development."
+      ],
+      "answer": "Monitoring and managing JVM/application resources (e.g., MBeans expose management interfaces)."
+    },
+    {
+      "id": 68,
+      "question": "Describe the purpose of Java's SecurityManager. What role does it play in sandboxing?",
+      "options": [
+        "Defines security policies, restricting operations (e.g., file access) for untrusted code (like applets).",
+        "Manages user authentication only.",
+        "A deprecated feature removed in recent Java versions.",
+        "Only relevant for server-side applications."
+      ],
+      "answer": "Defines security policies, restricting operations (e.g., file access) for untrusted code (like applets)."
+    },
+    {
+      "id": 69,
+      "question": "What is the Java Compiler API, and how can it be used?",
+      "options": [
+        "Programmatic interface to Java compiler (javax.tools) for dynamic compilation (e.g., IDE features).",
+        "An API for optimizing compiled code.",
+        "Only used by the javac command-line tool.",
+        "A deprecated feature replaced by reflection."
+      ],
+      "answer": "Programmatic interface to Java compiler (javax.tools) for dynamic compilation (e.g., IDE features)."
+    },
+    {
+      "id": 70,
+      "question": "Explain the concept of Nashorn in Java. What was its purpose?",
+      "options": [
+        "JavaScript engine (Java 8-14) for executing JS within JVM, since replaced by GraalVM.",
+        "A new Java virtual machine architecture.",
+        "A testing framework for Java applications.",
+        "A deprecated GUI framework."
+      ],
+      "answer": "JavaScript engine (Java 8-14) for executing JS within JVM, since replaced by GraalVM."
+    },
+    {
+      "id": 71,
+      "question": "What is the Java Flight Recorder, and how is it used for performance analysis?",
+      "options": [
+        "Low-overhead profiling tool collecting detailed runtime metrics for performance diagnosis.",
+        "A tool for recording audio in Java applications.",
+        "Only used for monitoring network performance.",
+        "A deprecated feature removed in Java 11."
+      ],
+      "answer": "Low-overhead profiling tool collecting detailed runtime metrics for performance diagnosis."
+    },
+    {
+      "id": 72,
+      "question": "Describe the purpose of Java's ServiceLoader mechanism. How does it enable pluggable services?",
+      "options": [
+        "Discovers/loads implementations of interfaces (from META-INF/services) for extensible architectures.",
+        "Loads operating system services into Java.",
+        "A deprecated class loading mechanism.",
+        "Only used for loading database drivers."
+      ],
+      "answer": "Discovers/loads implementations of interfaces (from META-INF/services) for extensible architectures."
+    },
+    {
+      "id": 73,
+      "question": "What are Java's value types (Project Valhalla), and what benefits might they provide?",
+      "options": [
+        "Future feature for user-defined primitive-like types (stack allocation, no identity) - better performance/memory use.",
+        "A deprecated type system from early Java versions.",
+        "Special types for financial calculations only.",
+        "Another name for Java's primitive types."
+      ],
+      "answer": "Future feature for user-defined primitive-like types (stack allocation, no identity) - better performance/memory use."
+    },
+    {
+      "id": 74,
+      "question": "Explain the concept of fibers (Project Loom) in Java. How might they change concurrent programming?",
+      "options": [
+        "Lightweight threads managed by JVM (not OS) - enable high-throughput concurrent applications.",
+        "A deprecated threading model from early Java.",
+        "Special threads only for I/O operations.",
+        "Another name for Java's standard Thread class."
+      ],
+      "answer": "Lightweight threads managed by JVM (not OS) - enable high-throughput concurrent applications."
+    },
+    {
+      "id": 75,
+      "question": "What is the Java Module System's 'requires transitive' directive, and why is it important?",
+      "options": [
+        "Makes a dependency available to downstream modules - crucial for API modules exposing third-party types.",
+        "Forces all modules to require the current module.",
+        "A deprecated directive replaced by 'exports'.",
+        "Only used for Java SE modules, not application modules."
+      ],
+      "answer": "Makes a dependency available to downstream modules - crucial for API modules exposing third-party types."
+    },
+    {
+      "id": 76,
+      "question": "Describe the purpose of the 'var' keyword in Java (local variable type inference). What are its limitations?",
+      "options": [
+        "Infers local variable type from initializer (Java 10+) - cannot be used for fields/method parameters/return types.",
+        "Creates variant types that can hold any value.",
+        "A deprecated feature removed in Java 11.",
+        "Only works with primitive types, not objects."
+      ],
+      "answer": "Infers local variable type from initializer (Java 10+) - cannot be used for fields/method parameters/return types."
+    },
+    {
+      "id": 77,
+      "question": "What is the Java Shell (JShell), and how does it support exploratory programming?",
+      "options": [
+        "REPL tool (Java 9+) for executing Java code snippets without full class boilerplate.",
+        "A command-line interface to the JVM only.",
+        "A tool for shell script integration.",
+        "A deprecated feature from early Java versions."
+      ],
+      "answer": "REPL tool (Java 9+) for executing Java code snippets without full class boilerplate."
+    },
+    {
+      "id": 78,
+      "question": "Explain the purpose of the 'yield' keyword in Java 14's switch expressions. How does it differ from 'return'?",
+      "options": [
+        "Returns a value from switch expression (not statement) without exiting the method.",
+        "Is just a synonym for 'return' in all contexts.",
+        "Creates a new thread for the switch case.",
+        "A deprecated feature removed in Java 15."
+      ],
+      "answer": "Returns a value from switch expression (not statement) without exiting the method."
+    },
+    {
+      "id": 79,
+      "question": "What are Java's hidden classes (introduced in Java 15)? What are their primary use cases?",
+      "options": [
+        "Unnamed, non-discoverable classes mainly for frameworks generating classes at runtime (e.g., proxies).",
+        "Classes that cannot be instantiated at all.",
+        "A security feature for hiding sensitive classes.",
+        "Another name for private inner classes."
+      ],
+      "answer": "Unnamed, non-discoverable classes mainly for frameworks generating classes at runtime (e.g., proxies)."
+    },
+    {
+      "id": 80,
+      "question": "Describe the purpose of Java's Foreign Function & Memory API (Project Panama). What problems does it aim to solve?",
+      "options": [
+        "Safe, efficient access to native code/memory (replacing JNI) - for better native interoperation.",
+        "A new API for internationalization features.",
+        "Only for accessing foreign currency data.",
+        "A deprecated feature replaced by Java modules."
+      ],
+      "answer": "Safe, efficient access to native code/memory (replacing JNI) - for better native interoperation."
+    },
+    {
+      "id": 81,
+      "question": "What is the purpose of the 'sealed' keyword for interfaces in Java 17? How does it complement sealed classes?",
+      "options": [
+        "Restricts which classes can implement an interface - completes the sealed hierarchy control.",
+        "Makes the interface only usable within its package.",
+        "Forces all implementing classes to be final.",
+        "A deprecated feature removed in Java 18."
+      ],
+      "answer": "Restricts which classes can implement an interface - completes the sealed hierarchy control."
+    },
+    {
+      "id": 82,
+      "question": "Explain the concept of pattern matching for 'instanceof' in Java. How does it simplify code?",
+      "options": [
+        "Combines type check and cast (e.g., 'if (obj instanceof String s)') - eliminates boilerplate casting.",
+        "A deprecated pattern matching approach replaced by switch expressions.",
+        "Only works with primitive types, not objects.",
+        "A regex feature for string matching only."
+      ],
+      "answer": "Combines type check and cast (e.g., 'if (obj instanceof String s)') - eliminates boilerplate casting."
+    },
+    {
+      "id": 83,
+      "question": "What are Java's vector APIs (Project Panama)? What performance benefits might they offer?",
+      "options": [
+        "Expressive vector computations that can compile to optimal hardware instructions (SIMD).",
+        "APIs for mathematical vector calculations only.",
+        "A deprecated collection type replaced by ArrayList.",
+        "Another name for Java's array types."
+      ],
+      "answer": "Expressive vector computations that can compile to optimal hardware instructions (SIMD)."
+    },
+    {
+      "id": 84,
+      "question": "Describe the purpose of Java's 'invokedynamic' bytecode instruction. How does it support dynamic languages?",
+      "options": [
+        "Flexible method invocation enabling dynamic language features (used by Nashorn, Lambda metafactory).",
+        "A deprecated bytecode instruction no longer used.",
+        "Only for invoking static methods dynamically.",
+        "A security feature for method invocation validation."
+      ],
+      "answer": "Flexible method invocation enabling dynamic language features (used by Nashorn, Lambda metafactory)."
+    },
+    {
+      "id": 85,
+      "question": "What is the Java Microbenchmark Harness (JMH)? When would you use it?",
+      "options": [
+        "Framework for writing reliable microbenchmarks - avoids JVM optimization pitfalls in performance testing.",
+        "A tool for benchmarking entire applications only.",
+        "A deprecated testing framework replaced by JUnit.",
+        "Only useful for benchmarking GUI performance."
+      ],
+      "answer": "Framework for writing reliable microbenchmarks - avoids JVM optimization pitfalls in performance testing."
+    },
+    {
+      "id": 86,
+      "question": "Explain the concept of constant dynamic (condy) in Java. What problems does it solve?",
+      "options": [
+        "Dynamic constant pool entries (Java 11) - enables lazy computation/loading of constants.",
+        "A deprecated constant declaration syntax.",
+        "Only for mathematical constant values.",
+        "A security feature for constant validation."
+      ],
+      "answer": "Dynamic constant pool entries (Java 11) - enables lazy computation/loading of constants."
+    },
+    {
+      "id": 87,
+      "question": "What is the Java Pack200 compression scheme? When was it used, and why is it being removed?",
+      "options": [
+        "JAR compression format (removed in Java 14) - became obsolete with faster networks/modern compression.",
+        "A current standard for all Java packaging.",
+        "A deprecated class file format.",
+        "Only used for applet packaging."
+      ],
+      "answer": "JAR compression format (removed in Java 14) - became obsolete with faster networks/modern compression."
+    },
+    {
+      "id": 88,
+      "question": "Describe the purpose of Java's StackWalker API. What advantages does it offer over Thread.getStackTrace()?",
+      "options": [
+        "Efficient, lazy stack trace access with filtering capabilities - better performance than full trace generation.",
+        "A deprecated API replaced by exception handling.",
+        "Only for walking Java collection stacks.",
+        "A security feature for stack inspection."
+      ],
+      "answer": "Efficient, lazy stack trace access with filtering capabilities - better performance than full trace generation."
+    },
+    {
+      "id": 89,
+      "question": "What is the Java Deprecation API (Java 9+)? How does it improve deprecation management?",
+      "options": [
+        "Standardized @Deprecated attributes (forRemoval, since) - better communicates deprecation intent.",
+        "A tool for automatically removing deprecated code.",
+        "A deprecated API itself.",
+        "Only used by the javac compiler internally."
+      ],
+      "answer": "Standardized @Deprecated attributes (forRemoval, since) - better communicates deprecation intent."
+    },
+    {
+      "id": 90,
+      "question": "Explain the purpose of Java's ProcessHandle API. What process management capabilities does it provide?",
+      "options": [
+        "Information/control over native processes (Java 9+) - supersedes limited Runtime.exec() functionality.",
+        "Only for handling Java processes, not native ones.",
+        "A deprecated process management approach.",
+        "A security feature for process isolation."
+      ],
+      "answer": "Information/control over native processes (Java 9+) - supersedes limited Runtime.exec() functionality."
+    },
+    {
+      "id": 91,
+      "question": "What are Java's multi-release JAR files? How do they support multiple Java versions?",
+      "options": [
+        "JARs containing version-specific classes in META-INF/versions - allows single JAR to work across Java versions.",
+        "JARs that can only be used with the latest Java version.",
+        "A deprecated packaging format.",
+        "Only useful for library developers, not applications."
+      ],
+      "answer": "JARs containing version-specific classes in META-INF/versions - allows single JAR to work across Java versions."
+    },
+    {
+      "id": 92,
+      "question": "Describe the purpose of Java's reactive streams API (java.util.concurrent.Flow). What interoperability does it provide?",
+      "options": [
+        "Standard interface (Publisher/Subscriber) for reactive libraries to interoperate (backpressure support).",
+        "A deprecated streaming API replaced by Java I/O streams.",
+        "Only for GUI event handling streams.",
+        "A low-level network protocol."
+      ],
+      "answer": "Standard interface (Publisher/Subscriber) for reactive libraries to interoperate (backpressure support)."
+    },
+    {
+      "id": 93,
+      "question": "What is the Java HttpClient (Java 11+)? How does it improve upon older HTTP clients?",
+      "options": [
+        "Modern HTTP client supporting HTTP/2, WebSockets, async - replaces HttpURLConnection's limitations.",
+        "A deprecated HTTP client from early Java versions.",
+        "Only for client-side HTTP, not server-side.",
+        "A specialized client for REST APIs only."
+      ],
+      "answer": "Modern HTTP client supporting HTTP/2, WebSockets, async - replaces HttpURLConnection's limitations."
+    },
+    {
+      "id": 94,
+      "question": "Explain the concept of Java's 'zero-day' security releases. Why are they important?",
+      "options": [
+        "Critical security patches released outside normal schedule - address vulnerabilities being actively exploited.",
+        "Releases that remove all security features.",
+        "A deprecated release strategy no longer used.",
+        "Only for non-production development builds."
+      ],
+      "answer": "Critical security patches released outside normal schedule - address vulnerabilities being actively exploited."
+    },
+    {
+      "id": 95,
+      "question": "What is the Java 'jlink' tool? How does it support custom runtime images?",
+      "options": [
+        "Creates minimized JREs containing only required modules - reduces size for deployment (Java 9+ module system).",
+        "A deprecated linking tool replaced by classpath.",
+        "Only for linking native libraries, not Java code.",
+        "A security tool for validating JAR signatures."
+      ],
+      "answer": "Creates minimized JREs containing only required modules - reduces size for deployment (Java 9+ module system)."
+    },
+    {
+      "id": 96,
+      "question": "Describe the purpose of Java's 'jdeprscan' tool. How does it help with migration?",
+      "options": [
+        "Scans for use of deprecated APIs - assists in preparing for their removal in future Java versions.",
+        "A tool for repairing corrupted class files.",
+        "A deprecated tool no longer included with the JDK.",
+        "Only scans for security vulnerabilities, not deprecations."
+      ],
+      "answer": "Scans for use of deprecated APIs - assists in preparing for their removal in future Java versions."
+    },
+    {
+      "id": 97,
+      "question": "What is the Java 'jpackage' tool (Java 14+)? How does it simplify application deployment?",
+      "options": [
+        "Packages Java apps as native installers (MSI, DMG, etc.) - includes necessary JRE for self-contained apps.",
+        "A deprecated packaging tool replaced by Maven.",
+        "Only for creating JAR files, not native installers.",
+        "A security tool for package signing."
+      ],
+      "answer": "Packages Java apps as native installers (MSI, DMG, etc.) - includes necessary JRE for self-contained apps."
+    },
+    {
+      "id": 98,
+      "question": "Explain the purpose of Java's 'jmod' tool. How does it relate to the module system?",
+      "options": [
+        "Creates/manages JMOD files (module artifacts) - alternative to JARs for modular code (can include native code).",
+        "A deprecated module tool replaced by JAR files.",
+        "Only for analyzing module dependencies, not creating modules.",
+        "A security tool for module validation."
+      ],
+      "answer": "Creates/manages JMOD files (module artifacts) - alternative to JARs for modular code (can include native code)."
+    },
+    {
+      "id": 99,
+      "question": "What is the Java 'jshell' tool's edit mode? How does it support iterative development?",
+      "options": [
+        "Allows editing previous snippets in external editor - facilitates code refinement during exploratory programming.",
+        "A deprecated feature removed from jshell.",
+        "Only for editing Java documentation, not code.",
+        "A security feature for sandboxed editing."
+      ],
+      "answer": "Allows editing previous snippets in external editor - facilitates code refinement during exploratory programming."
+    },
+    {
+      "id": 100,
+      "question": "Describe the purpose of Java's 'jdeps' tool. How does it help with modularization?",
+      "options": [
+        "Analyzes package/class dependencies - crucial for planning migration to Java modules.",
+        "A deprecated dependency tool replaced by Maven.",
+        "Only for analyzing runtime performance, not dependencies.",
+        "A security tool for dependency validation."
+      ],
+      "answer": "Analyzes package/class dependencies - crucial for planning migration to Java modules."
+    },
+    {
+      "id": 101,
+      "question": "What is the Java 'jconsole' tool used for? What monitoring capabilities does it provide?",
+      "options": [
+        "JMX-compliant GUI for monitoring JVM metrics (memory, threads, etc.) and managing MBeans.",
+        "A deprecated console replaced by JavaFX tools.",
+        "Only for monitoring database connections.",
+        "A security tool for console access control."
+      ],
+      "answer": "JMX-compliant GUI for monitoring JVM metrics (memory, threads, etc.) and managing MBeans."
+    },
+    {
+      "id": 102,
+      "question": "Explain the purpose of Java's 'jmap' tool. What insights does it provide about memory usage?",
+      "options": [
+        "Generates heap dumps/memory maps - for analyzing object allocation and memory leaks.",
+        "A deprecated memory tool replaced by JFR.",
+        "Only for mapping Java packages, not memory.",
+        "A security tool for memory protection."
+      ],
+      "answer": "Generates heap dumps/memory maps - for analyzing object allocation and memory leaks."
+    },
+    {
+      "id": 103,
+      "question": "What is the Java 'jstack' tool used for? How does it help with thread analysis?",
+      "options": [
+        "Captures thread dumps - critical for diagnosing deadlocks, contention, and threading issues.",
+        "A deprecated threading tool replaced by JFR.",
+        "Only for stack trace formatting, not thread dumps.",
+        "A security tool for thread isolation."
+      ],
+      "answer": "Captures thread dumps - critical for diagnosing deadlocks, contention, and threading issues."
+    },
+    {
+      "id": 104,
+      "question": "Describe the purpose of Java's 'jstat' tool. What JVM statistics can it monitor?",
+      "options": [
+        "Lightweight statistics on GC, class loading, JIT - low-overhead monitoring for production systems.",
+        "A deprecated stats tool replaced by JMX.",
+        "Only for monitoring system CPU/memory, not JVM.",
+        "A security tool for statistics validation."
+      ],
+      "answer": "Lightweight statistics on GC, class loading, JIT - low-overhead monitoring for production systems."
+    },
+    {
+      "id": 105,
+      "question": "What is the Java 'jinfo' tool used for? How does it help with configuration?",
+      "options": [
+        "Views/modifies JVM system properties and command-line flags - useful for runtime configuration inspection.",
+        "A deprecated info tool replaced by JMX.",
+        "Only for viewing Java documentation, not configuration.",
+        "A security tool for configuration validation."
+      ],
+      "answer": "Views/modifies JVM system properties and command-line flags - useful for runtime configuration inspection."
+    },
+    {
+      "id": 106,
+      "question": "Explain the purpose of Java's 'jcmd' tool. What makes it a 'swiss army knife' for JVM diagnostics?",
+      "options": [
+        "Single command for multiple diagnostic operations - can perform many other JDK tool functions.",
+        "A deprecated command tool replaced by separate utilities.",
+        "Only for compiling Java code, not diagnostics.",
+        "A security tool for command validation."
+      ],
+      "answer": "Single command for multiple diagnostic operations - can perform many other JDK tool functions."
+    },
+    {
+      "id": 107,
+      "question": "What is the Java 'javap' tool used for? How does it help with bytecode analysis?",
+      "options": [
+        "Disassembles class files - shows bytecode, method signatures, constant pool for low-level analysis.",
+        "A deprecated decompiler tool replaced by third-party tools.",
+        "Only for pretty-printing source code, not bytecode.",
+        "A security tool for bytecode validation."
+      ],
+      "answer": "Disassembles class files - shows bytecode, method signatures, constant pool for low-level analysis."
+    },
+    {
+      "id": 108,
+      "question": "Describe the purpose of Java's 'jmod' command's 'describe' mode. What module information does it reveal?",
+      "options": [
+        "Shows module declaration details - requires, exports, provides etc. for understanding module structure.",
+        "A deprecated module tool replaced by 'java --describe-module'.",
+        "Only describes Java packages, not modules.",
+        "A security tool for module validation."
+      ],
+      "answer": "Shows module declaration details - requires, exports, provides etc. for understanding module structure."
+    },
+    {
+      "id": 109,
+      "question": "What is the Java 'jlink' command's 'list-plugins' option? How does it assist with runtime creation?",
+      "options": [
+        "Shows available plugins for customizing runtime images - like compression, header files, etc.",
+        "A deprecated plugin system removed from jlink.",
+        "Only lists JavaFX plugins, not standard ones.",
+        "A security feature for plugin validation."
+      ],
+      "answer": "Shows available plugins for customizing runtime images - like compression, header files, etc."
+    },
+    {
+      "id": 110,
+      "question": "Explain the purpose of Java's 'jpackage' command's 'type' option. What packaging formats does it support?",
+      "options": [
+        "Specifies output format (msi, dmg, deb, etc.) - allows platform-appropriate native installers.",
+        "A deprecated packaging type system.",
+        "Only supports JAR packaging, not native formats.",
+        "A security feature for package signing."
+      ],
+      "answer": "Specifies output format (msi, dmg, deb, etc.) - allows platform-appropriate native installers."
+    },
+    {
+      "id": 111,
+      "question": "What is the Java 'jdeps' command's 'jdk-internals' option? How does it help with migration?",
+      "options": [
+        "Identifies uses of JDK internal APIs - critical for preparing to remove --illegal-access=deny in future Java.",
+        "A deprecated option removed in recent JDKs.",
+        "Only analyzes Java SE modules, not application code.",
+        "A security feature for internal API access."
+      ],
+      "answer": "Identifies uses of JDK internal APIs - critical for preparing to remove --illegal-access=deny in future Java."
+    },
+    {
+      "id": 112,
+      "question": "Describe the purpose of Java's 'jhsdb' tool. What advanced diagnostics does it provide?",
+      "options": [
+        "HotSpot Debugger - advanced tools for heap/thread analysis, deadlock detection, and core file inspection.",
+        "A deprecated debugger replaced by JFR.",
+        "Only for debugging Java source code, not runtime.",
+        "A security tool for debugging sandboxing."
+      ],
+      "answer": "HotSpot Debugger - advanced tools for heap/thread analysis, deadlock detection, and core file inspection."
+    },
+    {
+      "id": 113,
+      "question": "What is the Java 'jstatd' tool used for? How does it enable remote monitoring?",
+      "options": [
+        "RMI server for remote jstat access - allows monitoring JVMs across network (requires security policy).",
+        "A deprecated monitoring tool replaced by JMX.",
+        "Only for local monitoring, not remote.",
+        "A security tool for statistics encryption."
+      ],
+      "answer": "RMI server for remote jstat access - allows monitoring JVMs across network (requires security policy)."
+    },
+    {
+      "id": 114,
+      "question": "Explain the purpose of Java's 'jfr' command. How does it relate to Flight Recorder?",
+      "options": [
+        "Command-line interface to Java Flight Recorder - starts/stops recordings, configures events (Java 14+).",
+        "A deprecated flight recording tool.",
+        "Only for commercial features, not open JDK.",
+        "A security tool for recording access attempts."
+      ],
+      "answer": "Command-line interface to Java Flight Recorder - starts/stops recordings, configures events (Java 14+)."
+    },
+    {
+      "id": 115,
+      "question": "What is the Java 'jaotc' tool? What benefits does ahead-of-time compilation provide?",
+      "options": [
+        "AOT compiler - generates native code for faster startup (experimental in Java 9-16, removed in 17).",
+        "A deprecated annotation processor.",
+        "Only for compiling JavaFX applications.",
+        "A security tool for code verification."
+      ],
+      "answer": "AOT compiler - generates native code for faster startup (experimental in Java 9-16, removed in 17)."
+    },
+    {
+      "id": 116,
+      "question": "Describe the purpose of Java's 'jpackage' command's 'runtime-image' option. How does it affect packaging?",
+      "options": [
+        "Specifies custom JRE (from jlink) to include - allows minimized runtime for application-specific needs.",
+        "A deprecated runtime packaging approach.",
+        "Only uses full JREs, not customized ones.",
+        "A security feature for runtime validation."
+      ],
+      "answer": "Specifies custom JRE (from jlink) to include - allows minimized runtime for application-specific needs."
+    },
+    {
+      "id": 117,
+      "question": "What is the Java 'jwebserver' tool (Java 18+)? What simple use cases does it serve?",
+      "options": [
+        "Minimal HTTP server for prototyping/testing - not production-grade but convenient for simple needs.",
+        "A deprecated web server replaced by Tomcat.",
+        "Only serves static files, no dynamic content.",
+        "A security tool for web application scanning."
+      ],
+      "answer": "Minimal HTTP server for prototyping/testing - not production-grade but convenient for simple needs."
+    },
+    {
+      "id": 118,
+      "question": "Explain the purpose of Java's 'jpackage' command's 'app-image' option. How does it differ from installer output?",
+      "options": [
+        "Creates directory-based application image instead of installer - useful for portable/zip distributions.",
+        "A deprecated packaging format.",
+        "Only creates platform-specific installers.",
+        "A security feature for image signing."
+      ],
+      "answer": "Creates directory-based application image instead of installer - useful for portable/zip distributions."
+    },
+    {
+      "id": 119,
+      "question": "What is the Java 'jpackage' command's 'java-options' parameter? How does it affect runtime behavior?",
+      "options": [
+        "Sets JVM flags for the packaged app - memory, system properties etc. visible to end users.",
+        "A deprecated way to set compiler options.",
+        "Only affects build-time behavior, not runtime.",
+        "A security feature for option validation."
+      ],
+      "answer": "Sets JVM flags for the packaged app - memory, system properties etc. visible to end users."
+    },
+    {
+      "id": 120,
+      "question": "Describe the purpose of Java's 'jpackage' command's 'resource-dir' option. How does it support customization?",
+      "options": [
+        "Specifies directory for license files, icons etc. - allows branding/packaging customization.",
+        "A deprecated resource packaging method.",
+        "Only for JavaFX resources, not general ones.",
+        "A security feature for resource validation."
+      ],
+      "answer": "Specifies directory for license files, icons etc. - allows branding/packaging customization."
+    },
+    {
+      "id": 121,
+      "question": "What is the Java 'jpackage' command's 'temp' option? When would you need to specify it?",
+      "options": [
+        "Sets temporary directory for installer creation - needed when default temp space is insufficient.",
+        "A deprecated temporary file handling approach.",
+        "Only affects runtime temp files, not build.",
+        "A security feature for temp file isolation."
+      ],
+      "answer": "Sets temporary directory for installer creation - needed when default temp space is insufficient."
+    },
+    {
+      "id": 122,
+      "question": "Explain the purpose of Java's 'jpackage' command's 'verbose' flag. What additional information does it provide?",
+      "options": [
+        "Shows detailed packaging process output - useful for debugging installer creation issues.",
+        "A deprecated verbose logging system.",
+        "Only shows warnings/errors, not full output.",
+        "A security feature for log sanitization."
+      ],
+      "answer": "Shows detailed packaging process output - useful for debugging installer creation issues."
+    },
+    {
+      "id": 123,
+      "question": "What is the Java 'jpackage' command's 'dest' option? How does it affect output location?",
+      "options": [
+        "Specifies output directory for generated installers - defaults to current directory if omitted.",
+        "A deprecated destination specification method.",
+        "Only affects intermediate files, not final output.",
+        "A security feature for output validation."
+      ],
+      "answer": "Specifies output directory for generated installers - defaults to current directory if omitted."
+    },
+    {
+      "id": 124,
+      "question": "Describe the purpose of Java's 'jpackage' command's 'name' parameter. How is it used in the packaged application?",
+      "options": [
+        "Sets application name - appears in menus, installers etc. for end-user identification.",
+        "A deprecated naming convention.",
+        "Only affects internal naming, not user-visible.",
+        "A security feature for name validation."
+      ],
+      "answer": "Sets application name - appears in menus, installers etc. for end-user identification."
+    },
+    {
+      "id": 125,
+      "question": "What is the Java 'jpackage' command's 'vendor' parameter? Why is it important for distribution?",
+      "options": [
+        "Sets organization name - appears in installers, control panels etc. for proper attribution.",
+        "A deprecated vendor identification system.",
+        "Only used for Java module names.",
+        "A security feature for vendor verification."
+      ],
+      "answer": "Sets organization name - appears in installers, control panels etc. for proper attribution."
+    },
+    {
+      "id": 126,
+      "question": "Explain the purpose of Java's 'jpackage' command's 'copyright' option. How does it affect legal compliance?",
+      "options": [
+        "Sets copyright notice - important for meeting software licensing requirements in distributions.",
+        "A deprecated copyright handling approach.",
+        "Only used in open source projects.",
+        "A security feature for license validation."
+      ],
+      "answer": "Sets copyright notice - important for meeting software licensing requirements in distributions."
+    },
+    {
+      "id": 127,
+      "question": "What is the Java 'jpackage' command's 'description' parameter? How is it presented to end users?",
+      "options": [
+        "Sets application description - appears in installers, control panels etc. to explain app purpose.",
+        "A deprecated description field.",
+        "Only used for internal documentation.",
+        "A security feature for description sanitization."
+      ],
+      "answer": "Sets application description - appears in installers, control panels etc. to explain app purpose."
+    },
+    {
+      "id": 128,
+      "question": "Describe the purpose of Java's 'jpackage' command's 'icon' option. How does it enhance application presentation?",
+      "options": [
+        "Specifies application icon - appears in shortcuts, menus etc. for visual identification.",
+        "A deprecated icon packaging method.",
+        "Only works on certain operating systems.",
+        "A security feature for icon validation."
+      ],
+      "answer": "Specifies application icon - appears in shortcuts, menus etc. for visual identification."
+    },
+    {
+      "id": 129,
+      "question": "What is the Java 'jpackage' command's 'file-associations' option? How does it integrate the application with the OS?",
+      "options": [
+        "Links file types to the app - allows opening files by extension and setting default handlers.",
+        "A deprecated file handling approach.",
+        "Only works with text files, not binaries.",
+        "A security feature for file validation."
+      ],
+      "answer": "Links file types to the app - allows opening files by extension and setting default handlers."
+    },
+    {
+      "id": 130,
+      "question": "Explain the purpose of Java's 'jpackage' command's 'install-dir' option. How does it affect installation location?",
+      "options": [
+        "Sets default install directory - platform-appropriate location unless overridden by user during install.",
+        "A deprecated installation directory method.",
+        "Forces installation to that directory always.",
+        "A security feature for install location validation."
+      ],
+      "answer": "Sets default install directory - platform-appropriate location unless overridden by user during install."
+    }
+  ]
+}
+        // DOM elements
+        const bookCover = document.getElementById('bookCover');
+        const quizBook = document.getElementById('quizBook');
+        const resultContainer = document.getElementById('resultContainer');
+        const startBtn = document.getElementById('startBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const questionPage = document.getElementById('questionPage');
+        const questionNumber = document.getElementById('questionNumber');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const timerElement = document.querySelector('#headerTimer span');
+        const progressBar = document.getElementById('progressBar');
+        const headerProgress = document.getElementById('headerProgress');
+        const scoreElement = document.getElementById('score');
+        const resultMessage = document.getElementById('resultMessage');
+        const summaryElement = document.getElementById('summary');
+        const themeToggle = document.getElementById('themeToggle');
+        const headerTimer = document.getElementById('headerTimer');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeModal = document.getElementById('closeModal');
+        const saveSettings = document.getElementById('saveSettings');
+        const timeLimitInput = document.getElementById('timeLimit');
+        
+        // Quiz variables
+        let questions = questionsData.questions;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let timeLeft = 30 * 60; // 30 minutes in seconds by default
+        let timerInterval;
+        let testStarted = false;
+        let selectedQuestions = [];
+        let isFlipping = false;
+        let timerPaused = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Select 70 random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+            
+            // Initialize user answers array
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Start the quiz with book open animation
+        function startQuiz() {
+            // Start book open animation
+            bookCover.classList.add('book-open');
+            
+            // After animation completes, show quiz book
+            setTimeout(() => {
+                bookCover.style.display = 'none';
+                quizBook.classList.add('active');
+                
+                // Start timer with default or saved value
+                const savedTimeLimit = localStorage.getItem('timeLimit');
+                timeLeft = (savedTimeLimit || 30) * 60;
+                timeLimitInput.value = savedTimeLimit || 30;
+                updateTimerDisplay();
+                
+                // Start timer
+                startTimer();
+                testStarted = true;
+                
+                // Display first question
+                showQuestion();
+            }, 1500);
+        }
+
+        // Timer control
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!timerPaused) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timeString = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Update timer
+            timerElement.textContent = timeString;
+        }
+
+        // Show current question with flip animation
+        function showQuestion() {
+            const question = selectedQuestions[currentQuestionIndex];
+            
+            // Update question number
+            questionNumber.textContent = `Question ${currentQuestionIndex + 1} of ${selectedQuestions.length}`;
+            
+            // Update progress bars
+            const progressPercent = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            headerProgress.style.width = `${progressPercent}%`;
+            
+            // Set question text
+            questionElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                // Check if this option was previously selected
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option${index}" value="${index}">
+                    <span class="checkmark"></span>
+                    <label for="option${index}">${option}</label>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === selectedQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'flex';
+            } else {
+                nextBtn.style.display = 'flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+            
+            // Save user's answer
+            userAnswers[currentQuestionIndex] = optionIndex;
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0 && !isFlipping) {
+                currentQuestionIndex--;
+                animateQuestionTransition();
+            }
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex < selectedQuestions.length - 1 && !isFlipping) {
+                currentQuestionIndex++;
+                animateQuestionTransition();
+            }
+        }
+
+        // Animate question transition with book flip effect
+        function animateQuestionTransition() {
+            isFlipping = true;
+            timerPaused = true;
+            questionPage.classList.add('flipping');
+            
+            setTimeout(() => {
+                showQuestion();
+                questionPage.classList.remove('flipping');
+                isFlipping = false;
+                timerPaused = false;
+            }, 1200);
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            testStarted = false;
+            
+            // Calculate score
+            score = 0;
+            selectedQuestions.forEach((question, index) => {
+                if (userAnswers[index] !== null && 
+                    question.options[userAnswers[index]] === question.answer) {
+                    score++;
+                }
+            });
+            
+            // Display results
+            quizBook.classList.remove('active');
+            resultContainer.style.display = 'block';
+            
+            scoreElement.textContent = `${score}/${selectedQuestions.length}`;
+            
+            // Set result message based on score
+            const percentage = (score / selectedQuestions.length) * 100;
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent performance! You've demonstrated a comprehensive understanding of OOP concepts.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good work! You have a solid grasp of OOP principles with some areas for improvement.";
+            } else if (percentage >= 40) {
+                resultMessage.textContent = "Fair attempt. Review the OOP concepts to strengthen your understanding.";
+            } else {
+                resultMessage.textContent = "Keep studying! Focus on the core OOP principles and try again.";
+            }
+            
+            // Show question summary
+            showSummary();
+        }
+
+        // Show question summary
+        function showSummary() {
+            summaryElement.innerHTML = '';
+            
+            selectedQuestions.forEach((question, index) => {
+                const summaryItem = document.createElement('div');
+                summaryItem.classList.add('summary-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex !== null && 
+                                 question.options[userAnswerIndex] === question.answer;
+                
+                if (isCorrect) {
+                    summaryItem.classList.add('correct');
+                } else {
+                    summaryItem.classList.add('incorrect');
+                }
+                
+                let userAnswerText = "Not answered";
+                if (userAnswerIndex !== null) {
+                    userAnswerText = question.options[userAnswerIndex];
+                }
+                
+                summaryItem.innerHTML = `
+                    <div class="question-text">Q${index + 1}: ${question.question}</div>
+                    ${!isCorrect ? `<div>Your answer: <span class="user-answer">${userAnswerText}</span></div>` : ''}
+                    ${!isCorrect ? `<div>Correct answer: <span class="correct-answer">${question.answer}</span></div>` : ''}
+                `;
+                
+                summaryElement.appendChild(summaryItem);
+            });
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            // Reset variables
+            currentQuestionIndex = 0;
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            score = 0;
+            
+            // Select new random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            
+            // Reset timer
+            timeLeft = (localStorage.getItem('timeLimit') || 30) * 60;
+            updateTimerDisplay();
+            
+            // Show book cover
+            resultContainer.style.display = 'none';
+            bookCover.style.display = 'flex';
+            bookCover.style.opacity = '1';
+            bookCover.style.transform = 'scale(1)';
+            bookCover.classList.remove('book-open');
+            quizBook.classList.remove('active');
+        }
+
+        // Open settings modal
+        function openSettings() {
+            settingsModal.classList.add('active');
+        }
+
+        // Close settings modal
+        function closeSettings() {
+            settingsModal.classList.remove('active');
+        }
+
+        // Save timer settings
+        function saveTimerSettings() {
+            const newTimeLimit = parseInt(timeLimitInput.value) || 30;
+            localStorage.setItem('timeLimit', newTimeLimit);
+            
+            // Update timer if test is in progress
+            if (testStarted) {
+                const currentTimeMinutes = Math.floor(timeLeft / 60);
+                if (confirm(`Change time limit from ${currentTimeMinutes} minutes to ${newTimeLimit} minutes?`)) {
+                    timeLeft = newTimeLimit * 60;
+                    updateTimerDisplay();
+                }
+            }
+            
+            closeSettings();
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startQuiz);
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        submitBtn.addEventListener('click', submitQuiz);
+        restartBtn.addEventListener('click', restartQuiz);
+        themeToggle.addEventListener('click', toggleTheme);
+        headerTimer.addEventListener('click', openSettings);
+        closeModal.addEventListener('click', closeSettings);
+        saveSettings.addEventListener('click', saveTimerSettings);
+        
+        // Close modal when clicking outside
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                closeSettings();
+            }
+        });
+        
+        // Prevent losing answers on page refresh
+        window.addEventListener('beforeunload', (e) => {
+            if (testStarted) {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? Your test progress will be lost.';
+            }
+        });
+        
+        // Initialize
+        initQuiz();
+    </script>
+</body>
+</html>
