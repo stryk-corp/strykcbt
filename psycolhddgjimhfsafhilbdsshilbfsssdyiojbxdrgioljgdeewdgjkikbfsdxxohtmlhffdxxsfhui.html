@@ -1,0 +1,3406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyscology Course CBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --footer-color: #34495e;
+            --bg-color: #e5ddd5;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --card-bg: #1e1e1e;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --footer-color: #0d0d0d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e7195b6b733d9110b408f075d.png');
+        }
+
+        [data-theme="dark"] body {
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-dark_04ccac6ecd6921a5bb6b6f7c6c7d7a6e.png');
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 15px 0 0;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .user-info i {
+            font-size: 1.4rem;
+        }
+
+        .header-timer {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .header-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+        }
+
+        .header-progress .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Book Cover Styling */
+        .book-cover {
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 5px 15px 15px 5px;
+            box-shadow: 0 20px 40px var(--shadow-color),
+                        0 0 0 10px var(--card-bg),
+                        0 0 0 12px #ddd,
+                        0 0 30px rgba(0, 0, 0, 0.1) inset;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s ease;
+            cursor: pointer;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 30px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotateY(45deg);
+            transform-origin: left;
+            filter: blur(5px);
+        }
+
+        .book-cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-cover p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .book-cover .btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-cover .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Book Open Animation */
+        .book-open {
+            animation: bookOpen 1.5s ease forwards;
+        }
+
+        @keyframes bookOpen {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.7; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 0; display: none; }
+        }
+
+        /* Quiz Book Styling */
+        .quiz-book {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px var(--shadow-color),
+                        0 0 0 1px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            position: relative;
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+            overflow: hidden;
+            margin: 0 auto;
+            min-height: 500px;
+        }
+
+        .quiz-book.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page {
+            padding: 30px;
+            position: relative;
+            min-height: 500px;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+        }
+
+        .page.flipping {
+            animation: pageFlip 1.2s ease forwards;
+        }
+
+        @keyframes pageFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.5; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 1; }
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            background-color: var(--footer-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #25D366;
+            transform: translateY(-2px);
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Quiz Components */
+        .timer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .question-number {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 18px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 60px;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .option.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-color: var(--danger-color);
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            height: 22px;
+            width: 22px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+
+        .option.selected .checkmark {
+            border-color: var(--secondary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .option.selected .checkmark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .submit-btn {
+            background-color: var(--success-color);
+        }
+
+        /* Results Container */
+        .result-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            padding: 40px;
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+            margin: 0 auto;
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .score::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .summary {
+            margin-top: 40px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .summary-item {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover {
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transform: translateY(-2px);
+        }
+
+        .summary-item.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        .summary-item.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .user-answer {
+            color: var(--danger-color);
+            font-weight: 500;
+        }
+
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+
+        /* Timer Settings Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-cover, .quiz-book {
+                width: 95%;
+                height: auto;
+                min-height: 400px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.8rem;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .option {
+                padding: 15px 15px 15px 50px;
+            }
+
+            .checkmark {
+                left: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .book-cover, .quiz-book {
+                width: 100%;
+                padding: 20px;
+                min-height: 350px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.5rem;
+            }
+
+            .book-cover p {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .header-timer {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Psycology 101</h1>
+                    <p>Computer Based Testing System</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="header-timer" id="headerTimer">
+                    <i class="fas fa-clock"></i>
+                    <span>30:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-progress">
+            <div class="progress-bar" id="headerProgress"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="bookCover">
+            <h1>Basic Psycology Concept
+</h1>
+            <p>Computer Based Test</p>
+            <p>Test your knowledge of Psycology with this interactive assessment</p>
+            <button class="btn" id="startBtn">Start Assessment</button>
+        </div>
+        
+        <!-- Quiz Book -->
+        <div class="quiz-book" id="quizBook">
+            <div class="page" id="questionPage">
+                <div class="timer-container">
+                    <div class="question-number" id="questionNumber">Question 1 of 70</div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="question-container" id="questionContainer">
+                    <div class="question" id="question"></div>
+                    <div class="options" id="options"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn" id="nextBtn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn submit-btn" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Test
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="result-container" id="resultContainer">
+            <h2>Assessment Complete</h2>
+            <div class="score" id="score">0/70</div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn" id="restartBtn">
+                <i class="fas fa-redo"></i> Take Test Again
+            </button>
+            
+            <div class="summary" id="summary"></div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">Dr. Stryk's CBT</div>
+            <div class="footer-contact">
+                <a href="https://wa.me/2348075884197" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +234 807 588 4197
+                </a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 Computer Based Testing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Timer Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Timer Settings</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="timeLimit">Set Time Limit (minutes)</label>
+                <input type="number" id="timeLimit" class="form-control" min="1" max="120" value="30">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded JSON data
+        const questionsData = {
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which part of the neuron receives messages?",
+      "options": [
+        "Axon",
+        "Dendrites",
+        "Synapse",
+        "Soma"
+      ],
+      "answer": "Dendrites"
+    },
+    {
+      "id": 2,
+      "question": "Who developed the first intelligence test?",
+      "options": [
+        "Wechsler",
+        "Terman",
+        "Binet",
+        "Gardner"
+      ],
+      "answer": "Binet"
+    },
+    {
+      "id": 3,
+      "question": "The brain's communication chemicals are called:",
+      "options": [
+        "Hormones",
+        "Enzymes",
+        "Neurotransmitters",
+        "Neurons"
+      ],
+      "answer": "Neurotransmitters"
+    },
+    {
+      "id": 4,
+      "question": "Which theory explains how we perceive color?",
+      "options": [
+        "Frequency theory",
+        "Opponent-process theory",
+        "Place theory",
+        "Reflex theory"
+      ],
+      "answer": "Opponent-process theory"
+    },
+    {
+      "id": 5,
+      "question": "The central nervous system consists of:",
+      "options": [
+        "Brain and spinal cord",
+        "Spinal cord and nerves",
+        "Brain and endocrine system",
+        "Sympathetic and parasympathetic systems"
+      ],
+      "answer": "Brain and spinal cord"
+    },
+    {
+      "id": 6,
+      "question": "Who is known as the father of psychoanalysis?",
+      "options": [
+        "Carl Jung",
+        "Sigmund Freud",
+        "Erik Erikson",
+        "Alfred Adler"
+      ],
+      "answer": "Sigmund Freud"
+    },
+    {
+      "id": 7,
+      "question": "The part of the brain responsible for reasoning and planning is the:",
+      "options": [
+        "Temporal lobe",
+        "Frontal lobe",
+        "Parietal lobe",
+        "Occipital lobe"
+      ],
+      "answer": "Frontal lobe"
+    },
+    {
+      "id": 8,
+      "question": "The endocrine system uses _____ to send messages.",
+      "options": [
+        "Neurons",
+        "Blood vessels",
+        "Hormones",
+        "Electrical impulses"
+      ],
+      "answer": "Hormones"
+    },
+    {
+      "id": 9,
+      "question": "Which branch of psychology studies workplace behavior?",
+      "options": [
+        "Educational psychology",
+        "Clinical psychology",
+        "Industrial-organizational psychology",
+        "Health psychology"
+      ],
+      "answer": "Industrial-organizational psychology"
+    },
+    {
+      "id": 10,
+      "question": "The smallest unit of the nervous system is the:",
+      "options": [
+        "Cell body",
+        "Axon",
+        "Neuron",
+        "Synapse"
+      ],
+      "answer": "Neuron"
+    },
+    {
+      "id": 11,
+      "question": "Which method involves in-depth study of a single individual?",
+      "options": [
+        "Experimental method",
+        "Survey method",
+        "Case study method",
+        "Observation method"
+      ],
+      "answer": "Case study method"
+    },
+    {
+      "id": 12,
+      "question": "The experimental method is best suited for:",
+      "options": [
+        "Observing people in natural settings",
+        "Identifying cause-effect relationships",
+        "Gathering survey data",
+        "Studying historical records"
+      ],
+      "answer": "Identifying cause-effect relationships"
+    },
+    {
+      "id": 13,
+      "question": "The founder of the first psychology lab was:",
+      "options": [
+        "Sigmund Freud",
+        "John Watson",
+        "Wilhelm Wundt",
+        "William James"
+      ],
+      "answer": "Wilhelm Wundt"
+    },
+    {
+      "id": 14,
+      "question": "Structuralism was primarily concerned with:",
+      "options": [
+        "Observable behavior",
+        "The function of consciousness",
+        "The structure of the mind",
+        "Dream analysis"
+      ],
+      "answer": "The structure of the mind"
+    },
+    {
+      "id": 15,
+      "question": "Behaviorism was founded by:",
+      "options": [
+        "Ivan Pavlov",
+        "John Watson",
+        "Carl Rogers",
+        "Jean Piaget"
+      ],
+      "answer": "John Watson"
+    },
+    {
+      "id": 16,
+      "question": "The humanistic approach emphasizes:",
+      "options": [
+        "Conditioning",
+        "Free will and self-actualization",
+        "Childhood experiences",
+        "Unconscious drives"
+      ],
+      "answer": "Free will and self-actualization"
+    },
+    {
+      "id": 17,
+      "question": "The cognitive approach focuses on:",
+      "options": [
+        "Brain chemistry",
+        "Emotional expression",
+        "Thinking and mental processes",
+        "Social norms"
+      ],
+      "answer": "Thinking and mental processes"
+    },
+    {
+      "id": 18,
+      "question": "The nervous system is made up of:",
+      "options": [
+        "Only the brain",
+        "Brain and muscles",
+        "Brain, spinal cord, and nerves",
+        "Brain and endocrine glands"
+      ],
+      "answer": "Brain, spinal cord, and nerves"
+    },
+    {
+      "id": 19,
+      "question": "Which of the following is not a goal of psychology?",
+      "options": [
+        "Describe behavior",
+        "Predict behavior",
+        "Prescribe behavior",
+        "Understand behavior"
+      ],
+      "answer": "Prescribe behavior"
+    },
+    {
+      "id": 20,
+      "question": "Psychology is considered a:",
+      "options": [
+        "Physical science",
+        "Biological science",
+        "Social science",
+        "Natural science"
+      ],
+      "answer": "Social science"
+    },
+    {
+      "id": 21,
+      "question": "What is the best definition of psychology?",
+      "options": [
+        "The study of the soul",
+        "The study of behavior and mental processes",
+        "The study of the unconscious mind",
+        "The study of emotions only"
+      ],
+      "answer": "The study of behavior and mental processes"
+    },
+    {
+      "id": 22,
+      "question": "The scope of psychology includes the study of:",
+      "options": [
+        "Only abnormal behavior",
+        "Only physical health",
+        "Human and animal behavior",
+        "Dreams only"
+      ],
+      "answer": "Human and animal behavior"
+    },
+    {
+      "id": 23,
+      "question": "A major disadvantage of the case study method is:",
+      "options": [
+        "Lack of focus",
+        "Inability to generalize findings",
+        "High cost",
+        "It is unethical"
+      ],
+      "answer": "Inability to generalize findings"
+    },
+    {
+      "id": 24,
+      "question": "Which method involves manipulating one variable to observe the effect on another?",
+      "options": [
+        "Correlational method",
+        "Naturalistic observation",
+        "Experimental method",
+        "Case study"
+      ],
+      "answer": "Experimental method"
+    },
+    {
+      "id": 25,
+      "question": "The dependent variable is:",
+      "options": [
+        "The variable manipulated",
+        "The outcome measured",
+        "Always constant",
+        "Not important"
+      ],
+      "answer": "The outcome measured"
+    },
+    {
+      "id": 26,
+      "question": "Naturalistic observation takes place in:",
+      "options": [
+        "Controlled laboratory settings",
+        "Artificial environments",
+        "Natural environments",
+        "Psychiatric hospitals"
+      ],
+      "answer": "Natural environments"
+    },
+    {
+      "id": 27,
+      "question": "A major limitation of surveys is:",
+      "options": [
+        "They are expensive",
+        "They cannot be conducted online",
+        "Participants may not answer honestly",
+        "They always take a long time"
+      ],
+      "answer": "Participants may not answer honestly"
+    },
+    {
+      "id": 28,
+      "question": "Functionalism was pioneered by:",
+      "options": [
+        "Wilhelm Wundt",
+        "William James",
+        "John Watson",
+        "B.F. Skinner"
+      ],
+      "answer": "William James"
+    },
+    {
+      "id": 29,
+      "question": "The psychoanalytic school emphasizes:",
+      "options": [
+        "Conscious experience",
+        "Observable behavior",
+        "The unconscious mind",
+        "Learning and rewards"
+      ],
+      "answer": "The unconscious mind"
+    },
+    {
+      "id": 30,
+      "question": "Sensation is defined as:",
+      "options": [
+        "Interpretation of stimuli",
+        "Physical detection of environmental energy",
+        "Mental processing",
+        "Learning from experience"
+      ],
+      "answer": "Physical detection of environmental energy"
+    },
+    {
+      "id": 31,
+      "question": "Perception is:",
+      "options": [
+        "A physical process",
+        "Raw data from the environment",
+        "The organization and interpretation of sensory information",
+        "Sensory receptor activity"
+      ],
+      "answer": "The organization and interpretation of sensory information"
+    },
+    {
+      "id": 32,
+      "question": "The part of the eye that controls the amount of light entering is the:",
+      "options": [
+        "Lens",
+        "Retina",
+        "Iris",
+        "Cornea"
+      ],
+      "answer": "Iris"
+    },
+    {
+      "id": 33,
+      "question": "Rods are responsible for:",
+      "options": [
+        "Color vision",
+        "Daylight vision",
+        "Peripheral and night vision",
+        "Sharp central vision"
+      ],
+      "answer": "Peripheral and night vision"
+    },
+    {
+      "id": 34,
+      "question": "The cochlea is part of the:",
+      "options": [
+        "Eye",
+        "Tongue",
+        "Skin",
+        "Ear"
+      ],
+      "answer": "Ear"
+    },
+    {
+      "id": 35,
+      "question": "Learning is best defined as:",
+      "options": [
+        "A reflex action",
+        "A temporary behavior",
+        "A relatively permanent change due to experience",
+        "Genetic behavior"
+      ],
+      "answer": "A relatively permanent change due to experience"
+    },
+    {
+      "id": 36,
+      "question": "Classical conditioning is associated with:",
+      "options": [
+        "Skinner",
+        "Freud",
+        "Pavlov",
+        "Bandura"
+      ],
+      "answer": "Pavlov"
+    },
+    {
+      "id": 37,
+      "question": "In Pavlov's experiment, the bell was a:",
+      "options": [
+        "Unconditioned stimulus",
+        "Conditioned stimulus",
+        "Response",
+        "Reinforcer"
+      ],
+      "answer": "Conditioned stimulus"
+    },
+    {
+      "id": 38,
+      "question": "Operant conditioning focuses on:",
+      "options": [
+        "Reflex actions",
+        "The unconscious",
+        "Voluntary behavior and consequences",
+        "Mental processing"
+      ],
+      "answer": "Voluntary behavior and consequences"
+    },
+    {
+      "id": 39,
+      "question": "Reinforcement _____ the likelihood of a behavior.",
+      "options": [
+        "Increases",
+        "Decreases",
+        "Has no effect on",
+        "Eliminates"
+      ],
+      "answer": "Increases"
+    },
+    {
+      "id": 40,
+      "question": "Negative reinforcement involves:",
+      "options": [
+        "Punishing behavior",
+        "Removing an unpleasant stimulus",
+        "Adding a negative consequence",
+        "Ignoring the response"
+      ],
+      "answer": "Removing an unpleasant stimulus"
+    },
+    {
+      "id": 41,
+      "question": "Observational learning is most associated with:",
+      "options": [
+        "Skinner",
+        "Bandura",
+        "Freud",
+        "Thorndike"
+      ],
+      "answer": "Bandura"
+    },
+    {
+      "id": 42,
+      "question": "Memory refers to the processes used to:",
+      "options": [
+        "Sense and respond",
+        "Store and retrieve information",
+        "Dream and imagine",
+        "Learn new behavior"
+      ],
+      "answer": "Store and retrieve information"
+    },
+    {
+      "id": 43,
+      "question": "The three stages of memory are:",
+      "options": [
+        "Encoding, storing, retrieving",
+        "Learning, using, forgetting",
+        "Sensation, perception, recall",
+        "Input, output, feedback"
+      ],
+      "answer": "Encoding, storing, retrieving"
+    },
+    {
+      "id": 44,
+      "question": "Short-term memory lasts about:",
+      "options": [
+        "A few seconds",
+        "A few minutes",
+        "15-30 seconds",
+        "Several hours"
+      ],
+      "answer": "15-30 seconds"
+    },
+    {
+      "id": 45,
+      "question": "Long-term memory is:",
+      "options": [
+        "Temporary",
+        "Short-lived",
+        "Relatively permanent",
+        "Easily forgotten"
+      ],
+      "answer": "Relatively permanent"
+    },
+    {
+      "id": 46,
+      "question": "Forgetting due to interference happens when:",
+      "options": [
+        "You don't pay attention",
+        "Other information blocks retrieval",
+        "You are unconscious",
+        "The brain is damaged"
+      ],
+      "answer": "Other information blocks retrieval"
+    },
+    {
+      "id": 47,
+      "question": "Retrieval failure is:",
+      "options": [
+        "Memory decay",
+        "Memory blockage",
+        "Lack of storage",
+        "Repression"
+      ],
+      "answer": "Memory blockage"
+    },
+    {
+      "id": 48,
+      "question": "Motivation is best defined as:",
+      "options": [
+        "A biological reflex",
+        "A temporary mood",
+        "A need or desire that directs behavior",
+        "A learned habit"
+      ],
+      "answer": "A need or desire that directs behavior"
+    },
+    {
+      "id": 49,
+      "question": "The hierarchy of needs was proposed by:",
+      "options": [
+        "Carl Jung",
+        "Abraham Maslow",
+        "Sigmund Freud",
+        "Ivan Pavlov"
+      ],
+      "answer": "Abraham Maslow"
+    },
+    {
+      "id": 50,
+      "question": "According to Maslow, the highest need is:",
+      "options": [
+        "Safety",
+        "Belonging",
+        "Esteem",
+        "Self-actualization"
+      ],
+      "answer": "Self-actualization"
+    },
+    {
+      "id": 51,
+      "question": "Intrinsic motivation involves:",
+      "options": [
+        "External rewards",
+        "Avoiding punishment",
+        "Personal satisfaction",
+        "Money and fame"
+      ],
+      "answer": "Personal satisfaction"
+    },
+    {
+      "id": 52,
+      "question": "Emotions involve all of the following except:",
+      "options": [
+        "Physiological arousal",
+        "Behavioral expression",
+        "Cognitive interpretation",
+        "Genetic coding"
+      ],
+      "answer": "Genetic coding"
+    },
+    {
+      "id": 53,
+      "question": "The James-Lange theory suggests:",
+      "options": [
+        "Emotion causes bodily reactions",
+        "Bodily reactions cause emotion",
+        "Thought causes emotion",
+        "Emotions are instinctive"
+      ],
+      "answer": "Bodily reactions cause emotion"
+    },
+    {
+      "id": 54,
+      "question": "Personality is defined as:",
+      "options": [
+        "Changeable traits",
+        "A person's characteristic way of thinking, feeling, and behaving",
+        "Biological structure",
+        "Learned behavior"
+      ],
+      "answer": "A person's characteristic way of thinking, feeling, and behaving"
+    },
+    {
+      "id": 55,
+      "question": "Freud proposed that personality has:",
+      "options": [
+        "Two parts",
+        "Three parts: id, ego, and superego",
+        "One unified part",
+        "No internal structure"
+      ],
+      "answer": "Three parts: id, ego, and superego"
+    },
+    {
+      "id": 56,
+      "question": "The id operates on the:",
+      "options": [
+        "Reality principle",
+        "Pleasure principle",
+        "Morality principle",
+        "Survival principle"
+      ],
+      "answer": "Pleasure principle"
+    },
+    {
+      "id": 57,
+      "question": "According to trait theory, personality consists of:",
+      "options": [
+        "Hidden motives",
+        "Learned behavior",
+        "Biological needs",
+        "Stable characteristics"
+      ],
+      "answer": "Stable characteristics"
+    },
+    {
+      "id": 58,
+      "question": "The Big Five traits include:",
+      "options": [
+        "Id, ego, superego, libido, repression",
+        "Openness, conscientiousness, extraversion, agreeableness, neuroticism",
+        "Intelligence, motivation, anxiety, happiness, integrity",
+        "None of the above"
+      ],
+      "answer": "Openness, conscientiousness, extraversion, agreeableness, neuroticism"
+    },
+    {
+      "id": 59,
+      "question": "Intelligence is generally defined as:",
+      "options": [
+        "Emotional maturity",
+        "Mental stability",
+        "The ability to learn, reason, and solve problems",
+        "Academic success"
+      ],
+      "answer": "The ability to learn, reason, and solve problems"
+    },
+    {
+      "id": 60,
+      "question": "IQ stands for:",
+      "options": [
+        "Intelligence Quotient",
+        "Intelligence Qualification",
+        "Innate Quality",
+        "Individual Quotient"
+      ],
+      "answer": "Intelligence Quotient"
+    },
+    {
+      "id": 61,
+      "question": "Gardner proposed the theory of:",
+      "options": [
+        "Multiple intelligences",
+        "Emotional intelligence",
+        "Creative thinking",
+        "Intelligence hierarchy"
+      ],
+      "answer": "Multiple intelligences"
+    },
+    {
+      "id": 62,
+      "question": "Emotional intelligence involves:",
+      "options": [
+        "High IQ only",
+        "Recognizing and managing emotions",
+        "Abstract thinking",
+        "Mathematical ability"
+      ],
+      "answer": "Recognizing and managing emotions"
+    },
+    {
+      "id": 63,
+      "question": "Developmental psychology studies:",
+      "options": [
+        "Only childhood",
+        "Abnormal behavior",
+        "Changes across the lifespan",
+        "Genetics"
+      ],
+      "answer": "Changes across the lifespan"
+    },
+    {
+      "id": 64,
+      "question": "Piaget is known for his theory of:",
+      "options": [
+        "Moral development",
+        "Social learning",
+        "Cognitive development",
+        "Classical conditioning"
+      ],
+      "answer": "Cognitive development"
+    },
+    {
+      "id": 65,
+      "question": "Erikson proposed _____ stages of psychosocial development.",
+      "options": [
+        "5",
+        "7",
+        "8",
+        "10"
+      ],
+      "answer": "8"
+    },
+    {
+      "id": 66,
+      "question": "Adolescence is characterized by:",
+      "options": [
+        "Motor skill development",
+        "Language acquisition",
+        "Identity formation",
+        "Memory decline"
+      ],
+      "answer": "Identity formation"
+    },
+    {
+      "id": 67,
+      "question": "Nature refers to:",
+      "options": [
+        "Environment",
+        "Learning",
+        "Genetics and heredity",
+        "Parenting styles"
+      ],
+      "answer": "Genetics and heredity"
+    },
+    {
+      "id": 68,
+      "question": "Nurture refers to:",
+      "options": [
+        "Genetic traits",
+        "DNA expression",
+        "Environmental influences",
+        "Biological instincts"
+      ],
+      "answer": "Environmental influences"
+    },
+    {
+      "id": 69,
+      "question": "The zygote stage lasts for:",
+      "options": [
+        "1 week",
+        "2 weeks",
+        "3 months",
+        "9 months"
+      ],
+      "answer": "1 week"
+    },
+    {
+      "id": 70,
+      "question": "Teratogens are:",
+      "options": [
+        "Genetic disorders",
+        "Developmental hormones",
+        "Environmental agents causing harm to the fetus",
+        "Growth accelerators"
+      ],
+      "answer": "Environmental agents causing harm to the fetus"
+    },
+    {
+      "id": 71,
+      "question": "Which of the following is a known teratogen?",
+      "options": [
+        "Folic acid",
+        "Oxygen",
+        "Alcohol",
+        "Protein"
+      ],
+      "answer": "Alcohol"
+    },
+    {
+      "id": 72,
+      "question": "The stage of cognitive development where children develop object permanence is:",
+      "options": [
+        "Preoperational",
+        "Sensorimotor",
+        "Concrete operational",
+        "Formal operational"
+      ],
+      "answer": "Sensorimotor"
+    },
+    {
+      "id": 73,
+      "question": "According to Piaget, abstract thinking emerges during the:",
+      "options": [
+        "Sensorimotor stage",
+        "Preoperational stage",
+        "Concrete operational stage",
+        "Formal operational stage"
+      ],
+      "answer": "Formal operational stage"
+    },
+    {
+      "id": 74,
+      "question": "Attachment in infants is most closely associated with the work of:",
+      "options": [
+        "Piaget",
+        "Erikson",
+        "Harlow",
+        "Pavlov"
+      ],
+      "answer": "Harlow"
+    },
+    {
+      "id": 75,
+      "question": "Adolescents typically struggle with issues related to:",
+      "options": [
+        "Identity vs. role confusion",
+        "Initiative vs. guilt",
+        "Autonomy vs. shame",
+        "Integrity vs. despair"
+      ],
+      "answer": "Identity vs. role confusion"
+    },
+    {
+      "id": 76,
+      "question": "According to Kohlberg, moral development is based on:",
+      "options": [
+        "Emotional maturity",
+        "Intellectual capacity",
+        "Justice and reasoning",
+        "Social pressure"
+      ],
+      "answer": "Justice and reasoning"
+    },
+    {
+      "id": 77,
+      "question": "In classical conditioning, the unconditioned stimulus:",
+      "options": [
+        "Triggers a learned response",
+        "Is the same as the conditioned stimulus",
+        "Automatically triggers a response",
+        "Is never used"
+      ],
+      "answer": "Automatically triggers a response"
+    },
+    {
+      "id": 78,
+      "question": "B.F. Skinner is most associated with:",
+      "options": [
+        "Cognitive development",
+        "Operant conditioning",
+        "Psychoanalysis",
+        "Biological psychology"
+      ],
+      "answer": "Operant conditioning"
+    },
+    {
+      "id": 79,
+      "question": "Positive punishment involves:",
+      "options": [
+        "Removing a pleasant stimulus",
+        "Ignoring bad behavior",
+        "Adding an unpleasant stimulus",
+        "Giving rewards"
+      ],
+      "answer": "Adding an unpleasant stimulus"
+    },
+    {
+      "id": 80,
+      "question": "A reinforcement schedule that rewards after a fixed time is called:",
+      "options": [
+        "Variable ratio",
+        "Fixed ratio",
+        "Fixed interval",
+        "Variable interval"
+      ],
+      "answer": "Fixed interval"
+    },
+    {
+      "id": 81,
+      "question": "A phobia is an example of:",
+      "options": [
+        "Mood disorder",
+        "Psychotic disorder",
+        "Anxiety disorder",
+        "Personality disorder"
+      ],
+      "answer": "Anxiety disorder"
+    },
+    {
+      "id": 82,
+      "question": "Depression is characterized by:",
+      "options": [
+        "Delusions and hallucinations",
+        "High energy and euphoria",
+        "Persistent sadness and loss of interest",
+        "Repetitive compulsions"
+      ],
+      "answer": "Persistent sadness and loss of interest"
+    },
+    {
+      "id": 83,
+      "question": "Schizophrenia includes symptoms such as:",
+      "options": [
+        "Multiple personalities",
+        "Flashbacks",
+        "Delusions and hallucinations",
+        "Obsessive behaviors"
+      ],
+      "answer": "Delusions and hallucinations"
+    },
+    {
+      "id": 84,
+      "question": "OCD stands for:",
+      "options": [
+        "Obsessive Cognitive Disorder",
+        "Obsessive Compulsive Disorder",
+        "Occasional Cognitive Dysfunction",
+        "Obsessive Compelling Dysfunction"
+      ],
+      "answer": "Obsessive Compulsive Disorder"
+    },
+    {
+      "id": 85,
+      "question": "PTSD may develop after:",
+      "options": [
+        "Learning disability",
+        "Traumatic event",
+        "Memory loss",
+        "Social anxiety"
+      ],
+      "answer": "Traumatic event"
+    },
+    {
+      "id": 86,
+      "question": "A personality disorder characterized by lack of empathy and disregard for others is:",
+      "options": [
+        "Narcissistic personality disorder",
+        "Avoidant personality disorder",
+        "Antisocial personality disorder",
+        "Borderline personality disorder"
+      ],
+      "answer": "Antisocial personality disorder"
+    },
+    {
+      "id": 87,
+      "question": "Bipolar disorder includes episodes of:",
+      "options": [
+        "Only depression",
+        "Only mania",
+        "Both mania and depression",
+        "Only anxiety"
+      ],
+      "answer": "Both mania and depression"
+    },
+    {
+      "id": 88,
+      "question": "A common treatment for severe depression is:",
+      "options": [
+        "ECT (Electroconvulsive therapy)",
+        "Surgery",
+        "Physical therapy",
+        "Hypnosis"
+      ],
+      "answer": "ECT (Electroconvulsive therapy)"
+    },
+    {
+      "id": 89,
+      "question": "The DSM-5 is used to:",
+      "options": [
+        "Treat mental illness",
+        "Conduct therapy sessions",
+        "Classify psychological disorders",
+        "Control patient behavior"
+      ],
+      "answer": "Classify psychological disorders"
+    },
+    {
+      "id": 90,
+      "question": "A therapist who uses techniques from several approaches is said to be:",
+      "options": [
+        "Psychoanalytic",
+        "Humanistic",
+        "Eclectic",
+        "Behavioral"
+      ],
+      "answer": "Eclectic"
+    },
+    {
+      "id": 91,
+      "question": "Client-centered therapy was developed by:",
+      "options": [
+        "Carl Jung",
+        "Carl Rogers",
+        "Albert Ellis",
+        "Aaron Beck"
+      ],
+      "answer": "Carl Rogers"
+    },
+    {
+      "id": 92,
+      "question": "Cognitive therapy focuses on:",
+      "options": [
+        "Unconscious desires",
+        "Environmental factors",
+        "Changing distorted thoughts",
+        "Drug treatments"
+      ],
+      "answer": "Changing distorted thoughts"
+    },
+    {
+      "id": 93,
+      "question": "Group therapy is beneficial because:",
+      "options": [
+        "It is more private",
+        "It allows personal isolation",
+        "It provides social support",
+        "It requires no therapist"
+      ],
+      "answer": "It provides social support"
+    },
+    {
+      "id": 94,
+      "question": "A placebo is:",
+      "options": [
+        "A stimulant drug",
+        "A real treatment",
+        "A fake treatment used in research",
+        "A sedative"
+      ],
+      "answer": "A fake treatment used in research"
+    },
+    {
+      "id": 95,
+      "question": "The scientific method in psychology emphasizes:",
+      "options": [
+        "Assumptions",
+        "Authority",
+        "Empirical evidence",
+        "Common sense"
+      ],
+      "answer": "Empirical evidence"
+    },
+    {
+      "id": 96,
+      "question": "A hypothesis is:",
+      "options": [
+        "A proven fact",
+        "A vague idea",
+        "A testable prediction",
+        "A biased opinion"
+      ],
+      "answer": "A testable prediction"
+    },
+    {
+      "id": 97,
+      "question": "A double-blind study is used to:",
+      "options": [
+        "Trick the subject",
+        "Reduce bias",
+        "Identify the placebo",
+        "Select a sample"
+      ],
+      "answer": "Reduce bias"
+    },
+    {
+      "id": 98,
+      "question": "Correlation does not imply:",
+      "options": [
+        "Prediction",
+        "Causation",
+        "Relationship",
+        "Association"
+      ],
+      "answer": "Causation"
+    },
+    {
+      "id": 99,
+      "question": "A positive correlation means:",
+      "options": [
+        "One increases, the other decreases",
+        "Both variables decrease",
+        "Both variables increase",
+        "No relationship exists"
+      ],
+      "answer": "Both variables increase"
+    },
+    {
+      "id": 100,
+      "question": "The placebo effect occurs when:",
+      "options": [
+        "Real drugs are used",
+        "Participants guess the hypothesis",
+        "Improvement is due to expectations",
+        "Researchers give false data"
+      ],
+      "answer": "Improvement is due to expectations"
+    },
+    {
+      "id": 101,
+      "question": "A sample is:",
+      "options": [
+        "A whole population",
+        "The results of an experiment",
+        "A part of the population",
+        "An independent variable"
+      ],
+      "answer": "A part of the population"
+    },
+    {
+      "id": 102,
+      "question": "Ethics in psychology research emphasize:",
+      "options": [
+        "Popularity",
+        "Profit",
+        "Protection of participants",
+        "Speed of results"
+      ],
+      "answer": "Protection of participants"
+    },
+    {
+      "id": 103,
+      "question": "Informed consent means participants:",
+      "options": [
+        "Agree without knowing the details",
+        "Are fully informed before participation",
+        "Must be paid",
+        "Are selected randomly"
+      ],
+      "answer": "Are fully informed before participation"
+    },
+    {
+      "id": 104,
+      "question": "Confidentiality ensures:",
+      "options": [
+        "Researchers can share results freely",
+        "Participants' identities are kept private",
+        "Everyone gets access to data",
+        "The study is approved"
+      ],
+      "answer": "Participants' identities are kept private"
+    },
+    {
+      "id": 105,
+      "question": "The brain's \"fear center\" is the:",
+      "options": [
+        "Cerebellum",
+        "Hippocampus",
+        "Amygdala",
+        "Corpus callosum"
+      ],
+      "answer": "Amygdala"
+    },
+    {
+      "id": 106,
+      "question": "The corpus callosum connects:",
+      "options": [
+        "Brain and spinal cord",
+        "Right and left hemispheres",
+        "Frontal and temporal lobes",
+        "Eyes and brain"
+      ],
+      "answer": "Right and left hemispheres"
+    },
+    {
+      "id": 107,
+      "question": "The occipital lobe processes:",
+      "options": [
+        "Smell",
+        "Hearing",
+        "Vision",
+        "Touch"
+      ],
+      "answer": "Vision"
+    },
+    {
+      "id": 108,
+      "question": "The temporal lobe is associated with:",
+      "options": [
+        "Movement",
+        "Reasoning",
+        "Hearing",
+        "Balance"
+      ],
+      "answer": "Hearing"
+    },
+    {
+      "id": 109,
+      "question": "The frontal lobe is essential for:",
+      "options": [
+        "Heart rate",
+        "Reflexes",
+        "Planning and decision making",
+        "Balance"
+      ],
+      "answer": "Planning and decision making"
+    },
+    {
+      "id": 110,
+      "question": "The autonomic nervous system controls:",
+      "options": [
+        "Voluntary movements",
+        "Thinking",
+        "Internal organs",
+        "Reflexes"
+      ],
+      "answer": "Internal organs"
+    },
+    {
+      "id": 111,
+      "question": "The sympathetic nervous system is activated during:",
+      "options": [
+        "Sleep",
+        "Relaxation",
+        "Fight-or-flight response",
+        "Learning"
+      ],
+      "answer": "Fight-or-flight response"
+    },
+    {
+      "id": 112,
+      "question": "The parasympathetic system helps the body:",
+      "options": [
+        "React to stress",
+        "Increase adrenaline",
+        "Calm down and conserve energy",
+        "Improve digestion only"
+      ],
+      "answer": "Calm down and conserve energy"
+    },
+    {
+      "id": 113,
+      "question": "Sensory neurons carry signals:",
+      "options": [
+        "From brain to muscles",
+        "To the brain from senses",
+        "From muscles to glands",
+        "Within the spinal cord only"
+      ],
+      "answer": "To the brain from senses"
+    },
+    {
+      "id": 114,
+      "question": "Motor neurons send messages:",
+      "options": [
+        "To the skin",
+        "To the brain",
+        "From brain to muscles",
+        "To sensory organs"
+      ],
+      "answer": "From brain to muscles"
+    },
+    {
+      "id": 115,
+      "question": "The endocrine gland controlling growth is the:",
+      "options": [
+        "Thyroid",
+        "Adrenal",
+        "Pituitary",
+        "Pancreas"
+      ],
+      "answer": "Pituitary"
+    },
+    {
+      "id": 116,
+      "question": "Which hormone regulates blood sugar?",
+      "options": [
+        "Insulin",
+        "Adrenaline",
+        "Estrogen",
+        "Testosterone"
+      ],
+      "answer": "Insulin"
+    },
+    {
+      "id": 117,
+      "question": "Circadian rhythms are:",
+      "options": [
+        "Growth cycles",
+        "Sleep-wake cycles",
+        "Brain waves",
+        "Reflex patterns"
+      ],
+      "answer": "Sleep-wake cycles"
+    },
+    {
+      "id": 118,
+      "question": "REM sleep is important for:",
+      "options": [
+        "Muscle relaxation",
+        "Memory and dreaming",
+        "Physical healing",
+        "Metabolism"
+      ],
+      "answer": "Memory and dreaming"
+    },
+    {
+      "id": 119,
+      "question": "Sleep disorders include all except:",
+      "options": [
+        "Insomnia",
+        "Narcolepsy",
+        "Hypnosis",
+        "Sleep apnea"
+      ],
+      "answer": "Hypnosis"
+    },
+    {
+      "id": 120,
+      "question": "Hypnosis is a state of:",
+      "options": [
+        "Deep sleep",
+        "Increased resistance",
+        "Heightened suggestibility",
+        "Pain sensitivity"
+      ],
+      "answer": "Heightened suggestibility"
+    },
+    {
+      "id": 121,
+      "question": "Psychoactive drugs affect:",
+      "options": [
+        "The kidneys",
+        "Liver enzymes",
+        "Brain function",
+        "Physical stamina"
+      ],
+      "answer": "Brain function"
+    },
+    {
+      "id": 122,
+      "question": "Alcohol is classified as a:",
+      "options": [
+        "Stimulant",
+        "Hallucinogen",
+        "Depressant",
+        "Narcotic"
+      ],
+      "answer": "Depressant"
+    },
+    {
+      "id": 123,
+      "question": "Stimulants include:",
+      "options": [
+        "Alcohol",
+        "Nicotine",
+        "Marijuana",
+        "Heroin"
+      ],
+      "answer": "Nicotine"
+    },
+    {
+      "id": 124,
+      "question": "Hallucinogens can cause:",
+      "options": [
+        "Reduced heart rate",
+        "Aggression",
+        "Altered perceptions",
+        "Muscle gain"
+      ],
+      "answer": "Altered perceptions"
+    },
+    {
+      "id": 125,
+      "question": "Tolerance means:",
+      "options": [
+        "Addiction has ended",
+        "More of the drug is needed",
+        "Less of the drug is needed",
+        "The drug is rejected"
+      ],
+      "answer": "More of the drug is needed"
+    },
+    {
+      "id": 126,
+      "question": "Withdrawal symptoms occur when:",
+      "options": [
+        "Drug use continues",
+        "The drug is metabolized",
+        "Drug use is reduced or stopped",
+        "A person is cured"
+      ],
+      "answer": "Drug use is reduced or stopped"
+    },
+    {
+      "id": 127,
+      "question": "Psychological dependence means:",
+      "options": [
+        "Physical illness",
+        "Emotional craving",
+        "Brain damage",
+        "Drug allergy"
+      ],
+      "answer": "Emotional craving"
+    },
+    {
+      "id": 128,
+      "question": "Which is a psychological stressor?",
+      "options": [
+        "Virus",
+        "Heat",
+        "Anxiety",
+        "Injury"
+      ],
+      "answer": "Anxiety"
+    },
+    {
+      "id": 129,
+      "question": "Eustress is:",
+      "options": [
+        "Harmful stress",
+        "Mild pain",
+        "Positive stress",
+        "Chronic fatigue"
+      ],
+      "answer": "Positive stress"
+    },
+    {
+      "id": 130,
+      "question": "Chronic stress can lead to:",
+      "options": [
+        "High performance",
+        "Improved health",
+        "Weakened immunity",
+        "Better sleep"
+      ],
+      "answer": "Weakened immunity"
+    },
+    {
+      "id": 131,
+      "question": "Coping strategies include:",
+      "options": [
+        "Avoidance only",
+        "Denial only",
+        "Problem-solving and emotion regulation",
+        "Panic"
+      ],
+      "answer": "Problem-solving and emotion regulation"
+    },
+    {
+      "id": 132,
+      "question": "Social support can:",
+      "options": [
+        "Increase stress",
+        "Reduce stress",
+        "Cause illness",
+        "Decrease motivation"
+      ],
+      "answer": "Reduce stress"
+    },
+    {
+      "id": 133,
+      "question": "Health psychology focuses on:",
+      "options": [
+        "Biological aging",
+        "Mental illness",
+        "How behavior affects health",
+        "Drug treatment"
+      ],
+      "answer": "How behavior affects health"
+    },
+    {
+      "id": 134,
+      "question": "Positive psychology promotes:",
+      "options": [
+        "Medical intervention",
+        "Disease prevention",
+        "Well-being and strengths",
+        "Stress increase"
+      ],
+      "answer": "Well-being and strengths"
+    },
+    {
+      "id": 135,
+      "question": "A placebo-controlled study helps determine:",
+      "options": [
+        "The best location",
+        "Cultural influence",
+        "True effectiveness of treatments",
+        "Doctor's experience"
+      ],
+      "answer": "True effectiveness of treatments"
+    },
+    {
+      "id": 136,
+      "question": "Which psychologist emphasized observational learning?",
+      "options": [
+        "Freud",
+        "Bandura",
+        "Skinner",
+        "Jung"
+      ],
+      "answer": "Bandura"
+    },
+    {
+      "id": 137,
+      "question": "The Bobo doll experiment demonstrated:",
+      "options": [
+        "Conditioning",
+        "Memory",
+        "Aggressive modeling",
+        "Therapy"
+      ],
+      "answer": "Aggressive modeling"
+    },
+    {
+      "id": 138,
+      "question": "Which method involves watching behavior in real-life settings?",
+      "options": [
+        "Case study",
+        "Naturalistic observation",
+        "Survey",
+        "Experiment"
+      ],
+      "answer": "Naturalistic observation"
+    },
+    {
+      "id": 139,
+      "question": "The tendency to believe we could have predicted an event is:",
+      "options": [
+        "Randomness bias",
+        "Illusion of control",
+        "Hindsight bias",
+        "Self-serving bias"
+      ],
+      "answer": "Hindsight bias"
+    },
+    {
+      "id": 140,
+      "question": "The \"nature vs. nurture\" debate centers on:",
+      "options": [
+        "Conscious vs. unconscious",
+        "Genetics vs. environment",
+        "Learning vs. performance",
+        "Brain vs. behavior"
+      ],
+      "answer": "Genetics vs. environment"
+    },
+    {
+      "id": 141,
+      "question": "Which of the following is NOT a primary goal of psychology?",
+      "options": [
+        "Describe behavior",
+        "Predict behavior",
+        "Control thoughts",
+        "Explain behavior"
+      ],
+      "answer": "Control thoughts"
+    },
+    {
+      "id": 142,
+      "question": "The scientific study of behavior and mental processes defines:",
+      "options": [
+        "Sociology",
+        "Anthropology",
+        "Psychology",
+        "Philosophy"
+      ],
+      "answer": "Psychology"
+    },
+    {
+      "id": 143,
+      "question": "Which perspective emphasizes unconscious motives and conflicts?",
+      "options": [
+        "Behavioral",
+        "Psychoanalytic",
+        "Humanistic",
+        "Cognitive"
+      ],
+      "answer": "Psychoanalytic"
+    },
+    {
+      "id": 144,
+      "question": "The biological perspective focuses on:",
+      "options": [
+        "Early childhood experiences",
+        "Brain structures and chemistry",
+        "Free will and self-actualization",
+        "Observable behaviors"
+      ],
+      "answer": "Brain structures and chemistry"
+    },
+    {
+      "id": 145,
+      "question": "Which research method provides the strongest evidence for cause-effect relationships?",
+      "options": [
+        "Survey",
+        "Case study",
+        "Experiment",
+        "Naturalistic observation"
+      ],
+      "answer": "Experiment"
+    },
+    {
+      "id": 146,
+      "question": "The variable that is manipulated in an experiment is called the:",
+      "options": [
+        "Dependent variable",
+        "Control variable",
+        "Independent variable",
+        "Confounding variable"
+      ],
+      "answer": "Independent variable"
+    },
+    {
+      "id": 147,
+      "question": "Random assignment helps ensure:",
+      "options": [
+        "External validity",
+        "That groups are equivalent before the experiment",
+        "That participants are representative of the population",
+        "That the experimenter remains unbiased"
+      ],
+      "answer": "That groups are equivalent before the experiment"
+    },
+    {
+      "id": 148,
+      "question": "Which part of the neuron transmits messages to other neurons?",
+      "options": [
+        "Dendrites",
+        "Cell body",
+        "Axon",
+        "Myelin sheath"
+      ],
+      "answer": "Axon"
+    },
+    {
+      "id": 149,
+      "question": "The gap between neurons where communication occurs is called the:",
+      "options": [
+        "Synapse",
+        "Axon terminal",
+        "Dendritic spine",
+        "Myelin gap"
+      ],
+      "answer": "Synapse"
+    },
+    {
+      "id": 150,
+      "question": "Which neurotransmitter is associated with pleasure and reward?",
+      "options": [
+        "Serotonin",
+        "Dopamine",
+        "Acetylcholine",
+        "GABA"
+      ],
+      "answer": "Dopamine"
+    },
+    {
+      "id": 151,
+      "question": "The division of the nervous system that controls voluntary muscles is the:",
+      "options": [
+        "Autonomic nervous system",
+        "Somatic nervous system",
+        "Sympathetic nervous system",
+        "Parasympathetic nervous system"
+      ],
+      "answer": "Somatic nervous system"
+    },
+    {
+      "id": 152,
+      "question": "The \"rest and digest\" system is the:",
+      "options": [
+        "Central nervous system",
+        "Sympathetic nervous system",
+        "Parasympathetic nervous system",
+        "Somatic nervous system"
+      ],
+      "answer": "Parasympathetic nervous system"
+    },
+    {
+      "id": 153,
+      "question": "Which brain structure is crucial for forming new memories?",
+      "options": [
+        "Amygdala",
+        "Hippocampus",
+        "Cerebellum",
+        "Thalamus"
+      ],
+      "answer": "Hippocampus"
+    },
+    {
+      "id": 154,
+      "question": "The lobe responsible for processing visual information is the:",
+      "options": [
+        "Frontal lobe",
+        "Parietal lobe",
+        "Temporal lobe",
+        "Occipital lobe"
+      ],
+      "answer": "Occipital lobe"
+    },
+    {
+      "id": 155,
+      "question": "Which gland is known as the \"master gland\"?",
+      "options": [
+        "Thyroid",
+        "Adrenal",
+        "Pituitary",
+        "Pancreas"
+      ],
+      "answer": "Pituitary"
+    },
+    {
+      "id": 156,
+      "question": "The hormone released in response to stress is:",
+      "options": [
+        "Insulin",
+        "Estrogen",
+        "Adrenaline",
+        "Melatonin"
+      ],
+      "answer": "Adrenaline"
+    },
+    {
+      "id": 157,
+      "question": "The process by which our sensory receptors receive stimulus energy is called:",
+      "options": [
+        "Perception",
+        "Sensation",
+        "Transduction",
+        "Adaptation"
+      ],
+      "answer": "Sensation"
+    },
+    {
+      "id": 158,
+      "question": "The minimum amount of stimulation needed to detect a stimulus 50% of the time is the:",
+      "options": [
+        "Difference threshold",
+        "Absolute threshold",
+        "Sensory limit",
+        "Just noticeable difference"
+      ],
+      "answer": "Absolute threshold"
+    },
+    {
+      "id": 159,
+      "question": "Which theory explains how we hear different pitches?",
+      "options": [
+        "Opponent-process theory",
+        "Place theory",
+        "Gate-control theory",
+        "Frequency theory"
+      ],
+      "answer": "Place theory"
+    },
+    {
+      "id": 160,
+      "question": "The process of organizing and interpreting sensory information is called:",
+      "options": [
+        "Sensation",
+        "Perception",
+        "Transduction",
+        "Adaptation"
+      ],
+      "answer": "Perception"
+    },
+    {
+      "id": 161,
+      "question": "Gestalt psychologists emphasized:",
+      "options": [
+        "The whole is different from the sum of its parts",
+        "Behavior is shaped by consequences",
+        "Unconscious motives drive behavior",
+        "All behavior can be explained by conditioning"
+      ],
+      "answer": "The whole is different from the sum of its parts"
+    },
+    {
+      "id": 162,
+      "question": "Which type of learning involves associating two stimuli?",
+      "options": [
+        "Operant conditioning",
+        "Classical conditioning",
+        "Observational learning",
+        "Cognitive learning"
+      ],
+      "answer": "Classical conditioning"
+    },
+    {
+      "id": 163,
+      "question": "In Pavlov's experiment, the food was the:",
+      "options": [
+        "Conditioned stimulus",
+        "Unconditioned stimulus",
+        "Conditioned response",
+        "Unconditioned response"
+      ],
+      "answer": "Unconditioned stimulus"
+    },
+    {
+      "id": 164,
+      "question": "The reappearance of an extinguished CR after a rest period is called:",
+      "options": [
+        "Generalization",
+        "Discrimination",
+        "Spontaneous recovery",
+        "Higher-order conditioning"
+      ],
+      "answer": "Spontaneous recovery"
+    },
+    {
+      "id": 165,
+      "question": "Which reinforcement schedule produces the highest response rate?",
+      "options": [
+        "Fixed interval",
+        "Variable interval",
+        "Fixed ratio",
+        "Variable ratio"
+      ],
+      "answer": "Variable ratio"
+    },
+    {
+      "id": 166,
+      "question": "Punishment is most effective when it is:",
+      "options": [
+        "Delayed",
+        "Intermittent",
+        "Immediate and consistent",
+        "Mild and occasional"
+      ],
+      "answer": "Immediate and consistent"
+    },
+    {
+      "id": 167,
+      "question": "The process of observing and imitating specific behaviors is called:",
+      "options": [
+        "Classical conditioning",
+        "Operant conditioning",
+        "Observational learning",
+        "Latent learning"
+      ],
+      "answer": "Observational learning"
+    },
+    {
+      "id": 168,
+      "question": "Which memory system holds information for about 20-30 seconds?",
+      "options": [
+        "Sensory memory",
+        "Short-term memory",
+        "Long-term memory",
+        "Working memory"
+      ],
+      "answer": "Short-term memory"
+    },
+    {
+      "id": 169,
+      "question": "The process of getting information into memory is called:",
+      "options": [
+        "Storage",
+        "Retrieval",
+        "Encoding",
+        "Chunking"
+      ],
+      "answer": "Encoding"
+    },
+    {
+      "id": 170,
+      "question": "Which type of memory is most resistant to forgetting?",
+      "options": [
+        "Sensory memory",
+        "Short-term memory",
+        "Working memory",
+        "Long-term memory"
+      ],
+      "answer": "Long-term memory"
+    },
+    {
+      "id": 171,
+      "question": "The inability to form new memories is called:",
+      "options": [
+        "Retrograde amnesia",
+        "Anterograde amnesia",
+        "Source amnesia",
+        "Repression"
+      ],
+      "answer": "Anterograde amnesia"
+    },
+    {
+      "id": 172,
+      "question": "Which theory suggests that forgetting occurs due to lack of use?",
+      "options": [
+        "Interference theory",
+        "Decay theory",
+        "Motivated forgetting",
+        "Encoding failure"
+      ],
+      "answer": "Decay theory"
+    },
+    {
+      "id": 173,
+      "question": "A mental grouping of similar objects, events, or people is a:",
+      "options": [
+        "Prototype",
+        "Concept",
+        "Algorithm",
+        "Heuristic"
+      ],
+      "answer": "Concept"
+    },
+    {
+      "id": 174,
+      "question": "A sudden realization of a problem's solution is called:",
+      "options": [
+        "Algorithm",
+        "Heuristic",
+        "Insight",
+        "Confirmation bias"
+      ],
+      "answer": "Insight"
+    },
+    {
+      "id": 175,
+      "question": "The tendency to approach problems in a particular way is called:",
+      "options": [
+        "Confirmation bias",
+        "Functional fixedness",
+        "Mental set",
+        "Availability heuristic"
+      ],
+      "answer": "Mental set"
+    },
+    {
+      "id": 176,
+      "question": "Which intelligence theorist proposed the concept of \"g\" and \"s\" factors?",
+      "options": [
+        "Gardner",
+        "Sternberg",
+        "Spearman",
+        "Binet"
+      ],
+      "answer": "Spearman"
+    },
+    {
+      "id": 177,
+      "question": "The ability to perceive, understand, manage, and use emotions is called:",
+      "options": [
+        "Practical intelligence",
+        "Emotional intelligence",
+        "Creative intelligence",
+        "Analytical intelligence"
+      ],
+      "answer": "Emotional intelligence"
+    },
+    {
+      "id": 178,
+      "question": "Which developmental psychologist proposed stages of moral reasoning?",
+      "options": [
+        "Piaget",
+        "Erikson",
+        "Kohlberg",
+        "Vygotsky"
+      ],
+      "answer": "Kohlberg"
+    },
+    {
+      "id": 179,
+      "question": "The emotional bond between infant and caregiver is called:",
+      "options": [
+        "Imprinting",
+        "Attachment",
+        "Assimilation",
+        "Accommodation"
+      ],
+      "answer": "Attachment"
+    },
+    {
+      "id": 180,
+      "question": "According to Piaget, the process of interpreting new experiences in terms of existing schemas is called:",
+      "options": [
+        "Accommodation",
+        "Assimilation",
+        "Conservation",
+        "Object permanence"
+      ],
+      "answer": "Assimilation"
+    },
+    {
+      "id": 181,
+      "question": "Which parenting style is high in both responsiveness and demandingness?",
+      "options": [
+        "Authoritarian",
+        "Authoritative",
+        "Permissive",
+        "Neglectful"
+      ],
+      "answer": "Authoritative"
+    },
+    {
+      "id": 182,
+      "question": "The culturally preferred timing of social events is called:",
+      "options": [
+        "Critical period",
+        "Social clock",
+        "Zone of proximal development",
+        "Maturation"
+      ],
+      "answer": "Social clock"
+    },
+    {
+      "id": 183,
+      "question": "Which theory suggests that emotions and physiological responses occur simultaneously?",
+      "options": [
+        "James-Lange theory",
+        "Cannon-Bard theory",
+        "Two-factor theory",
+        "Opponent-process theory"
+      ],
+      "answer": "Cannon-Bard theory"
+    },
+    {
+      "id": 184,
+      "question": "The Schachter-Singer theory suggests that emotions result from:",
+      "options": [
+        "Physiological arousal only",
+        "Cognitive appraisal only",
+        "Physiological arousal and cognitive appraisal",
+        "Instinctive responses"
+      ],
+      "answer": "Physiological arousal and cognitive appraisal"
+    },
+    {
+      "id": 185,
+      "question": "The general adaptation syndrome describes the body's response to:",
+      "options": [
+        "Disease",
+        "Stress",
+        "Exercise",
+        "Medication"
+      ],
+      "answer": "Stress"
+    },
+    {
+      "id": 186,
+      "question": "Which personality assessment uses ambiguous stimuli?",
+      "options": [
+        "MMPI",
+        "Rorschach test",
+        "Myers-Briggs",
+        "16PF"
+      ],
+      "answer": "Rorschach test"
+    },
+    {
+      "id": 187,
+      "question": "The Minnesota Multiphasic Personality Inventory (MMPI) is an example of a:",
+      "options": [
+        "Projective test",
+        "Objective test",
+        "Behavioral assessment",
+        "Intelligence test"
+      ],
+      "answer": "Objective test"
+    },
+    {
+      "id": 188,
+      "question": "Which perspective emphasizes personal growth and free will?",
+      "options": [
+        "Psychoanalytic",
+        "Behavioral",
+        "Humanistic",
+        "Cognitive"
+      ],
+      "answer": "Humanistic"
+    },
+    {
+      "id": 189,
+      "question": "The most common mood disorder is:",
+      "options": [
+        "Bipolar disorder",
+        "Schizophrenia",
+        "Major depressive disorder",
+        "Generalized anxiety disorder"
+      ],
+      "answer": "Major depressive disorder"
+    },
+    {
+      "id": 190,
+      "question": "Which disorder is characterized by delusions and hallucinations?",
+      "options": [
+        "OCD",
+        "PTSD",
+        "Schizophrenia",
+        "Dissociative identity disorder"
+      ],
+      "answer": "Schizophrenia"
+    },
+    {
+      "id": 191,
+      "question": "Systematic desensitization is used to treat:",
+      "options": [
+        "Depression",
+        "Phobias",
+        "Schizophrenia",
+        "Bipolar disorder"
+      ],
+      "answer": "Phobias"
+    },
+    {
+      "id": 192,
+      "question": "Cognitive therapy is most effective for treating:",
+      "options": [
+        "Depression",
+        "Schizophrenia",
+        "Bipolar disorder",
+        "Personality disorders"
+      ],
+      "answer": "Depression"
+    },
+    {
+      "id": 193,
+      "question": "Which drug class is used to treat schizophrenia?",
+      "options": [
+        "Antidepressants",
+        "Antipsychotics",
+        "Anxiolytics",
+        "Mood stabilizers"
+      ],
+      "answer": "Antipsychotics"
+    },
+    {
+      "id": 194,
+      "question": "The tendency to accept vague personality descriptions as accurate is called:",
+      "options": [
+        "Confirmation bias",
+        "Self-serving bias",
+        "Barnum effect",
+        "Halo effect"
+      ],
+      "answer": "Barnum effect"
+    },
+    {
+      "id": 195,
+      "question": "Group polarization refers to:",
+      "options": [
+        "Group members becoming more similar over time",
+        "Groups making riskier decisions than individuals",
+        "Group discussion strengthening members' initial tendencies",
+        "Loss of self-awareness in groups"
+      ],
+      "answer": "Group discussion strengthening members' initial tendencies"
+    },
+    {
+      "id": 196,
+      "question": "The bystander effect occurs because of:",
+      "options": [
+        "Social facilitation",
+        "Diffusion of responsibility",
+        "Group polarization",
+        "Deindividuation"
+      ],
+      "answer": "Diffusion of responsibility"
+    },
+    {
+      "id": 197,
+      "question": "Prejudice is a(n):",
+      "options": [
+        "Behavior",
+        "Belief",
+        "Attitude",
+        "All of the above"
+      ],
+      "answer": "Attitude"
+    },
+    {
+      "id": 198,
+      "question": "The foot-in-the-door phenomenon refers to:",
+      "options": [
+        "Starting with a small request to gain compliance with a larger one",
+        "Making an extreme initial request to make smaller requests seem reasonable",
+        "Changing one's behavior due to group pressure",
+        "Conforming to gain social approval"
+      ],
+      "answer": "Starting with a small request to gain compliance with a larger one"
+    },
+    {
+      "id": 199,
+      "question": "Cognitive dissonance theory explains:",
+      "options": [
+        "How attitudes influence behavior",
+        "How behavior influences attitudes",
+        "How groups influence individuals",
+        "How culture shapes personality"
+      ],
+      "answer": "How behavior influences attitudes"
+    },
+    {
+      "id": 200,
+      "question": "The fundamental attribution error refers to:",
+      "options": [
+        "Underestimating situational influences on behavior",
+        "Overestimating personal dispositions",
+        "Both A and B",
+        "Neither A nor B"
+      ],
+      "answer": "Both A and B"
+    }
+  ]
+}
+        // DOM elements
+        const bookCover = document.getElementById('bookCover');
+        const quizBook = document.getElementById('quizBook');
+        const resultContainer = document.getElementById('resultContainer');
+        const startBtn = document.getElementById('startBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const questionPage = document.getElementById('questionPage');
+        const questionNumber = document.getElementById('questionNumber');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const timerElement = document.querySelector('#headerTimer span');
+        const progressBar = document.getElementById('progressBar');
+        const headerProgress = document.getElementById('headerProgress');
+        const scoreElement = document.getElementById('score');
+        const resultMessage = document.getElementById('resultMessage');
+        const summaryElement = document.getElementById('summary');
+        const themeToggle = document.getElementById('themeToggle');
+        const headerTimer = document.getElementById('headerTimer');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeModal = document.getElementById('closeModal');
+        const saveSettings = document.getElementById('saveSettings');
+        const timeLimitInput = document.getElementById('timeLimit');
+        
+        // Quiz variables
+        let questions = questionsData.questions;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let timeLeft = 30 * 60; // 30 minutes in seconds by default
+        let timerInterval;
+        let testStarted = false;
+        let selectedQuestions = [];
+        let isFlipping = false;
+        let timerPaused = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Select 70 random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 150);
+            
+            // Initialize user answers array
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Start the quiz with book open animation
+        function startQuiz() {
+            // Start book open animation
+            bookCover.classList.add('book-open');
+            
+            // After animation completes, show quiz book
+            setTimeout(() => {
+                bookCover.style.display = 'none';
+                quizBook.classList.add('active');
+                
+                // Start timer with default or saved value
+                const savedTimeLimit = localStorage.getItem('timeLimit');
+                timeLeft = (savedTimeLimit || 30) * 60;
+                timeLimitInput.value = savedTimeLimit || 30;
+                updateTimerDisplay();
+                
+                // Start timer
+                startTimer();
+                testStarted = true;
+                
+                // Display first question
+                showQuestion();
+            }, 1500);
+        }
+
+        // Timer control
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!timerPaused) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timeString = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Update timer
+            timerElement.textContent = timeString;
+        }
+
+        // Show current question with flip animation
+        function showQuestion() {
+            const question = selectedQuestions[currentQuestionIndex];
+            
+            // Update question number
+            questionNumber.textContent = `Question ${currentQuestionIndex + 1} of ${selectedQuestions.length}`;
+            
+            // Update progress bars
+            const progressPercent = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            headerProgress.style.width = `${progressPercent}%`;
+            
+            // Set question text
+            questionElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                // Check if this option was previously selected
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option${index}" value="${index}">
+                    <span class="checkmark"></span>
+                    <label for="option${index}">${option}</label>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === selectedQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'flex';
+            } else {
+                nextBtn.style.display = 'flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+            
+            // Save user's answer
+            userAnswers[currentQuestionIndex] = optionIndex;
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0 && !isFlipping) {
+                currentQuestionIndex--;
+                animateQuestionTransition();
+            }
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex < selectedQuestions.length - 1 && !isFlipping) {
+                currentQuestionIndex++;
+                animateQuestionTransition();
+            }
+        }
+
+        // Animate question transition with book flip effect
+        function animateQuestionTransition() {
+            isFlipping = true;
+            timerPaused = true;
+            questionPage.classList.add('flipping');
+            
+            setTimeout(() => {
+                showQuestion();
+                questionPage.classList.remove('flipping');
+                isFlipping = false;
+                timerPaused = false;
+            }, 1200);
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            testStarted = false;
+            
+            // Calculate score
+            score = 0;
+            selectedQuestions.forEach((question, index) => {
+                if (userAnswers[index] !== null && 
+                    question.options[userAnswers[index]] === question.answer) {
+                    score++;
+                }
+            });
+            
+            // Display results
+            quizBook.classList.remove('active');
+            resultContainer.style.display = 'block';
+            
+            scoreElement.textContent = `${score}/${selectedQuestions.length}`;
+            
+            // Set result message based on score
+            const percentage = (score / selectedQuestions.length) * 100;
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent performance! You've demonstrated a comprehensive understanding of OOP concepts.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good work! You have a solid grasp of OOP principles with some areas for improvement.";
+            } else if (percentage >= 40) {
+                resultMessage.textContent = "Fair attempt. Review the OOP concepts to strengthen your understanding.";
+            } else {
+                resultMessage.textContent = "Keep studying! Focus on the core OOP principles and try again.";
+            }
+            
+            // Show question summary
+            showSummary();
+        }
+
+        // Show question summary
+        function showSummary() {
+            summaryElement.innerHTML = '';
+            
+            selectedQuestions.forEach((question, index) => {
+                const summaryItem = document.createElement('div');
+                summaryItem.classList.add('summary-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex !== null && 
+                                 question.options[userAnswerIndex] === question.answer;
+                
+                if (isCorrect) {
+                    summaryItem.classList.add('correct');
+                } else {
+                    summaryItem.classList.add('incorrect');
+                }
+                
+                let userAnswerText = "Not answered";
+                if (userAnswerIndex !== null) {
+                    userAnswerText = question.options[userAnswerIndex];
+                }
+                
+                summaryItem.innerHTML = `
+                    <div class="question-text">Q${index + 1}: ${question.question}</div>
+                    ${!isCorrect ? `<div>Your answer: <span class="user-answer">${userAnswerText}</span></div>` : ''}
+                    ${!isCorrect ? `<div>Correct answer: <span class="correct-answer">${question.answer}</span></div>` : ''}
+                `;
+                
+                summaryElement.appendChild(summaryItem);
+            });
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            // Reset variables
+            currentQuestionIndex = 0;
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            score = 0;
+            
+            // Select new random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            
+            // Reset timer
+            timeLeft = (localStorage.getItem('timeLimit') || 30) * 60;
+            updateTimerDisplay();
+            
+            // Show book cover
+            resultContainer.style.display = 'none';
+            bookCover.style.display = 'flex';
+            bookCover.style.opacity = '1';
+            bookCover.style.transform = 'scale(1)';
+            bookCover.classList.remove('book-open');
+            quizBook.classList.remove('active');
+        }
+
+        // Open settings modal
+        function openSettings() {
+            settingsModal.classList.add('active');
+        }
+
+        // Close settings modal
+        function closeSettings() {
+            settingsModal.classList.remove('active');
+        }
+
+        // Save timer settings
+        function saveTimerSettings() {
+            const newTimeLimit = parseInt(timeLimitInput.value) || 30;
+            localStorage.setItem('timeLimit', newTimeLimit);
+            
+            // Update timer if test is in progress
+            if (testStarted) {
+                const currentTimeMinutes = Math.floor(timeLeft / 60);
+                if (confirm(`Change time limit from ${currentTimeMinutes} minutes to ${newTimeLimit} minutes?`)) {
+                    timeLeft = newTimeLimit * 60;
+                    updateTimerDisplay();
+                }
+            }
+            
+            closeSettings();
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startQuiz);
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        submitBtn.addEventListener('click', submitQuiz);
+        restartBtn.addEventListener('click', restartQuiz);
+        themeToggle.addEventListener('click', toggleTheme);
+        headerTimer.addEventListener('click', openSettings);
+        closeModal.addEventListener('click', closeSettings);
+        saveSettings.addEventListener('click', saveTimerSettings);
+        
+        // Close modal when clicking outside
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                closeSettings();
+            }
+        });
+        
+        // Prevent losing answers on page refresh
+        window.addEventListener('beforeunload', (e) => {
+            if (testStarted) {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? Your test progress will be lost.';
+            }
+        });
+        
+        // Initialize
+        initQuiz();
+    </script>
+</body>
+</html>
