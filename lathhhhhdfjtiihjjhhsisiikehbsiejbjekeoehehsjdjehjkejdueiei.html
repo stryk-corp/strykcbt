@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lathe Machine Course CBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --footer-color: #34495e;
+            --bg-color: #e5ddd5;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --card-bg: #1e1e1e;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --footer-color: #0d0d0d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e7195b6b733d9110b408f075d.png');
+        }
+
+        [data-theme="dark"] body {
+            background-image: url('https://web.whatsapp.com/img/bg-chat-tile-dark_04ccac6ecd6921a5bb6b6f7c6c7d7a6e.png');
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 15px 0 0;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .user-info i {
+            font-size: 1.4rem;
+        }
+
+        .header-timer {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .header-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+        }
+
+        .header-progress .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Book Cover Styling */
+        .book-cover {
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 5px 15px 15px 5px;
+            box-shadow: 0 20px 40px var(--shadow-color),
+                        0 0 0 10px var(--card-bg),
+                        0 0 0 12px #ddd,
+                        0 0 30px rgba(0, 0, 0, 0.1) inset;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s ease;
+            cursor: pointer;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 30px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotateY(45deg);
+            transform-origin: left;
+            filter: blur(5px);
+        }
+
+        .book-cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-cover p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .book-cover .btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-cover .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Book Open Animation */
+        .book-open {
+            animation: bookOpen 1.5s ease forwards;
+        }
+
+        @keyframes bookOpen {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.7; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 0; display: none; }
+        }
+
+        /* Quiz Book Styling */
+        .quiz-book {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px var(--shadow-color),
+                        0 0 0 1px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            position: relative;
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+            overflow: hidden;
+            margin: 0 auto;
+            min-height: 500px;
+        }
+
+        .quiz-book.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page {
+            padding: 30px;
+            position: relative;
+            min-height: 500px;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+        }
+
+        .page.flipping {
+            animation: pageFlip 1.2s ease forwards;
+        }
+
+        @keyframes pageFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(-90deg); opacity: 0.5; }
+            100% { transform: perspective(1000px) rotateY(-180deg); opacity: 1; }
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            background-color: var(--footer-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #25D366;
+            transform: translateY(-2px);
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Quiz Components */
+        .timer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .question-number {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 18px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 60px;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .option.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .option.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-color: var(--danger-color);
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            height: 22px;
+            width: 22px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+
+        .option.selected .checkmark {
+            border-color: var(--secondary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .option.selected .checkmark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .submit-btn {
+            background-color: var(--success-color);
+        }
+
+        /* Results Container */
+        .result-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            padding: 40px;
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+            margin: 0 auto;
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .score::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .summary {
+            margin-top: 40px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .summary-item {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover {
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transform: translateY(-2px);
+        }
+
+        .summary-item.correct {
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        .summary-item.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .user-answer {
+            color: var(--danger-color);
+            font-weight: 500;
+        }
+
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+
+        /* Timer Settings Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-cover, .quiz-book {
+                width: 95%;
+                height: auto;
+                min-height: 400px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.8rem;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .option {
+                padding: 15px 15px 15px 50px;
+            }
+
+            .checkmark {
+                left: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .book-cover, .quiz-book {
+                width: 100%;
+                padding: 20px;
+                min-height: 350px;
+            }
+
+            .book-cover h1 {
+                font-size: 1.5rem;
+            }
+
+            .book-cover p {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .header-timer {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Lathe Machine Mastery</h1>
+                    <p>Computer Based Testing System</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="header-timer" id="headerTimer">
+                    <i class="fas fa-clock"></i>
+                    <span>30:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-progress">
+            <div class="progress-bar" id="headerProgress"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="bookCover">
+            <h1>Basic Lathe Concept
+</h1>
+            <p>Computer Based Test</p>
+            <p>Test your knowledge of Lathe with this interactive assessment</p>
+            <button class="btn" id="startBtn">Start Assessment</button>
+        </div>
+        
+        <!-- Quiz Book -->
+        <div class="quiz-book" id="quizBook">
+            <div class="page" id="questionPage">
+                <div class="timer-container">
+                    <div class="question-number" id="questionNumber">Question 1 of 70</div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="question-container" id="questionContainer">
+                    <div class="question" id="question"></div>
+                    <div class="options" id="options"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn" id="nextBtn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn submit-btn" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Test
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="result-container" id="resultContainer">
+            <h2>Assessment Complete</h2>
+            <div class="score" id="score">0/70</div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn" id="restartBtn">
+                <i class="fas fa-redo"></i> Take Test Again
+            </button>
+            
+            <div class="summary" id="summary"></div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">Dr. Stryk's CBT</div>
+            <div class="footer-contact">
+                <a href="https://wa.me/2348075884197" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +234 807 588 4197
+                </a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 Computer Based Testing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Timer Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Timer Settings</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="timeLimit">Set Time Limit (minutes)</label>
+                <input type="number" id="timeLimit" class="form-control" min="1" max="120" value="30">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded JSON data
+        const questionsData = {
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following is NOT considered a primary machine tool in workshop practice?",
+      "options": [
+        "Grinding machine",
+        "Lathe machine",
+        "Milling machine",
+        "Drilling machine"
+      ],
+      "answer": "Grinding machine"
+    },
+    {
+      "id": 2,
+      "question": "The main purpose of machine tools is to:",
+      "options": [
+        "Increase manual labor requirements",
+        "Save time and production costs",
+        "Reduce workpiece accuracy",
+        "Limit production output"
+      ],
+      "answer": "Save time and production costs"
+    },
+    {
+      "id": 3,
+      "question": "In lathe operations, the workpiece is:",
+      "options": [
+        "Stationary while the tool moves",
+        "Rotating while the tool is fixed",
+        "Both rotate simultaneously",
+        "Oscillates while the tool reciprocates"
+      ],
+      "answer": "Rotating while the tool is fixed"
+    },
+    {
+      "id": 4,
+      "question": "Which type of lathe is primarily used for woodworking operations?",
+      "options": [
+        "Engine lathe",
+        "Speed lathe",
+        "Turret lathe",
+        "Tool room lathe"
+      ],
+      "answer": "Speed lathe"
+    },
+    {
+      "id": 5,
+      "question": "The general-purpose lathe most commonly found in workshops is called:",
+      "options": [
+        "Bench lathe",
+        "Engine lathe",
+        "Automatic lathe",
+        "Capstan lathe"
+      ],
+      "answer": "Engine lathe"
+    },
+    {
+      "id": 6,
+      "question": "A lathe mounted on a workbench is classified as:",
+      "options": [
+        "Tool room lathe",
+        "Bench lathe",
+        "Speed lathe",
+        "Special purpose lathe"
+      ],
+      "answer": "Bench lathe"
+    },
+    {
+      "id": 7,
+      "question": "Which lathe type is specifically equipped for precision tool and die work?",
+      "options": [
+        "Engine lathe",
+        "Tool room lathe",
+        "Capstan lathe",
+        "Special purpose lathe"
+      ],
+      "answer": "Tool room lathe"
+    },
+    {
+      "id": 8,
+      "question": "Mass production of identical parts is best accomplished using:",
+      "options": [
+        "Speed lathe",
+        "Capstan and turret lathe",
+        "Bench lathe",
+        "Tool room lathe"
+      ],
+      "answer": "Capstan and turret lathe"
+    },
+    {
+      "id": 9,
+      "question": "The bed of a lathe primarily serves as:",
+      "options": [
+        "Cutting tool storage",
+        "Support for machine parts",
+        "Workpiece heating element",
+        "Coolant reservoir"
+      ],
+      "answer": "Support for machine parts"
+    },
+    {
+      "id": 10,
+      "question": "The headstock component of a lathe is responsible for:",
+      "options": [
+        "Holding cutting tools",
+        "Supporting the spindle",
+        "Moving the carriage",
+        "Controlling feed rates"
+      ],
+      "answer": "Supporting the spindle"
+    },
+    {
+      "id": 11,
+      "question": "Which lathe part is used to hold and feed tools like drills and reamers?",
+      "options": [
+        "Carriage",
+        "Headstock",
+        "Tailstock",
+        "Feed mechanism"
+      ],
+      "answer": "Tailstock"
+    },
+    {
+      "id": 12,
+      "question": "The carriage in a lathe machine is primarily used to:",
+      "options": [
+        "Support and control the workpiece",
+        "Store cutting tools",
+        "Measure workpiece dimensions",
+        "Lubricate moving parts"
+      ],
+      "answer": "Support and control the workpiece"
+    },
+    {
+      "id": 13,
+      "question": "Lathe feed mechanisms can provide movement in:",
+      "options": [
+        "Longitudinal direction only",
+        "Angular direction only",
+        "Both longitudinal and angular directions",
+        "Vertical direction only"
+      ],
+      "answer": "Both longitudinal and angular directions"
+    },
+    {
+      "id": 14,
+      "question": "Which of the following is NOT a classification of lathe tools?",
+      "options": [
+        "Turning tools",
+        "Facing tools",
+        "Knurling tools",
+        "Welding tools"
+      ],
+      "answer": "Welding tools"
+    },
+    {
+      "id": 15,
+      "question": "The operation of removing excess material from the end of a workpiece is called:",
+      "options": [
+        "Turning",
+        "Facing",
+        "Drilling",
+        "Knurling"
+      ],
+      "answer": "Facing"
+    },
+    {
+      "id": 16,
+      "question": "Plane turning refers to:",
+      "options": [
+        "Creating flat surfaces",
+        "Removing material from cylindrical surfaces",
+        "Making angular cuts",
+        "Producing internal threads"
+      ],
+      "answer": "Removing material from cylindrical surfaces"
+    },
+    {
+      "id": 17,
+      "question": "Step turning produces:",
+      "options": [
+        "Smooth continuous diameters",
+        "Multiple diameter changes along the workpiece",
+        "Internal threaded sections",
+        "Tapered surfaces"
+      ],
+      "answer": "Multiple diameter changes along the workpiece"
+    },
+    {
+      "id": 18,
+      "question": "Taper turning creates:",
+      "options": [
+        "Flat surfaces",
+        "External conical surfaces",
+        "Internal threads",
+        "Knurled patterns"
+      ],
+      "answer": "External conical surfaces"
+    },
+    {
+      "id": 19,
+      "question": "The operation of making initial holes in a workpiece is called:",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Drilling",
+        "Tapping"
+      ],
+      "answer": "Drilling"
+    },
+    {
+      "id": 20,
+      "question": "Smoothing and finishing a drilled hole is accomplished by:",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Turning",
+        "Facing"
+      ],
+      "answer": "Reaming"
+    },
+    {
+      "id": 21,
+      "question": "Enlarging an existing hole is called:",
+      "options": [
+        "Drilling",
+        "Boring",
+        "Tapping",
+        "Knurling"
+      ],
+      "answer": "Boring"
+    },
+    {
+      "id": 22,
+      "question": "Threading operations produce:",
+      "options": [
+        "Smooth cylindrical surfaces",
+        "Helical grooves",
+        "Tapered ends",
+        "Knurled patterns"
+      ],
+      "answer": "Helical grooves"
+    },
+    {
+      "id": 23,
+      "question": "Undercutting or grooving operations:",
+      "options": [
+        "Increase workpiece diameter",
+        "Reduce diameter over a narrow surface",
+        "Create threaded sections",
+        "Produce decorative patterns"
+      ],
+      "answer": "Reduce diameter over a narrow surface"
+    },
+    {
+      "id": 24,
+      "question": "Knurling is performed to:",
+      "options": [
+        "Create smooth finishes",
+        "Provide better grip surfaces",
+        "Increase workpiece length",
+        "Remove internal material"
+      ],
+      "answer": "Provide better grip surfaces"
+    },
+    {
+      "id": 25,
+      "question": "In lathe terminology, cutting speed refers to:",
+      "options": [
+        "Tool movement rate",
+        "Workpiece rotational speed",
+        "Coolant flow rate",
+        "Chip removal velocity"
+      ],
+      "answer": "Workpiece rotational speed"
+    },
+    {
+      "id": 26,
+      "question": "Feed in lathe operations is defined as:",
+      "options": [
+        "Tool penetration depth",
+        "Tool advance per workpiece revolution",
+        "Workpiece rotation speed",
+        "Coolant application rate"
+      ],
+      "answer": "Tool advance per workpiece revolution"
+    },
+    {
+      "id": 27,
+      "question": "Depth of cut refers to:",
+      "options": [
+        "Tool travel distance",
+        "Tool penetration into workpiece",
+        "Workpiece length",
+        "Spindle rotation speed"
+      ],
+      "answer": "Tool penetration into workpiece"
+    },
+    {
+      "id": 28,
+      "question": "The primary purpose of a drilling machine is to:",
+      "options": [
+        "Create external threads",
+        "Produce cylindrical holes",
+        "Generate tapered surfaces",
+        "Remove material from flat surfaces"
+      ],
+      "answer": "Produce cylindrical holes"
+    },
+    {
+      "id": 29,
+      "question": "The cutting tool used in drilling operations is called:",
+      "options": [
+        "Reamer",
+        "Tap",
+        "Twist drill",
+        "Boring bar"
+      ],
+      "answer": "Twist drill"
+    },
+    {
+      "id": 30,
+      "question": "Drilling requires which two motions?",
+      "options": [
+        "Rotary and linear",
+        "Oscillating and reciprocating",
+        "Linear and angular",
+        "Rotary and orbital"
+      ],
+      "answer": "Rotary and linear"
+    },
+    {
+      "id": 31,
+      "question": "Drilling machines are typically sized by:",
+      "options": [
+        "Maximum drill diameter they can hold",
+        "Workpiece length capacity",
+        "Motor horsepower",
+        "Table surface area"
+      ],
+      "answer": "Maximum drill diameter they can hold"
+    },
+    {
+      "id": 32,
+      "question": "Which operation enlarges a hole mouth to accommodate bolt heads?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Counterboring"
+    },
+    {
+      "id": 33,
+      "question": "Internal thread production in holes is called:",
+      "options": [
+        "Boring",
+        "Tapping",
+        "Reaming",
+        "Drilling"
+      ],
+      "answer": "Tapping"
+    },
+    {
+      "id": 34,
+      "question": "Spot facing is performed to:",
+      "options": [
+        "Create deep holes",
+        "Finish surfaces for bolt heads",
+        "Make tapered holes",
+        "Produce external threads"
+      ],
+      "answer": "Finish surfaces for bolt heads"
+    },
+    {
+      "id": 35,
+      "question": "Countersinking creates:",
+      "options": [
+        "Cylindrical recesses",
+        "Conical seats for screws",
+        "Flat bearing surfaces",
+        "Internal threads"
+      ],
+      "answer": "Conical seats for screws"
+    },
+    {
+      "id": 36,
+      "question": "The formula for cutting speed in drilling is:",
+      "options": [
+        "πDN/1000",
+        "FD/N",
+        "L/Nπ",
+        "TD²/4"
+      ],
+      "answer": "πDN/1000"
+    },
+    {
+      "id": 37,
+      "question": "In drilling calculations, 'N' represents:",
+      "options": [
+        "Drill diameter",
+        "Work speed in RPM",
+        "Feed rate",
+        "Hole depth"
+      ],
+      "answer": "Work speed in RPM"
+    },
+    {
+      "id": 38,
+      "question": "Machining time for drilling is calculated by:",
+      "options": [
+        "(L + 0.3D)/(Feed × N)",
+        "(πD²N)/4F",
+        "(FN)/L",
+        "(D + L)/N"
+      ],
+      "answer": "(L + 0.3D)/(Feed × N)"
+    },
+    {
+      "id": 39,
+      "question": "For a 10mm drill at 955 RPM with 0.15mm/rev feed in 50mm thick material, machining time is approximately:",
+      "options": [
+        "0.17 min",
+        "0.37 min",
+        "0.75 min",
+        "1.20 min"
+      ],
+      "answer": "0.37 min"
+    },
+    {
+      "id": 40,
+      "question": "Which machine tool is specifically mentioned as not being covered in exams?",
+      "options": [
+        "Lathe",
+        "Milling machine",
+        "Grinding machine",
+        "Drilling machine"
+      ],
+      "answer": "Grinding machine"
+    },
+    {
+      "id": 41,
+      "question": "The shaping machine is primarily used for:",
+      "options": [
+        "Rotational operations",
+        "Linear cutting motions",
+        "Hole making",
+        "Surface finishing"
+      ],
+      "answer": "Linear cutting motions"
+    },
+    {
+      "id": 42,
+      "question": "Which component provides the main structural support for a lathe?",
+      "options": [
+        "Headstock",
+        "Bed",
+        "Carriage",
+        "Tailstock"
+      ],
+      "answer": "Bed"
+    },
+    {
+      "id": 43,
+      "question": "The primary motion in lathe operations is provided by the:",
+      "options": [
+        "Tailstock",
+        "Headstock",
+        "Carriage",
+        "Feed mechanism"
+      ],
+      "answer": "Headstock"
+    },
+    {
+      "id": 44,
+      "question": "Which lathe operation would be used to create a bolt thread?",
+      "options": [
+        "Facing",
+        "Turning",
+        "Threading",
+        "Knurling"
+      ],
+      "answer": "Threading"
+    },
+    {
+      "id": 45,
+      "question": "The operation that produces a decorative diamond pattern on a surface is:",
+      "options": [
+        "Facing",
+        "Knurling",
+        "Boring",
+        "Drilling"
+      ],
+      "answer": "Knurling"
+    },
+    {
+      "id": 46,
+      "question": "Which tool would be used to enlarge an existing hole to precise dimensions?",
+      "options": [
+        "Twist drill",
+        "Reamer",
+        "Tap",
+        "Counterbore"
+      ],
+      "answer": "Reamer"
+    },
+    {
+      "id": 47,
+      "question": "The cutting tool used for internal threading is called a:",
+      "options": [
+        "Die",
+        "Tap",
+        "Boring bar",
+        "Reamer"
+      ],
+      "answer": "Tap"
+    },
+    {
+      "id": 48,
+      "question": "Which operation would prepare a hole for a flat-head screw?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Countersinking"
+    },
+    {
+      "id": 49,
+      "question": "In drilling operations, the term 'feed' refers to:",
+      "options": [
+        "Drill rotation speed",
+        "Drill advance per revolution",
+        "Hole diameter",
+        "Drill length"
+      ],
+      "answer": "Drill advance per revolution"
+    },
+    {
+      "id": 50,
+      "question": "Which lathe type would be most suitable for high-precision tool making?",
+      "options": [
+        "Speed lathe",
+        "Engine lathe",
+        "Tool room lathe",
+        "Bench lathe"
+      ],
+      "answer": "Tool room lathe"
+    },
+    {
+      "id": 51,
+      "question": "The part of the lathe that moves along the bed is the:",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Spindle"
+      ],
+      "answer": "Carriage"
+    },
+    {
+      "id": 52,
+      "question": "Which operation would reduce a workpiece diameter over a short length?",
+      "options": [
+        "Facing",
+        "Undercutting",
+        "Taper turning",
+        "Step turning"
+      ],
+      "answer": "Undercutting"
+    },
+    {
+      "id": 53,
+      "question": "The primary difference between a capstan lathe and engine lathe is the:",
+      "options": [
+        "Spindle orientation",
+        "Presence of multiple tool holders",
+        "Bed length",
+        "Speed range"
+      ],
+      "answer": "Presence of multiple tool holders"
+    },
+    {
+      "id": 54,
+      "question": "Which drilling operation would create a flat-bottomed recess for a bolt head?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Counterboring"
+    },
+    {
+      "id": 55,
+      "question": "The formula for calculating cutting speed includes:",
+      "options": [
+        "Drill diameter and RPM",
+        "Feed rate and hole depth",
+        "Material thickness and feed",
+        "Tool angle and speed"
+      ],
+      "answer": "Drill diameter and RPM"
+    },
+    {
+      "id": 56,
+      "question": "Which component holds the live center in a lathe?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Apron"
+      ],
+      "answer": "Tailstock"
+    },
+    {
+      "id": 57,
+      "question": "The operation that creates a smooth bearing surface around a hole is:",
+      "options": [
+        "Counterboring",
+        "Spot facing",
+        "Countersinking",
+        "Reaming"
+      ],
+      "answer": "Spot facing"
+    },
+    {
+      "id": 58,
+      "question": "Which lathe operation would produce a conical surface?",
+      "options": [
+        "Plane turning",
+        "Taper turning",
+        "Step turning",
+        "Facing"
+      ],
+      "answer": "Taper turning"
+    },
+    {
+      "id": 59,
+      "question": "The tool used to create external threads is called a:",
+      "options": [
+        "Tap",
+        "Die",
+        "Reamer",
+        "Counterbore"
+      ],
+      "answer": "Die"
+    },
+    {
+      "id": 60,
+      "question": "Which machine tool would be used to create keyways or slots?",
+      "options": [
+        "Lathe",
+        "Drilling machine",
+        "Shaping machine",
+        "Grinding machine"
+      ],
+      "answer": "Shaping machine"
+    },
+    {
+      "id": 61,
+      "question": "The primary advantage of an automatic lathe is:",
+      "options": [
+        "Lower cost",
+        "Reduced setup time",
+        "Minimal operator involvement",
+        "Greater flexibility"
+      ],
+      "answer": "Minimal operator involvement"
+    },
+    {
+      "id": 62,
+      "question": "Which drilling operation would be used for a countersunk screw?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Countersinking"
+    },
+    {
+      "id": 63,
+      "question": "The cutting tool used for enlarging holes is called a:",
+      "options": [
+        "Twist drill",
+        "Boring bar",
+        "Reamer",
+        "Tap"
+      ],
+      "answer": "Boring bar"
+    },
+    {
+      "id": 64,
+      "question": "Which lathe operation would create multiple diameters on a shaft?",
+      "options": [
+        "Plane turning",
+        "Step turning",
+        "Taper turning",
+        "Facing"
+      ],
+      "answer": "Step turning"
+    },
+    {
+      "id": 65,
+      "question": "The primary function of the tailstock is to:",
+      "options": [
+        "Rotate the workpiece",
+        "Support long workpieces",
+        "Control feed rates",
+        "Store cutting tools"
+      ],
+      "answer": "Support long workpieces"
+    },
+    {
+      "id": 66,
+      "question": "Which operation would be used to create a smooth finish on a drilled hole?",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Counterboring",
+        "Tapping"
+      ],
+      "answer": "Reaming"
+    },
+    {
+      "id": 67,
+      "question": "The term 'feed' in lathe operations is measured in:",
+      "options": [
+        "mm/revolution",
+        "mm/minute",
+        "RPM",
+        "degrees"
+      ],
+      "answer": "mm/revolution"
+    },
+    {
+      "id": 68,
+      "question": "Which lathe component controls tool movement along the bed?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Spindle"
+      ],
+      "answer": "Carriage"
+    },
+    {
+      "id": 69,
+      "question": "The operation that creates internal threads is called:",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Tapping",
+        "Counterboring"
+      ],
+      "answer": "Tapping"
+    },
+    {
+      "id": 70,
+      "question": "Which machine tool would be most suitable for mass production of identical parts?",
+      "options": [
+        "Engine lathe",
+        "Turret lathe",
+        "Bench lathe",
+        "Tool room lathe"
+      ],
+      "answer": "Turret lathe"
+    },
+    {
+      "id": 71,
+      "question": "The primary advantage of machine tools over hand tools is:",
+      "options": [
+        "Lower initial cost",
+        "Greater portability",
+        "Higher precision and productivity",
+        "Simpler operation"
+      ],
+      "answer": "Higher precision and productivity"
+    },
+    {
+      "id": 72,
+      "question": "Which lathe operation would be used to square the end of a workpiece?",
+      "options": [
+        "Turning",
+        "Facing",
+        "Boring",
+        "Knurling"
+      ],
+      "answer": "Facing"
+    },
+    {
+      "id": 73,
+      "question": "The tool used for cutting off workpieces is called a:",
+      "options": [
+        "Facing tool",
+        "Parting tool",
+        "Boring bar",
+        "Knurling tool"
+      ],
+      "answer": "Parting tool"
+    },
+    {
+      "id": 74,
+      "question": "Which drilling operation would create a conical seat for a screw head?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Countersinking"
+    },
+    {
+      "id": 75,
+      "question": "The primary motion in drilling operations is:",
+      "options": [
+        "Linear",
+        "Rotary",
+        "Reciprocating",
+        "Orbital"
+      ],
+      "answer": "Rotary"
+    },
+    {
+      "id": 76,
+      "question": "Which lathe type would be most suitable for educational demonstrations?",
+      "options": [
+        "Speed lathe",
+        "Engine lathe",
+        "Bench lathe",
+        "Automatic lathe"
+      ],
+      "answer": "Bench lathe"
+    },
+    {
+      "id": 77,
+      "question": "The operation that produces a flat surface around a hole for bolt seating is:",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Reaming"
+      ],
+      "answer": "Spot facing"
+    },
+    {
+      "id": 78,
+      "question": "Which component contains the gears that control lathe speeds?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Apron"
+      ],
+      "answer": "Headstock"
+    },
+    {
+      "id": 79,
+      "question": "The term 'depth of cut' refers to:",
+      "options": [
+        "Tool travel distance",
+        "Radial tool penetration",
+        "Workpiece length",
+        "Hole diameter"
+      ],
+      "answer": "Radial tool penetration"
+    },
+    {
+      "id": 80,
+      "question": "Which machine tool would be used to produce precise cylindrical surfaces?",
+      "options": [
+        "Shaping machine",
+        "Drilling machine",
+        "Lathe",
+        "Milling machine"
+      ],
+      "answer": "Lathe"
+    },
+    {
+      "id": 81,
+      "question": "The primary function of the carriage is to:",
+      "options": [
+        "Rotate the workpiece",
+        "Move the cutting tool",
+        "Support the tailstock",
+        "Control spindle speed"
+      ],
+      "answer": "Move the cutting tool"
+    },
+    {
+      "id": 82,
+      "question": "Which operation would create a recess for a bolt head below the surface?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Counterboring"
+    },
+    {
+      "id": 83,
+      "question": "The cutting tool used for producing external threads is called a:",
+      "options": [
+        "Tap",
+        "Die",
+        "Reamer",
+        "Counterbore"
+      ],
+      "answer": "Die"
+    },
+    {
+      "id": 84,
+      "question": "Which lathe operation would be used to create a smooth end surface?",
+      "options": [
+        "Turning",
+        "Facing",
+        "Boring",
+        "Knurling"
+      ],
+      "answer": "Facing"
+    },
+    {
+      "id": 85,
+      "question": "The primary advantage of a turret lathe is:",
+      "options": [
+        "Lower cost",
+        "Quick tool changes",
+        "Higher precision",
+        "Greater flexibility"
+      ],
+      "answer": "Quick tool changes"
+    },
+    {
+      "id": 86,
+      "question": "Which drilling operation would create internal threads?",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Tapping",
+        "Counterboring"
+      ],
+      "answer": "Tapping"
+    },
+    {
+      "id": 87,
+      "question": "The component that supports the cutting tool in a lathe is the:",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Spindle"
+      ],
+      "answer": "Carriage"
+    },
+    {
+      "id": 88,
+      "question": "Which operation would produce a decorative pattern on a handle?",
+      "options": [
+        "Facing",
+        "Knurling",
+        "Boring",
+        "Drilling"
+      ],
+      "answer": "Knurling"
+    },
+    {
+      "id": 89,
+      "question": "The primary purpose of reaming is to:",
+      "options": [
+        "Create new holes",
+        "Improve hole finish and accuracy",
+        "Enlarge hole diameter significantly",
+        "Create internal threads"
+      ],
+      "answer": "Improve hole finish and accuracy"
+    },
+    {
+      "id": 90,
+      "question": "Which lathe type would be most suitable for precision gauge production?",
+      "options": [
+        "Speed lathe",
+        "Engine lathe",
+        "Tool room lathe",
+        "Bench lathe"
+      ],
+      "answer": "Tool room lathe"
+    },
+    {
+      "id": 91,
+      "question": "The operation that reduces diameter over a narrow surface is called:",
+      "options": [
+        "Facing",
+        "Undercutting",
+        "Taper turning",
+        "Step turning"
+      ],
+      "answer": "Undercutting"
+    },
+    {
+      "id": 92,
+      "question": "Which component holds the dead center in a lathe?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Apron"
+      ],
+      "answer": "Tailstock"
+    },
+    {
+      "id": 93,
+      "question": "The operation that creates a conical seat for a screw is:",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Reaming"
+      ],
+      "answer": "Countersinking"
+    },
+    {
+      "id": 94,
+      "question": "Which lathe operation would produce a shaft with multiple diameters?",
+      "options": [
+        "Plane turning",
+        "Step turning",
+        "Taper turning",
+        "Facing"
+      ],
+      "answer": "Step turning"
+    },
+    {
+      "id": 95,
+      "question": "The tool used for cutting off workpieces is called a:",
+      "options": [
+        "Facing tool",
+        "Parting tool",
+        "Boring bar",
+        "Knurling tool"
+      ],
+      "answer": "Parting tool"
+    },
+    {
+      "id": 96,
+      "question": "Which drilling operation would create a flat surface for bolt seating?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Spot facing"
+    },
+    {
+      "id": 97,
+      "question": "The primary function of the feed mechanism is to:",
+      "options": [
+        "Rotate the workpiece",
+        "Control tool movement",
+        "Support long workpieces",
+        "Store cutting tools"
+      ],
+      "answer": "Control tool movement"
+    },
+    {
+      "id": 98,
+      "question": "Which operation would create a smooth bearing surface around a hole?",
+      "options": [
+        "Counterboring",
+        "Spot facing",
+        "Countersinking",
+        "Reaming"
+      ],
+      "answer": "Spot facing"
+    },
+    {
+      "id": 99,
+      "question": "The formula for cutting speed includes which variables?",
+      "options": [
+        "Diameter and RPM",
+        "Feed and depth",
+        "Length and diameter",
+        "Tool angle and speed"
+      ],
+      "answer": "Diameter and RPM"
+    },
+    {
+      "id": 100,
+      "question": "Which lathe component contains the spindle?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Apron"
+      ],
+      "answer": "Headstock"
+    },
+    {
+      "id": 101,
+      "question": "The operation that creates external threads is called:",
+      "options": [
+        "Boring",
+        "Threading",
+        "Tapping",
+        "Counterboring"
+      ],
+      "answer": "Threading"
+    },
+    {
+      "id": 102,
+      "question": "Which machine tool would be used to produce flat surfaces?",
+      "options": [
+        "Lathe",
+        "Drilling machine",
+        "Shaping machine",
+        "Grinding machine"
+      ],
+      "answer": "Shaping machine"
+    },
+    {
+      "id": 103,
+      "question": "The primary advantage of a capstan lathe is:",
+      "options": [
+        "Lower cost",
+        "Faster production rates",
+        "Higher precision",
+        "Greater flexibility"
+      ],
+      "answer": "Faster production rates"
+    },
+    {
+      "id": 104,
+      "question": "Which drilling operation would enlarge a hole mouth for bolt heads?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Counterboring"
+    },
+    {
+      "id": 105,
+      "question": "The cutting tool used for internal threading is called a:",
+      "options": [
+        "Die",
+        "Tap",
+        "Reamer",
+        "Counterbore"
+      ],
+      "answer": "Tap"
+    },
+    {
+      "id": 106,
+      "question": "Which lathe operation would produce a conical surface?",
+      "options": [
+        "Plane turning",
+        "Taper turning",
+        "Step turning",
+        "Facing"
+      ],
+      "answer": "Taper turning"
+    },
+    {
+      "id": 107,
+      "question": "The component that moves along the lathe bed is the:",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Spindle"
+      ],
+      "answer": "Carriage"
+    },
+    {
+      "id": 108,
+      "question": "Which operation would create a decorative diamond pattern?",
+      "options": [
+        "Facing",
+        "Knurling",
+        "Boring",
+        "Drilling"
+      ],
+      "answer": "Knurling"
+    },
+    {
+      "id": 109,
+      "question": "The primary purpose of countersinking is to:",
+      "options": [
+        "Create deep holes",
+        "Make conical seats for screws",
+        "Produce flat bearing surfaces",
+        "Create internal threads"
+      ],
+      "answer": "Make conical seats for screws"
+    },
+    {
+      "id": 110,
+      "question": "Which lathe type would be most suitable for woodturning?",
+      "options": [
+        "Engine lathe",
+        "Speed lathe",
+        "Turret lathe",
+        "Tool room lathe"
+      ],
+      "answer": "Speed lathe"
+    },
+    {
+      "id": 111,
+      "question": "The operation that removes material from cylindrical surfaces is called:",
+      "options": [
+        "Facing",
+        "Plane turning",
+        "Boring",
+        "Knurling"
+      ],
+      "answer": "Plane turning"
+    },
+    {
+      "id": 112,
+      "question": "Which component supports the spindle in a lathe?",
+      "options": [
+        "Bed",
+        "Headstock",
+        "Tailstock",
+        "Carriage"
+      ],
+      "answer": "Headstock"
+    },
+    {
+      "id": 113,
+      "question": "The operation that creates multiple diameters on a shaft is called:",
+      "options": [
+        "Plane turning",
+        "Step turning",
+        "Taper turning",
+        "Facing"
+      ],
+      "answer": "Step turning"
+    },
+    {
+      "id": 114,
+      "question": "Which tool would be used to finish a drilled hole to precise size?",
+      "options": [
+        "Twist drill",
+        "Reamer",
+        "Tap",
+        "Counterbore"
+      ],
+      "answer": "Reamer"
+    },
+    {
+      "id": 115,
+      "question": "The primary function of the tailstock is to:",
+      "options": [
+        "Rotate the workpiece",
+        "Support long workpieces",
+        "Control feed rates",
+        "Store cutting tools"
+      ],
+      "answer": "Support long workpieces"
+    },
+    {
+      "id": 116,
+      "question": "Which operation would be used to create a smooth finish on a hole?",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Counterboring",
+        "Tapping"
+      ],
+      "answer": "Reaming"
+    },
+    {
+      "id": 117,
+      "question": "The term 'feed' in lathe operations refers to:",
+      "options": [
+        "Tool advance per revolution",
+        "Spindle speed",
+        "Depth of cut",
+        "Workpiece length"
+      ],
+      "answer": "Tool advance per revolution"
+    },
+    {
+      "id": 118,
+      "question": "Which lathe component controls tool movement?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Spindle"
+      ],
+      "answer": "Carriage"
+    },
+    {
+      "id": 119,
+      "question": "The operation that creates internal threads is called:",
+      "options": [
+        "Boring",
+        "Reaming",
+        "Tapping",
+        "Counterboring"
+      ],
+      "answer": "Tapping"
+    },
+    {
+      "id": 120,
+      "question": "Which machine tool would be most suitable for mass production?",
+      "options": [
+        "Engine lathe",
+        "Turret lathe",
+        "Bench lathe",
+        "Tool room lathe"
+      ],
+      "answer": "Turret lathe"
+    },
+    {
+      "id": 121,
+      "question": "The primary advantage of machine tools is:",
+      "options": [
+        "Lower initial cost",
+        "Greater portability",
+        "Higher precision and productivity",
+        "Simpler operation"
+      ],
+      "answer": "Higher precision and productivity"
+    },
+    {
+      "id": 122,
+      "question": "Which lathe operation would square a workpiece end?",
+      "options": [
+        "Turning",
+        "Facing",
+        "Boring",
+        "Knurling"
+      ],
+      "answer": "Facing"
+    },
+    {
+      "id": 123,
+      "question": "The tool used for necking operations is called a:",
+      "options": [
+        "Facing tool",
+        "Parting tool",
+        "Boring bar",
+        "Knurling tool"
+      ],
+      "answer": "Parting tool"
+    },
+    {
+      "id": 124,
+      "question": "Which drilling operation would create a seat for a countersunk screw?",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Tapping"
+      ],
+      "answer": "Countersinking"
+    },
+    {
+      "id": 125,
+      "question": "The primary motion in drilling is:",
+      "options": [
+        "Linear",
+        "Rotary",
+        "Reciprocating",
+        "Orbital"
+      ],
+      "answer": "Rotary"
+    },
+    {
+      "id": 126,
+      "question": "Which lathe type would be most suitable for lab demonstrations?",
+      "options": [
+        "Speed lathe",
+        "Engine lathe",
+        "Bench lathe",
+        "Automatic lathe"
+      ],
+      "answer": "Bench lathe"
+    },
+    {
+      "id": 127,
+      "question": "The operation that produces a flat surface for bolt seating is:",
+      "options": [
+        "Counterboring",
+        "Countersinking",
+        "Spot facing",
+        "Reaming"
+      ],
+      "answer": "Spot facing"
+    },
+    {
+      "id": 128,
+      "question": "Which component contains the speed control gears?",
+      "options": [
+        "Headstock",
+        "Tailstock",
+        "Carriage",
+        "Apron"
+      ],
+      "answer": "Headstock"
+    },
+    {
+      "id": 129,
+      "question": "The term 'depth of cut' refers to:",
+      "options": [
+        "Tool travel distance",
+        "Tool penetration into workpiece",
+        "Workpiece length",
+        "Hole diameter"
+      ],
+      "answer": "Tool penetration into workpiece"
+    },
+    {
+      "id": 130,
+      "question": "Which machine tool would produce precise cylindrical surfaces?",
+      "options": [
+        "Shaping machine",
+        "Drilling machine",
+        "Lathe",
+        "Milling machine"
+      ],
+      "answer": "Lathe"
+    }
+  ]
+}
+        // DOM elements
+        const bookCover = document.getElementById('bookCover');
+        const quizBook = document.getElementById('quizBook');
+        const resultContainer = document.getElementById('resultContainer');
+        const startBtn = document.getElementById('startBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const questionPage = document.getElementById('questionPage');
+        const questionNumber = document.getElementById('questionNumber');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const timerElement = document.querySelector('#headerTimer span');
+        const progressBar = document.getElementById('progressBar');
+        const headerProgress = document.getElementById('headerProgress');
+        const scoreElement = document.getElementById('score');
+        const resultMessage = document.getElementById('resultMessage');
+        const summaryElement = document.getElementById('summary');
+        const themeToggle = document.getElementById('themeToggle');
+        const headerTimer = document.getElementById('headerTimer');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeModal = document.getElementById('closeModal');
+        const saveSettings = document.getElementById('saveSettings');
+        const timeLimitInput = document.getElementById('timeLimit');
+        
+        // Quiz variables
+        let questions = questionsData.questions;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let timeLeft = 30 * 60; // 30 minutes in seconds by default
+        let timerInterval;
+        let testStarted = false;
+        let selectedQuestions = [];
+        let isFlipping = false;
+        let timerPaused = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Select 70 random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+            
+            // Initialize user answers array
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Start the quiz with book open animation
+        function startQuiz() {
+            // Start book open animation
+            bookCover.classList.add('book-open');
+            
+            // After animation completes, show quiz book
+            setTimeout(() => {
+                bookCover.style.display = 'none';
+                quizBook.classList.add('active');
+                
+                // Start timer with default or saved value
+                const savedTimeLimit = localStorage.getItem('timeLimit');
+                timeLeft = (savedTimeLimit || 30) * 60;
+                timeLimitInput.value = savedTimeLimit || 30;
+                updateTimerDisplay();
+                
+                // Start timer
+                startTimer();
+                testStarted = true;
+                
+                // Display first question
+                showQuestion();
+            }, 1500);
+        }
+
+        // Timer control
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!timerPaused) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timeString = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Update timer
+            timerElement.textContent = timeString;
+        }
+
+        // Show current question with flip animation
+        function showQuestion() {
+            const question = selectedQuestions[currentQuestionIndex];
+            
+            // Update question number
+            questionNumber.textContent = `Question ${currentQuestionIndex + 1} of ${selectedQuestions.length}`;
+            
+            // Update progress bars
+            const progressPercent = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            headerProgress.style.width = `${progressPercent}%`;
+            
+            // Set question text
+            questionElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                // Check if this option was previously selected
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option${index}" value="${index}">
+                    <span class="checkmark"></span>
+                    <label for="option${index}">${option}</label>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === selectedQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'flex';
+            } else {
+                nextBtn.style.display = 'flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+            
+            // Save user's answer
+            userAnswers[currentQuestionIndex] = optionIndex;
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0 && !isFlipping) {
+                currentQuestionIndex--;
+                animateQuestionTransition();
+            }
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex < selectedQuestions.length - 1 && !isFlipping) {
+                currentQuestionIndex++;
+                animateQuestionTransition();
+            }
+        }
+
+        // Animate question transition with book flip effect
+        function animateQuestionTransition() {
+            isFlipping = true;
+            timerPaused = true;
+            questionPage.classList.add('flipping');
+            
+            setTimeout(() => {
+                showQuestion();
+                questionPage.classList.remove('flipping');
+                isFlipping = false;
+                timerPaused = false;
+            }, 1200);
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            testStarted = false;
+            
+            // Calculate score
+            score = 0;
+            selectedQuestions.forEach((question, index) => {
+                if (userAnswers[index] !== null && 
+                    question.options[userAnswers[index]] === question.answer) {
+                    score++;
+                }
+            });
+            
+            // Display results
+            quizBook.classList.remove('active');
+            resultContainer.style.display = 'block';
+            
+            scoreElement.textContent = `${score}/${selectedQuestions.length}`;
+            
+            // Set result message based on score
+            const percentage = (score / selectedQuestions.length) * 100;
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent performance! You've demonstrated a comprehensive understanding of OOP concepts.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good work! You have a solid grasp of OOP principles with some areas for improvement.";
+            } else if (percentage >= 40) {
+                resultMessage.textContent = "Fair attempt. Review the OOP concepts to strengthen your understanding.";
+            } else {
+                resultMessage.textContent = "Keep studying! Focus on the core OOP principles and try again.";
+            }
+            
+            // Show question summary
+            showSummary();
+        }
+
+        // Show question summary
+        function showSummary() {
+            summaryElement.innerHTML = '';
+            
+            selectedQuestions.forEach((question, index) => {
+                const summaryItem = document.createElement('div');
+                summaryItem.classList.add('summary-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex !== null && 
+                                 question.options[userAnswerIndex] === question.answer;
+                
+                if (isCorrect) {
+                    summaryItem.classList.add('correct');
+                } else {
+                    summaryItem.classList.add('incorrect');
+                }
+                
+                let userAnswerText = "Not answered";
+                if (userAnswerIndex !== null) {
+                    userAnswerText = question.options[userAnswerIndex];
+                }
+                
+                summaryItem.innerHTML = `
+                    <div class="question-text">Q${index + 1}: ${question.question}</div>
+                    ${!isCorrect ? `<div>Your answer: <span class="user-answer">${userAnswerText}</span></div>` : ''}
+                    ${!isCorrect ? `<div>Correct answer: <span class="correct-answer">${question.answer}</span></div>` : ''}
+                `;
+                
+                summaryElement.appendChild(summaryItem);
+            });
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            // Reset variables
+            currentQuestionIndex = 0;
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            score = 0;
+            
+            // Select new random questions
+            selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            
+            // Reset timer
+            timeLeft = (localStorage.getItem('timeLimit') || 30) * 60;
+            updateTimerDisplay();
+            
+            // Show book cover
+            resultContainer.style.display = 'none';
+            bookCover.style.display = 'flex';
+            bookCover.style.opacity = '1';
+            bookCover.style.transform = 'scale(1)';
+            bookCover.classList.remove('book-open');
+            quizBook.classList.remove('active');
+        }
+
+        // Open settings modal
+        function openSettings() {
+            settingsModal.classList.add('active');
+        }
+
+        // Close settings modal
+        function closeSettings() {
+            settingsModal.classList.remove('active');
+        }
+
+        // Save timer settings
+        function saveTimerSettings() {
+            const newTimeLimit = parseInt(timeLimitInput.value) || 30;
+            localStorage.setItem('timeLimit', newTimeLimit);
+            
+            // Update timer if test is in progress
+            if (testStarted) {
+                const currentTimeMinutes = Math.floor(timeLeft / 60);
+                if (confirm(`Change time limit from ${currentTimeMinutes} minutes to ${newTimeLimit} minutes?`)) {
+                    timeLeft = newTimeLimit * 60;
+                    updateTimerDisplay();
+                }
+            }
+            
+            closeSettings();
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startQuiz);
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        submitBtn.addEventListener('click', submitQuiz);
+        restartBtn.addEventListener('click', restartQuiz);
+        themeToggle.addEventListener('click', toggleTheme);
+        headerTimer.addEventListener('click', openSettings);
+        closeModal.addEventListener('click', closeSettings);
+        saveSettings.addEventListener('click', saveTimerSettings);
+        
+        // Close modal when clicking outside
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                closeSettings();
+            }
+        });
+        
+        // Prevent losing answers on page refresh
+        window.addEventListener('beforeunload', (e) => {
+            if (testStarted) {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? Your test progress will be lost.';
+            }
+        });
+        
+        // Initialize
+        initQuiz();
+    </script>
+</body>
+</html>
