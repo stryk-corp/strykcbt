@@ -407,7 +407,7 @@ function restartQuiz() {
     score = 0;
     
     // Select new random questions
-    selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 70);
+    selectedQuestions = [...questions].sort(() => 0.5 - Math.random()).slice(0, 30);
     userAnswers = new Array(selectedQuestions.length).fill(null);
     
     // Reset timer
