@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Of Library CBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Use Of Library Mastery</h1>
+                    <p>Computer Based Testing System</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="header-timer" id="headerTimer">
+                    <i class="fas fa-clock"></i>
+                    <span>30:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-progress">
+            <div class="progress-bar" id="headerProgress"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="bookCover">
+            <h1>Use Of Library Concepts</h1>
+            <p>Computer Based Test</p>
+            <p>Test your knowledge of Use Of Library with this interactive assessment</p>
+            <button class="btn" id="startBtn">Start Assessment</button>
+        </div>
+        
+        <!-- Quiz Book -->
+        <div class="quiz-book" id="quizBook">
+            <div class="page" id="questionPage">
+                <div class="timer-container">
+                    <div class="question-number" id="questionNumber">Question 1 of 70</div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="question-container" id="questionContainer">
+                    <div class="question" id="question"></div>
+                    <div class="options" id="options"></div>
+                </div>
+                
+                <!-- Question Navigation -->
+                
+                <div class="navigation">
+                    <button class="btn" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn" id="nextBtn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn submit-btn" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Test
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="result-container" id="resultContainer">
+            <h2>Assessment Complete</h2>
+            <div class="score" id="score">0/70</div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn" id="restartBtn">
+                <i class="fas fa-redo"></i> Take Test Again
+            </button>
+            
+            <div class="summary" id="summary"></div>
+        </div>
+    </div>
+    <div class="question-navigation" id="questionNav"></div>
+               <!-- Horizontal Scroll Iframe Container -->
+<div class="iframe-container">
+    <div class="iframe-wrapper" data-link="https://otieu.com/4/9442985" data-label="Resources"></div>
+    <div class="iframe-wrapper" data-link="https://otieu.com/4/9442985" data-label="Materials"></div>
+    <div class="iframe-wrapper" data-link="https://otieu.com/4/9442985" data-label="Guides"></div>
+</div>
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">Use Of Library CBT</div>
+            <div class="footer-contact">
+                <a href="https://wa.me/2348075884197" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +234 807 588 4197
+                </a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 Computer Based Testing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Timer Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Timer Settings</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="timeLimit">Set Time Limit (minutes)</label>
+                <input type="number" id="timeLimit" class="form-control" min="1" max="120" value="30">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutorial Tooltips -->
+    <div class="tooltip" id="startTooltip">
+        <p>Click here to begin your Use Of Library assessment</p>
+        <div class="tooltip-arrow"></div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="timerSound" src="sounds/timer.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="successSound" src="sounds/success.mp3" preload="auto"></audio>
+    <audio id="errorSound" src="sounds/error.mp3" preload="auto"></audio>
+
+    <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9369964,document.createElement('script'))</script>
+    <!-- Scripts -->
+    <script src="js/questionsg111.stryk"></script>
+    <script src="js/script.js"></script>
+<script src="js/iframes.js"></script>
+</body>
+</html>
