@@ -831,91 +831,6 @@ body {
     60% { transform: translateY(-5px); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .book-cover, .quiz-book {
-        width: 95%;
-        height: auto;
-        min-height: 400px;
-    }
-
-    .book-cover h1 {
-        font-size: 1.8rem;
-    }
-
-    .question {
-        font-size: 1.2rem;
-    }
-
-    .option {
-        padding: 15px 15px 15px 50px;
-    }
-
-    .checkmark {
-        left: 15px;
-    }
-
-    .btn {
-        padding: 10px 20px;
-    }
-    
-    .question-nav-item {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding-top: 70px;
-    }
-
-    .book-cover, .quiz-book {
-        width: 100%;
-        padding: 20px;
-        min-height: 350px;
-    }
-
-    .book-cover h1 {
-        font-size: 1.5rem;
-    }
-
-    .book-cover p {
-        font-size: 1rem;
-    }
-
-    .navigation {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn {
-        width: 100%;
-    }
-
-    .header-timer {
-        padding: 6px 10px;
-        font-size: 0.9rem;
-    }
-    
-    .question-navigation {
-        gap: 5px;
-    }
-.ad-rotation-container {
-    width: 100%;
-    min-height: 250px; /* Adjust based on your ad sizes */
-    margin: 20px 0;
-    border: 1px solid #eee;
-    overflow: hidden;
-    position: relative;
-}
-    
-    .question-nav-item {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
 /* Circular Iframe Container */
 .iframe-container {
     display: flex;
@@ -1048,87 +963,87 @@ body {
     border-top-color: transparent;
 }
 
-/* Extra small devices (phones) */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .book-cover, .quiz-book {
+        width: 95%;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .book-cover h1 {
+        font-size: 1.8rem;
+    }
+
+    .question {
+        font-size: 1.2rem;
+    }
+
+    .option {
+        padding: 15px 15px 15px 50px;
+    }
+
+    .checkmark {
+        left: 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    .question-nav-item {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 480px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .book-cover, .quiz-book {
+        width: 100%;
+        padding: 20px;
+        min-height: 350px;
+    }
+
+    .book-cover h1 {
+        font-size: 1.5rem;
+    }
+
+    .book-cover p {
+        font-size: 1rem;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .header-timer {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .question-navigation {
+        gap: 5px;
+    }
+    
+    /* Adjust circular iframes for small devices */
     .iframe-wrapper {
         min-width: 80px;
         min-height: 80px;
         margin: 0 5px;
     }
-    
+
     .iframe-label {
         font-size: 10px;
         bottom: -20px;
-    }
-}
-/* Container for circular iframes */
-.iframe-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    margin: 30px auto;
-    padding: 0 10px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Hide scrollbar while maintaining functionality */
-.iframe-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Circular wrapper for iframes */
-.iframe-wrapper {
-    position: relative;
-    min-width: 100px;
-    min-height: 100px;
-    width: 22vw;
-    height: 22vw;  /* Maintain aspect ratio for circle */
-    max-width: 180px;
-    max-height: 180px;
-    border-radius: 50%; /* Creates the circle */
-    overflow: hidden; /* Clips content to circle */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 3px solid #2c3e50;
-    background: white;
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    margin: 0 10px;
-    transition: all 0.3s ease;
-}
-
-/* Iframe styling */
-.iframe-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* Dark mode support */
-[data-theme="dark"] .iframe-wrapper {
-    border-color: #e74c3c;
-    background: #2c3e50;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .iframe-wrapper {
-        width: 25vw;
-        height: 25vw;
-        max-width: 150px;
-        max-height: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    .iframe-wrapper {
-        min-width: 80px;
-        min-height: 80px;
-        width: 28vw;
-        height: 28vw;
-        margin: 0 5px;
     }
 }
