@@ -2,9 +2,9 @@
 function initIframes() {
     const containers = document.querySelectorAll('.iframe-wrapper');
     const iframeLinks = [
-        "https://otieu.com/4/9442985",
-        "https://otieu.com/4/9442985", 
-        "https://otieu.com/4/9442985"
+        "https://www.profitableratecpm.com/mf7n4i6vw9?key=03c3c9b2edf14001f4e29014bbb5ae99",
+        "https://www.profitableratecpm.com/mf7n4i6vw9?key=03c3c9b2edf14001f4e29014bbb5ae99", 
+        "https://www.profitableratecpm.com/mf7n4i6vw9?key=03c3c9b2edf14001f4e29014bbb5ae99"
     ];
     const labels = ["Resources", "Materials", "Guides"]; // Shorter for mobile
     
