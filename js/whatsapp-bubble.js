@@ -209,13 +209,13 @@
     document.body.appendChild(bubble);
 
     // Countdown timer
-    let secondsLeft = 9;
+    let secondsLeft = 20;
     const timerInterval = setInterval(() => {
         secondsLeft--;
         timer.textContent = secondsLeft.toString();
         
         // Intensify animation when time is running out
-        if (secondsLeft <= 3) {
+        if (secondsLeft <= 10) {
             timer.style.animation = 'timer-pulse 0.8s infinite';
             timer.style.backgroundColor = '#ff1a1a';
         }
