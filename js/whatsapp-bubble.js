@@ -1,154 +1,182 @@
-// whatsapp-bubble-premium.js
+// whatsapp-bubble-ultimate.js
 (function() {
     // Create style element with premium animations
     const style = document.createElement('style');
     style.textContent = `
-        .whatsapp-bubble-premium {
+        .wa-bubble {
             position: fixed;
             top: 100px;
             right: 30px;
-            width: 260px;
-            background: linear-gradient(145deg, #075E54, #128C7E, #25D366);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 65% 35%, #25D366, #128C7E);
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             cursor: pointer;
             z-index: 9999;
-            overflow: hidden;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);
             opacity: 1;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            animation: slideIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: 
+                bubble-enter 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+                bubble-float 4s ease-in-out infinite;
+            overflow: hidden;
         }
 
-        .whatsapp-bubble-premium::before {
-            content: '';
+        .wa-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .wa-bubble:hover .wa-icon {
+            animation: icon-bounce 0.6s;
+        }
+
+        .wa-bubble:hover .wa-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .wa-icon {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .wa-timer {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .whatsapp-bubble-premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .whatsapp-bubble-premium .bubble-header {
-            display: flex;
-            align-items: center;
-            padding: 16px 16px 12px;
+            top: -5px;
+            right: -5px;
+            background: #FF3B30;
             color: white;
-        }
-
-        .whatsapp-bubble-premium .bubble-header img {
+            border-radius: 50%;
             width: 24px;
             height: 24px;
-            margin-right: 12px;
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: timer-pulse 1.5s infinite;
         }
 
-        .whatsapp-bubble-premium .bubble-header .title {
-            font-size: 15px;
-            font-weight: 600;
-            flex: 1;
-        }
-
-        .whatsapp-bubble-premium .bubble-header .timer {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: 600;
-            min-width: 36px;
-            text-align: center;
+        .wa-tooltip {
+            position: absolute;
+            right: 80px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateX(10px);
             transition: all 0.3s ease;
         }
 
-        .whatsapp-bubble-premium .bubble-header .timer:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .whatsapp-bubble-premium .bubble-body {
-            padding: 0 16px 16px;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            line-height: 1.5;
-            display: flex;
-            align-items: center;
-        }
-
-        .whatsapp-bubble-premium .bubble-body .icon {
-            margin-right: 12px;
-            font-size: 20px;
-            animation: gentlePulse 2s infinite;
+        .wa-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 5px 0 5px 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0,0,0,0.8);
         }
 
         /* Animations */
-        @keyframes slideIn {
+        @keyframes bubble-enter {
             0% {
-                transform: translateX(100%) translateY(0);
                 opacity: 0;
+                transform: translateX(30px) scale(0.8);
             }
             100% {
-                transform: translateX(0) translateY(0);
                 opacity: 1;
+                transform: translateX(0) scale(1);
             }
         }
 
-        @keyframes disintegrate {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
+        @keyframes bubble-float {
+            0%, 100% {
+                transform: translateY(0);
             }
-            30% {
-                transform: translateY(-10px) scale(0.95);
-                opacity: 0.8;
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes bubble-exit {
+            0% {
+                opacity: 1;
+                transform: scale(1);
             }
             100% {
-                transform: translateY(20px) scale(0.9);
                 opacity: 0;
+                transform: scale(0.8);
                 display: none;
             }
         }
 
-        @keyframes gentlePulse {
+        @keyframes icon-bounce {
             0%, 100% {
-                transform: scale(1);
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-5px);
             }
             50% {
-                transform: scale(1.1);
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(-3px);
             }
         }
 
-        @keyframes countdownPulse {
+        @keyframes timer-pulse {
             0%, 100% {
                 transform: scale(1);
-                background-color: rgba(255, 255, 255, 0.15);
             }
             50% {
-                transform: scale(1.05);
-                background-color: rgba(255, 255, 255, 0.25);
+                transform: scale(1.15);
             }
+        }
+
+        @keyframes text-fade {
+            0% { opacity: 0; transform: translateY(5px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .whatsapp-bubble-premium {
+            .wa-bubble {
                 top: 80px;
-                right: 15px;
-                width: 220px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
             }
             
-            .whatsapp-bubble-premium .bubble-header {
-                padding: 14px 14px 10px;
+            .wa-icon {
+                width: 28px;
+                height: 28px;
             }
             
-            .whatsapp-bubble-premium .bubble-body {
-                font-size: 13px;
-                padding: 0 14px 14px;
+            .wa-timer {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+            
+            .wa-tooltip {
+                display: none;
             }
         }
     `;
@@ -156,61 +184,40 @@
 
     // Create bubble element
     const bubble = document.createElement('div');
-    bubble.className = 'whatsapp-bubble-premium';
-    bubble.id = 'whatsappBubblePremium';
+    bubble.className = 'wa-bubble';
     
-    // Header section
-    const header = document.createElement('div');
-    header.className = 'bubble-header';
+    // WhatsApp icon
+    const icon = document.createElement('img');
+    icon.className = 'wa-icon';
+    icon.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
+    icon.alt = 'WhatsApp';
     
-    const headerImg = document.createElement('img');
-    headerImg.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
-    headerImg.alt = 'WhatsApp';
-    
-    const headerTitle = document.createElement('div');
-    headerTitle.className = 'title';
-    headerTitle.textContent = 'Join Our Community';
-    
+    // Countdown timer
     const timer = document.createElement('div');
-    timer.className = 'timer';
-    timer.id = 'bubbleTimer';
-    timer.textContent = '09';
-    timer.title = 'Close in 9 seconds';
+    timer.className = 'wa-timer';
+    timer.textContent = '9';
     
-    header.appendChild(headerImg);
-    header.appendChild(headerTitle);
-    header.appendChild(timer);
+    // Tooltip text
+    const tooltip = document.createElement('div');
+    tooltip.className = 'wa-tooltip';
+    tooltip.textContent = 'Join our WhatsApp group';
+    tooltip.style.animation = 'text-fade 0.4s ease-out';
     
-    // Body section
-    const body = document.createElement('div');
-    body.className = 'bubble-body';
-    
-    const bodyIcon = document.createElement('div');
-    bodyIcon.className = 'icon';
-    bodyIcon.innerHTML = '💬';
-    
-    const bodyText = document.createElement('div');
-    bodyText.className = 'text';
-    bodyText.textContent = 'Get exclusive updates in our WhatsApp group';
-    
-    body.appendChild(bodyIcon);
-    body.appendChild(bodyText);
-    
-    // Assemble bubble
-    bubble.appendChild(header);
-    bubble.appendChild(body);
+    bubble.appendChild(icon);
+    bubble.appendChild(timer);
+    bubble.appendChild(tooltip);
     document.body.appendChild(bubble);
 
     // Countdown timer
     let secondsLeft = 9;
     const timerInterval = setInterval(() => {
         secondsLeft--;
-        timer.textContent = secondsLeft.toString().padStart(2, '0');
-        timer.title = `Close in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}`;
+        timer.textContent = secondsLeft.toString();
         
-        // Pulsing animation when below 5 seconds
-        if (secondsLeft <= 5) {
-            timer.style.animation = 'countdownPulse 1s infinite';
+        // Intensify animation when time is running out
+        if (secondsLeft <= 3) {
+            timer.style.animation = 'timer-pulse 0.8s infinite';
+            timer.style.backgroundColor = '#ff1a1a';
         }
         
         if (secondsLeft <= 0) {
@@ -221,36 +228,33 @@
 
     // Elegant close animation
     function closeBubble() {
-        bubble.style.animation = 'disintegrate 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards';
+        bubble.style.animation = 'bubble-exit 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards';
         setTimeout(() => {
             bubble.remove();
-        }, 500);
+        }, 400);
     }
 
-    // Click handler
+    // Click handler with ripple effect
     bubble.addEventListener('click', function(e) {
         if (e.target === timer) return;
         
         clearInterval(timerInterval);
         
-        // Ripple effect
+        // Create ripple effect
         const ripple = document.createElement('div');
         ripple.style.position = 'absolute';
         ripple.style.borderRadius = '50%';
-        ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+        ripple.style.background = 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)';
         ripple.style.transform = 'scale(0)';
         ripple.style.pointerEvents = 'none';
-        
-        const rect = bubble.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height) * 1.5;
-        ripple.style.width = size + 'px';
-        ripple.style.height = size + 'px';
-        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        ripple.style.width = '100%';
+        ripple.style.height = '100%';
+        ripple.style.top = '0';
+        ripple.style.left = '0';
         
         bubble.appendChild(ripple);
         
-        // Ripple animation
+        // Animate ripple
         const startTime = Date.now();
         const duration = 600;
         
