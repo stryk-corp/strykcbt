@@ -1,151 +1,154 @@
-// whatsapp-bubble-enhanced.js
+// whatsapp-bubble-premium.js
 (function() {
-    // Create style element with enhanced animations
+    // Create style element with premium animations
     const style = document.createElement('style');
     style.textContent = `
-        .whatsapp-bubble-enhanced {
+        .whatsapp-bubble-premium {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 220px;
-            height: 70px;
-            background: linear-gradient(45deg, #25D366, #128C7E, #075E54);
-            background-size: 300% 300%;
-            border-radius: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            top: 100px;
+            right: 30px;
+            width: 260px;
+            background: linear-gradient(145deg, #075E54, #128C7E, #25D366);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             cursor: pointer;
             z-index: 9999;
-            animation: bounce 1.5s infinite, colorPulse 4s infinite alternate;
-            transition: all 0.3s ease;
             overflow: hidden;
-            padding: 0 20px;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: slideIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
 
-        .whatsapp-bubble-enhanced:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        .whatsapp-bubble-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        .whatsapp-bubble-enhanced .content {
+        .whatsapp-bubble-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-bubble-premium .bubble-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-
-        .whatsapp-bubble-enhanced img {
-            width: 40px;
-            height: 40px;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-bubble-enhanced .text {
+            padding: 16px 16px 12px;
             color: white;
-            font-weight: bold;
-            font-size: 16px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            animation: textGlow 2s infinite alternate;
         }
 
-        .whatsapp-bubble-enhanced .notification {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #FF0000;
-            color: white;
-            border-radius: 50%;
+        .whatsapp-bubble-premium .bubble-header img {
             width: 24px;
             height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-right: 12px;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        .whatsapp-bubble-premium .bubble-header .title {
+            font-size: 15px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .whatsapp-bubble-premium .bubble-header .timer {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 4px 10px;
             font-size: 12px;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
+            font-weight: 600;
+            min-width: 36px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-bubble-premium .bubble-header .timer:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .whatsapp-bubble-premium .bubble-body {
+            padding: 0 16px 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+        }
+
+        .whatsapp-bubble-premium .bubble-body .icon {
+            margin-right: 12px;
+            font-size: 20px;
+            animation: gentlePulse 2s infinite;
         }
 
         /* Animations */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-25px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes colorPulse {
+        @keyframes slideIn {
             0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
+                transform: translateX(100%) translateY(0);
+                opacity: 0;
             }
             100% {
-                background-position: 0% 50%;
+                transform: translateX(0) translateY(0);
+                opacity: 1;
             }
         }
 
-        @keyframes pulse {
+        @keyframes disintegrate {
             0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(-10px) scale(0.95);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(20px) scale(0.9);
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
                 transform: scale(1);
             }
             50% {
                 transform: scale(1.1);
             }
-            100% {
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% {
                 transform: scale(1);
+                background-color: rgba(255, 255, 255, 0.15);
+            }
+            50% {
+                transform: scale(1.05);
+                background-color: rgba(255, 255, 255, 0.25);
             }
         }
 
-        @keyframes textGlow {
-            0% {
-                text-shadow: 0 0 5px rgba(255,255,255,0.5);
-            }
-            100% {
-                text-shadow: 0 0 15px rgba(255,255,255,0.9);
-            }
-        }
-
-        /* Ripple effect */
-        .whatsapp-bubble-enhanced .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.7);
-            transform: scale(0);
-            animation: ripple 1s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(2.5);
-                opacity: 0;
-            }
-        }
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .whatsapp-bubble-enhanced {
-                width: 180px;
-                height: 60px;
-                bottom: 20px;
-                left: 20px;
+            .whatsapp-bubble-premium {
+                top: 80px;
+                right: 15px;
+                width: 220px;
             }
             
-            .whatsapp-bubble-enhanced .text {
-                font-size: 14px;
+            .whatsapp-bubble-premium .bubble-header {
+                padding: 14px 14px 10px;
             }
             
-            .whatsapp-bubble-enhanced img {
-                width: 35px;
-                height: 35px;
+            .whatsapp-bubble-premium .bubble-body {
+                font-size: 13px;
+                padding: 0 14px 14px;
             }
         }
     `;
@@ -153,126 +156,133 @@
 
     // Create bubble element
     const bubble = document.createElement('div');
-    bubble.className = 'whatsapp-bubble-enhanced';
-    bubble.id = 'whatsappBubbleEnhanced';
+    bubble.className = 'whatsapp-bubble-premium';
+    bubble.id = 'whatsappBubblePremium';
     
-    const content = document.createElement('div');
-    content.className = 'content';
+    // Header section
+    const header = document.createElement('div');
+    header.className = 'bubble-header';
     
-    const img = document.createElement('img');
-    img.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
-    img.alt = 'WhatsApp';
+    const headerImg = document.createElement('img');
+    headerImg.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
+    headerImg.alt = 'WhatsApp';
     
-    const text = document.createElement('div');
-    text.className = 'text';
-    text.textContent = 'Join the info group';
+    const headerTitle = document.createElement('div');
+    headerTitle.className = 'title';
+    headerTitle.textContent = 'Join Our Community';
     
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = '!';
+    const timer = document.createElement('div');
+    timer.className = 'timer';
+    timer.id = 'bubbleTimer';
+    timer.textContent = '09';
+    timer.title = 'Close in 9 seconds';
     
-    content.appendChild(img);
-    content.appendChild(text);
-    bubble.appendChild(content);
-    bubble.appendChild(notification);
+    header.appendChild(headerImg);
+    header.appendChild(headerTitle);
+    header.appendChild(timer);
+    
+    // Body section
+    const body = document.createElement('div');
+    body.className = 'bubble-body';
+    
+    const bodyIcon = document.createElement('div');
+    bodyIcon.className = 'icon';
+    bodyIcon.innerHTML = '💬';
+    
+    const bodyText = document.createElement('div');
+    bodyText.className = 'text';
+    bodyText.textContent = 'Get exclusive updates in our WhatsApp group';
+    
+    body.appendChild(bodyIcon);
+    body.appendChild(bodyText);
+    
+    // Assemble bubble
+    bubble.appendChild(header);
+    bubble.appendChild(body);
     document.body.appendChild(bubble);
 
-    // Add ripple effect
+    // Countdown timer
+    let secondsLeft = 9;
+    const timerInterval = setInterval(() => {
+        secondsLeft--;
+        timer.textContent = secondsLeft.toString().padStart(2, '0');
+        timer.title = `Close in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}`;
+        
+        // Pulsing animation when below 5 seconds
+        if (secondsLeft <= 5) {
+            timer.style.animation = 'countdownPulse 1s infinite';
+        }
+        
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            closeBubble();
+        }
+    }, 1000);
+
+    // Elegant close animation
+    function closeBubble() {
+        bubble.style.animation = 'disintegrate 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards';
+        setTimeout(() => {
+            bubble.remove();
+        }, 500);
+    }
+
+    // Click handler
     bubble.addEventListener('click', function(e) {
-        if (!isDragging) {
-            // Create ripple element
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
+        if (e.target === timer) return;
+        
+        clearInterval(timerInterval);
+        
+        // Ripple effect
+        const ripple = document.createElement('div');
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.pointerEvents = 'none';
+        
+        const rect = bubble.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 1.5;
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        
+        bubble.appendChild(ripple);
+        
+        // Ripple animation
+        const startTime = Date.now();
+        const duration = 600;
+        
+        const animateRipple = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const scale = progress * 2;
+            const opacity = 1 - progress;
             
-            // Position the ripple
-            const rect = bubble.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            ripple.style.width = size + 'px';
-            ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+            ripple.style.transform = `scale(${scale})`;
+            ripple.style.opacity = opacity;
             
-            bubble.appendChild(ripple);
-            
-            // Remove ripple after animation
-            setTimeout(() => {
+            if (progress < 1) {
+                requestAnimationFrame(animateRipple);
+            } else {
                 ripple.remove();
-            }, 1000);
-            
-            // Open WhatsApp after slight delay for better UX
-            setTimeout(() => {
-                window.open('https://chat.whatsapp.com/DRHb03IWfEvGHgA8h36Shg', '_blank');
-                notification.style.display = 'none';
-            }, 300);
-        }
+            }
+        };
+        
+        requestAnimationFrame(animateRipple);
+        
+        // Open WhatsApp after slight delay
+        setTimeout(() => {
+            window.open('https://chat.whatsapp.com/DRHb03IWfEvGHgA8h36Shg', '_blank');
+            closeBubble();
+        }, 300);
     });
 
-    // Draggable functionality
-    let isDragging = false;
-    let offsetX, offsetY;
-
-    bubble.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        offsetX = e.clientX - bubble.getBoundingClientRect().left;
-        offsetY = e.clientY - bubble.getBoundingClientRect().top;
-        bubble.style.animation = 'none';
+    // Manual close on timer click
+    timer.addEventListener('click', function(e) {
         e.stopPropagation();
+        clearInterval(timerInterval);
+        closeBubble();
     });
-
-    document.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        
-        const x = e.clientX - offsetX;
-        const y = e.clientY - offsetY;
-        
-        const maxX = window.innerWidth - bubble.offsetWidth;
-        const maxY = window.innerHeight - bubble.offsetHeight;
-        
-        bubble.style.left = Math.min(Math.max(0, x), maxX) + 'px';
-        bubble.style.top = Math.min(Math.max(0, y), maxY) + 'px';
-        bubble.style.bottom = 'auto';
-    });
-
-    document.addEventListener('mouseup', function() {
-        if (isDragging) {
-            isDragging = false;
-            bubble.style.animation = 'bounce 1.5s infinite, colorPulse 4s infinite alternate';
-        }
-    });
-
-    // Touch events for mobile
-    bubble.addEventListener('touchstart', function(e) {
-        isDragging = true;
-        const touch = e.touches[0];
-        offsetX = touch.clientX - bubble.getBoundingClientRect().left;
-        offsetY = touch.clientY - bubble.getBoundingClientRect().top;
-        bubble.style.animation = 'none';
-        e.preventDefault();
-    });
-
-    document.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        const touch = e.touches[0];
-        
-        const x = touch.clientX - offsetX;
-        const y = touch.clientY - offsetY;
-        
-        const maxX = window.innerWidth - bubble.offsetWidth;
-        const maxY = window.innerHeight - bubble.offsetHeight;
-        
-        bubble.style.left = Math.min(Math.max(0, x), maxX) + 'px';
-        bubble.style.top = Math.min(Math.max(0, y), maxY) + 'px';
-        bubble.style.bottom = 'auto';
-        e.preventDefault();
-    });
-
-    document.addEventListener('touchend', function() {
-        if (isDragging) {
-            isDragging = false;
-            bubble.style.animation = 'bounce 1.5s infinite, colorPulse 4s infinite alternate';
-        }
-    });
-
-    // Show notification by default
-    notification.style.display = 'flex';
 })();
